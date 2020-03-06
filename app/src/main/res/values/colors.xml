@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="orange" rgb='F69140' r='246' g='145' b='64' />
+    <color name="red" rgb='EF415C' r='239' g='65' b='92' />
+    <color name="lightGreen" rgb='8FCCBA' r='143' g='204' b='186' />
+    <color name="aquaGreen" rgb='3DCC9B' r='61' g='204' b='155' />
+    <color name="accent" rgb='CED967' r='206' g='217' b='103' />
+    <color name="background">#fff</color>
+    <color name="fontColor">#333333</color>
 </resources>

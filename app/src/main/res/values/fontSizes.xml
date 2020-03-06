@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fontSmall">12</string>
+    <string name="fontMedium">18</string>
+    <string name="fontBig">24</string>
+    <string name="title">36</string>
+</resources>
