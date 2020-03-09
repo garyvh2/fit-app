@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- BMI Heights -->
+    <integer name="avg_height">180</integer>
+    <integer name="min_height">50</integer>
+    <integer name="max_height">250</integer>
+    <integer name="retarded_avg_height">72</integer>
+    <integer name="retarded_min_height">20</integer>
+    <integer name="retarded_max_height">100</integer>
+
+    <!-- BMI Weights -->
+    <integer name="avg_weight">70</integer>
+    <integer name="min_weight">25</integer>
+    <integer name="max_weight">200</integer>
+    <integer name="retarded_avg_weight">154</integer>
+    <integer name="retarded_min_weight">50</integer>
+    <integer name="retarded_max_weight">400</integer>
+
+</resources>

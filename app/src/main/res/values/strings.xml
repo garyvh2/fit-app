@@ -9,4 +9,28 @@
     <string name="cancel">Cancel</string>
     <string name="accept">Accept</string>
 
+
+    <!-- BMI -->
+    <string name="bmi">IMC</string>
+    <string name="bmi_extended">Índice de Masa Corporal</string>
+    <string name="height">Altura</string>
+    <string name="weight">Peso</string>
+    <string name="metric">Métrico</string>
+    <string name="retarded">Imperial</string>
+    <string name="super_underweight">Muy bajo peso</string>
+    <string name="underweight">Bajo peso</string>
+    <string name="normal_weight">Normal</string>
+    <string name="overweight">Sobre peso</string>
+    <string name="obese1">Obeso Tipo 1</string>
+    <string name="obese2">Obeso Tipo 2</string>
+    <string name="obese3">Obeso Tipo 3</string>
+
+    <!-- Metric Units -->
+    <string name="metric_weight">kg</string>
+    <string name="metric_height">cm</string>
+    <!-- Retarded Units -->
+    <string name="retarded_weight">lb</string>
+    <string name="retarded_height">in</string>
+
+
 </resources>
