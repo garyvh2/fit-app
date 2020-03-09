@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fontSmall">12dp</string>
+    <string name="fontMedium">18dp</string>
+    <string name="fontBig">24dp</string>
+    <string name="title">36dp</string>
+</resources>
