@@ -3,4 +3,10 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <!-- Button Strings -->
+    <string name="action">Action</string>
+    <string name="cancel">Cancel</string>
+    <string name="accept">Accept</string>
+
 </resources>
