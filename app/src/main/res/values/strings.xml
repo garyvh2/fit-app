@@ -26,6 +26,9 @@
     <string name="obese3">Obeso Tipo 3</string>
 
 
+    <!-- WATER -->
+    <string name="water">Agua</string>
+    <string name="water_extended">Consumo de agua diario</string>
     <string name="registrar">Registrar</string>
 
     <!-- Metric Units -->

@@ -9,10 +9,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.NonNull;
 
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
+
+    private Button bmiBtn, waterConsumeBtn;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -41,8 +45,25 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        Intent intent = new Intent(this, WaterActivity.class);
-        startActivity(intent);
+
+        bmiBtn = findViewById(R.id.bmi);
+        bmiBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), BMIActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        waterConsumeBtn = findViewById(R.id.waterConsume);
+        waterConsumeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), WaterActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 }
