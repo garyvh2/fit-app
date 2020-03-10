@@ -6,11 +6,14 @@ import androidx.databinding.BindingAdapter;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
+import android.animation.LayoutTransition;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.gitgud.fitapp.databinding.ActivityWaterBinding;
@@ -25,7 +28,7 @@ public class WaterActivity extends AppCompatActivity {
 
     private ActivityWaterBinding binding;
 
-    private View water;
+    private LinearLayout water;
     private Button add;
 
     @Override
@@ -37,6 +40,11 @@ public class WaterActivity extends AppCompatActivity {
         binding.setViewModel(this);
 
         water = findViewById(R.id.water);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            water.getLayoutTransition().enableTransitionType(LayoutTransition.CHANGING);
+        }
+
         add = findViewById(R.id.add);
         add.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
