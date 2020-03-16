@@ -3,6 +3,10 @@
     xmlns:dist="http://schemas.android.com/apk/distribution"
     package="com.gitgud.fitapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+
     <dist:module dist:instant="true" />
 
     <application
@@ -12,7 +16,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BMIActivity"></activity>
+        <activity android:name=".activities.NutriAdviceDetailActivity"></activity>
+        <activity android:name=".activities.NutriAdviceMainActivity" />
+        <activity android:name=".BMIActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
