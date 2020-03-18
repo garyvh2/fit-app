@@ -31,6 +31,8 @@ public class WaterActivity extends AppCompatActivity {
     private LinearLayout water;
     private Button add;
 
+    private String textValue;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,7 @@ public class WaterActivity extends AppCompatActivity {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_water);
         binding.setViewModel(this);
+        binding.setTextValue(textValue);
 
         water = findViewById(R.id.water);
 

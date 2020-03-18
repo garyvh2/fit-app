@@ -3,6 +3,7 @@ package com.gitgud.fitapp;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.gitgud.fitapp.views.BindingActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +17,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
 
-    private Button bmiBtn, waterConsumeBtn;
+    private Button bmiBtn, waterConsumeBtn, stepsBtn, bindingBtn;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -60,6 +61,25 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), WaterActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        stepsBtn = findViewById(R.id.steps);
+        stepsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), StepActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        bindingBtn = findViewById(R.id.binding);
+        bindingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), BindingActivity.class);
                 startActivity(intent);
             }
         });

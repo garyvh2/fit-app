@@ -6,6 +6,7 @@
     <data>
         <variable name="viewModel" type="com.gitgud.fitapp.WaterActivity" />
         <variable name="height" type="Integer" />
+        <variable name="textValue" type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,7 +23,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:ems="10"
-            android:text="@string/water_extended"
+            android:text="@{textValue}"
             android:textAlignment="center"
             android:textSize="@dimen/fontBig"
             app:layout_constraintBottom_toTopOf="@+id/total"
@@ -90,6 +91,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:text="@{textValue}"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/titleWater"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
 
