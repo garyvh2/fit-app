@@ -20,7 +20,6 @@ import com.gitgud.fitapp.network.graphql.ApolloProvider;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
