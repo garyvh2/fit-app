@@ -25,12 +25,24 @@
     <string name="obese2">Obeso Tipo 2</string>
     <string name="obese3">Obeso Tipo 3</string>
 
+
+    <!-- WATER -->
+    <string name="water">Agua</string>
+    <string name="water_extended">Consumo de agua diario</string>
+    <string name="registrar">Registrar</string>
+
+    <!-- STEPS -->
+    <string name="steps">Pasos</string>
+
     <!-- Metric Units -->
     <string name="metric_weight">kg</string>
     <string name="metric_height">cm</string>
     <!-- Retarded Units -->
     <string name="retarded_weight">lb</string>
     <string name="retarded_height">in</string>
+
+    <!-- TEMP -->
+    <string name="binding">Binding</string>
 
 
 </resources>
