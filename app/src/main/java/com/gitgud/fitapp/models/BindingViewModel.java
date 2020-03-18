@@ -4,17 +4,27 @@ import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 import com.gitgud.fitapp.BR;
+import com.gitgud.fitapp.fragment.Pokemon;
 
 public class BindingViewModel extends BaseObservable {
-    private String name;
+    private Pokemon pokemon;
+    private Boolean loading;
 
     @Bindable
-    public String getName() {
-        return name;
+    public Pokemon getPokemon() {
+        return pokemon;
     }
 
-    public void setName(String name) {
-        this.name = name;
-        notifyPropertyChanged(BR.name);
+    public void setPokemon(Pokemon pokemon) {
+        this.pokemon = pokemon;
+        notifyPropertyChanged(BR.pokemon);
+    }
+
+    @Bindable
+    public Boolean getLoading() { return loading; }
+
+    public void setLoading(Boolean loading) {
+        this.loading = loading;
+        notifyPropertyChanged(BR.loading);
     }
 }
