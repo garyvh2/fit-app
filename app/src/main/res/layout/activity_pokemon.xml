@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.gitgud.fitapp.ui.modules.pokemon.PokemonViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.modules.pokemon.PokemonActivity">
+
+        <TextView
+            android:id="@+id/loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/material_on_surface_emphasis_high_type"
+            android:gravity="center_vertical"
+            android:text="@string/loading"
+            android:textAlignment="center"
+            android:textSize="36sp"
+            android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}" />
+
+        <ListView
+            android:id="@+id/attacks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteY="731dp"></ListView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
