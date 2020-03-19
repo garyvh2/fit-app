@@ -1,4 +1,4 @@
-package com.gitgud.fitapp.network.graphql.interceptors;
+package com.gitgud.fitapp.provider.network.interceptors;
 
 import java.io.IOException;
 

@@ -1,6 +1,6 @@
-package com.gitgud.fitapp.network.graphql;
+package com.gitgud.fitapp.provider.network.graphql;
 
-import com.gitgud.fitapp.network.graphql.interceptors.ContentTypeInterceptor;
+import com.gitgud.fitapp.provider.network.interceptors.ContentTypeInterceptor;
 
 import okhttp3.OkHttpClient;
 

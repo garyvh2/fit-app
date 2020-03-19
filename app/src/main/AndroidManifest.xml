@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-
     <uses-feature
         android:name="android.hardware.sensor.stepdetector"
         android:required="true" />
@@ -20,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.BindingActivity"></activity>
+        <activity android:name=".ui.modules.pokemonInfo.PokemonInfoActivity"></activity>
+        <activity android:name=".ui.modules.pokemon.PokemonActivity" />
         <activity android:name=".StepActivity" />
         <activity android:name=".WaterActivity" />
         <activity android:name=".BMIActivity" />

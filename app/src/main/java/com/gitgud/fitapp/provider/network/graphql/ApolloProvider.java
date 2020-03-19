@@ -1,4 +1,4 @@
-package com.gitgud.fitapp.network.graphql;
+package com.gitgud.fitapp.provider.network.graphql;
 
 import com.apollographql.apollo.ApolloClient;
 import com.gitgud.fitapp.BuildConfig;

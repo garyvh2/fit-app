@@ -3,7 +3,7 @@ package com.gitgud.fitapp;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.gitgud.fitapp.views.BindingActivity;
+import com.gitgud.fitapp.ui.modules.pokemon.PokemonActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         bindingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BindingActivity.class);
+                Intent intent = new Intent(getApplicationContext(), PokemonActivity.class);
                 startActivity(intent);
             }
         });
