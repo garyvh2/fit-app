@@ -43,6 +43,7 @@
 
     <!-- TEMP -->
     <string name="binding">Binding</string>
+    <string name="loading">Loading</string>
 
 
 </resources>

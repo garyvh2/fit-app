@@ -64,6 +64,10 @@ public class PokemonInfoActivity extends AppCompatActivity {
         adapterEvolutions = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, android.R.id.text1, evolutionNames);
         evolutionsListView = findViewById(R.id.evolutions);
         evolutionsListView.setAdapter(adapterEvolutions);
+        evolutionsListView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
+            // ListView Clicked item index
+            pokemonViewModel.getPokemonNavigator().navigateToPokemonInfo(this, adapterEvolutions.getItem(position));
+        });
         // LIST END
 
 

@@ -7,6 +7,7 @@ import androidx.databinding.Bindable;
 import com.gitgud.fitapp.BR;
 import com.gitgud.fitapp.data.source.PokemonDataSource;
 import com.gitgud.fitapp.entities.pokemon.PokemonQuery;
+import com.gitgud.fitapp.ui.modules.pokemon.PokemonNavigator;
 
 
 import io.reactivex.Observable;
@@ -17,6 +18,8 @@ public class PokemonInfoViewModel extends BaseObservable {
     // INJECTION START
     @NonNull
     private PokemonDataSource pokemonDataSource;
+    @NonNull
+    private PokemonNavigator pokemonNavigator;
     // INJECTION END
 
 
@@ -25,8 +28,14 @@ public class PokemonInfoViewModel extends BaseObservable {
     private PokemonQuery.Pokemon pokemon;
     // ATTRIBUTES END
 
-    public PokemonInfoViewModel(@NonNull PokemonDataSource pokemonDataSource) {
+    @NonNull
+    public PokemonNavigator getPokemonNavigator() {
+        return pokemonNavigator;
+    }
+
+    public PokemonInfoViewModel(@NonNull PokemonDataSource pokemonDataSource, @NonNull PokemonNavigator pokemonNavigator) {
         this.pokemonDataSource = pokemonDataSource;
+        this.pokemonNavigator = pokemonNavigator;
     }
 
     public Observable<PokemonQuery.Data> getPokemonByName(@NonNull String name) {
