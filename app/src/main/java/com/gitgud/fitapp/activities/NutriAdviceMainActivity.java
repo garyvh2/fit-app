@@ -22,4 +22,8 @@ public class NutriAdviceMainActivity extends AppCompatActivity {
         intent.putExtra("title", ((Button) view).getText());
         startActivity(intent);
     }
+
+    public void goBack(View view) {
+        finish();
+    }
 }

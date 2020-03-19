@@ -98,11 +98,24 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:gravity="center"
         android:text="@string/nutritional_advice_title"
         android:textSize="@dimen/fontBig"
+        app:layout_constraintBottom_toBottomOf="@+id/btnBack"
         app:layout_constraintEnd_toStartOf="@+id/right10"
         app:layout_constraintStart_toStartOf="@+id/left10"
         app:layout_constraintTop_toTopOf="@+id/top10" />
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        style="@android:style/Widget.Material.ImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="@string/back"
+        android:onClick="goBack"
+        app:layout_constraintStart_toStartOf="@+id/left10"
+        app:layout_constraintTop_toTopOf="@+id/top10"
+        app:srcCompat="?attr/homeAsUpIndicator" />
 </androidx.constraintlayout.widget.ConstraintLayout>
