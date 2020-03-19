@@ -37,7 +37,7 @@
             android:layout_height="200dp"
 
             android:layout_alignParentTop="true"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="36dp"
 
             android:contentDescription="background image"
             android:scaleType="fitXY"
@@ -47,23 +47,35 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <EditText
-            android:id="@+id/email"
-            android:layout_width="0dp"
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="24dp"
+        style="@style/TextInputLayoutStyle"
+        app:boxBackgroundMode="filled"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loading" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="64dp"
-            android:layout_marginEnd="24dp"
             android:autofillHints="@string/prompt_email"
+            android:background="@color/transparent"
             android:backgroundTint="@color/white"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:hint="@string/prompt_email"
             android:inputType="textEmailAddress"
             android:selectAllOnFocus="true"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/loading" />
+            />
+    </com.google.android.material.textfield.TextInputLayout>
 
         <ProgressBar
             android:id="@+id/loading"
@@ -92,9 +104,10 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/password"
-            app:layout_constraintVertical_bias="0.204" />
+            app:layout_constraintVertical_bias="0.17" />
 
         <Button
             android:id="@+id/signUp"
@@ -131,14 +144,11 @@
             app:endIconMode="password_toggle"
             android:layout_marginStart="24dp"
             android:layout_marginTop="32dp"
+            style="@style/TextInputLayoutStyle"
             android:layout_marginEnd="24dp"
-            app:boxBackgroundColor="@color/transparent"
             app:boxBackgroundMode="filled"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:backgroundTint="@color/white"
-            android:theme="@style/TextInputLayoutStyle"
             app:endIconTint="@color/white"
+            app:errorEnabled="true"
             android:autofillHints="@string/prompt_password"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -147,12 +157,13 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:backgroundTint="@color/white"
-                android:inputType="textPassword"
                 android:background="@color/transparent"
-                android:hint="Password" />
+                android:backgroundTint="@color/white"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:hint="Password"
+                android:inputType="textPassword"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

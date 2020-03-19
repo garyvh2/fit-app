@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.gitgud.fitapp.R;
+import com.gitgud.fitapp.adapters.TextInputLayoutAdapter;
 import com.google.android.material.textfield.TextInputLayout;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
@@ -21,7 +22,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
 
     @NotEmpty
     @Email
-    private EditText email;
+    private TextInputLayout email;
     @NotEmpty
     private TextInputLayout password;
 
@@ -37,6 +38,18 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
         setContentView(R.layout.activity_login);
         validator = new Validator(this);
         validator.setValidationListener(this);
+        validator.registerAdapter(TextInputLayout.class, new TextInputLayoutAdapter());
+        validator.setViewValidatedAction(new Validator.ViewValidatedAction() {
+            @Override
+            public void onAllRulesPassed(View view) {
+                if (view instanceof TextInputLayout) {
+                    ((TextInputLayout) view).setError("");
+                    ((TextInputLayout) view).setErrorEnabled(false);
+
+                }
+            }
+        });
+
         initView();
 
     }
@@ -73,6 +86,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
     @Override
     public void onValidationSucceeded() {
         Toast.makeText(this, "We got it right!", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
@@ -81,8 +95,9 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
             View view = error.getView();
             String message = error.getCollatedErrorMessage(this);
             // Display error messages
-            if (view instanceof EditText) {
-                ((EditText) view).setError(message);
+            if (view instanceof TextInputLayout) {
+                ((TextInputLayout) view).setError(message);
+                ((TextInputLayout) view).setErrorEnabled(true);
             } else {
                 Toast.makeText(this, message, Toast.LENGTH_LONG).show();
             }
