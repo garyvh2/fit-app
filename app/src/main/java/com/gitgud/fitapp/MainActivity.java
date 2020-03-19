@@ -3,7 +3,7 @@ package com.gitgud.fitapp;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.gitgud.fitapp.ui.login.LoginActivity;
+import com.gitgud.fitapp.activities.LoginActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;

@@ -4,13 +4,14 @@
     <color name="colorPrimaryDark">#333333</color>
     <color name="colorAccent">@color/accent</color>
 
-    <color name="orange">#F69140</color>
+    <color name="orange">#EF781C</color>
     <color name="red">#EF415C</color>
     <color name="lightGreen">#8FCCBA</color>
     <color name="aquaGreen">#3DCC9B</color>
     <color name="accent">#CED967</color>
     <color name="background">#FFFFFF</color>
     <color name="fontColor">#333333</color>
+    <color name="transparent">#00000000</color>
 
     <color name="white">#FFFFFF</color>
 
