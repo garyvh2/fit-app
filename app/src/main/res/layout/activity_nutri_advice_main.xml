@@ -50,7 +50,7 @@
 
     <Button
         android:id="@+id/btnMantainWeight"
-        style="@style/PrimaryButton"
+        style="@style/ActionButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/wide"

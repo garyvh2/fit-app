@@ -84,18 +84,24 @@
         app:layout_constraintEnd_toStartOf="@+id/rightConstraint"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/leftConstraint"
-        app:layout_constraintTop_toBottomOf="@+id/videoView"
+        app:layout_constraintTop_toBottomOf="@+id/youtube_player_view"
         app:layout_constraintVertical_bias="0.0" />
 
-    <VideoView
-        android:id="@+id/videoView"
+
+    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+        android:id="@+id/youtube_player_view"
         android:layout_width="0dp"
-        android:layout_height="240dp"
+        android:layout_height="wrap_content"
+
         android:layout_marginStart="@dimen/wide"
         android:layout_marginTop="@dimen/wide"
         android:layout_marginEnd="@dimen/wide"
+
+        app:autoPlay="true"
         app:layout_constraintEnd_toStartOf="@+id/rightConstraint"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/leftConstraint"
-        app:layout_constraintTop_toBottomOf="@+id/txtAdviceDetailTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/txtAdviceDetailTitle"
+        app:showFullScreenButton="false"
+        app:videoId="S0Q4gqBUs7c" />
 </androidx.constraintlayout.widget.ConstraintLayout>
