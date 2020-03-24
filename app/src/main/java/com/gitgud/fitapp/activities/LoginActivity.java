@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.gitgud.fitapp.MainActivity;
 import com.gitgud.fitapp.R;
 import com.gitgud.fitapp.adapters.TextInputLayoutAdapter;
 import com.google.android.material.textfield.TextInputLayout;
@@ -85,6 +87,8 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
 
     @Override
     public void onValidationSucceeded() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
         Toast.makeText(this, "We got it right!", Toast.LENGTH_SHORT).show();
 
     }
