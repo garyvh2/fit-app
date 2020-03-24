@@ -77,11 +77,25 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="@dimen/wide"
-        android:layout_marginTop="@dimen/normal"
+        android:layout_marginTop="@dimen/wide"
         android:layout_marginEnd="@dimen/wide"
         android:text="@string/loremParagraph"
         app:layout_constraintBottom_toTopOf="@+id/bottomConstraint"
         app:layout_constraintEnd_toStartOf="@+id/rightConstraint"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/leftConstraint"
+        app:layout_constraintTop_toBottomOf="@+id/videoView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="0dp"
+        android:layout_height="240dp"
+        android:layout_marginStart="@dimen/wide"
+        android:layout_marginTop="@dimen/wide"
+        android:layout_marginEnd="@dimen/wide"
+        app:layout_constraintEnd_toStartOf="@+id/rightConstraint"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/leftConstraint"
         app:layout_constraintTop_toBottomOf="@+id/txtAdviceDetailTitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>
