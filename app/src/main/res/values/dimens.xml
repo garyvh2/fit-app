@@ -13,6 +13,7 @@
     <dimen name="tight">8dp</dimen>
     <dimen name="normal">12dp</dimen>
     <dimen name="wide">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 
 </resources>
