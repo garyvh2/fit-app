@@ -2,18 +2,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_home" />
-
-    <item
         android:id="@+id/navigation_dashboard"
         android:icon="@drawable/ic_dashboard_black_24dp"
+        android:enabled="true"
         android:title="@string/title_dashboard" />
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+        android:id="@+id/navigation_fitness"
+        android:enabled="true"
+        android:icon="@drawable/ic_fitness_center_black_24dp"
+        android:title="@string/exercises" />
+
+    <item
+        android:id="@+id/navigation_nutrition"
+        android:enabled="true"
+        android:icon="@drawable/ic_nutricional"
+        android:title="@string/nutrition" />
+    <item
+        android:id="@+id/navigation_rewards"
+        android:enabled="true"
+        android:icon="@drawable/ic_shopping_cart"
+        android:title="@string/my_rewards" />
 
 </menu>
