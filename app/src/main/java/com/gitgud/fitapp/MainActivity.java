@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.gitgud.fitapp.ui.modules.pokemon.PokemonActivity;
+import com.gitgud.fitapp.ui.modules.steps.StepsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         stepsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), StepActivity.class);
+                Intent intent = new Intent(getApplicationContext(), StepsActivity.class);
                 startActivity(intent);
             }
         });

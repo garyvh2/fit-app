@@ -20,7 +20,7 @@ import com.gitgud.fitapp.utils.Toasts;
 import java.text.MessageFormat;
 
 public class StepActivity extends Activity implements SensorEventListener {
-    private static final String TAG = StepActivity.class.getSimpleName();
+    private static final String TAG = "StepActivity";
     private Context context;
     /**
      * Service Variables
@@ -120,7 +120,7 @@ public class StepActivity extends Activity implements SensorEventListener {
         switch (sensorEvent.sensor.getType())
         {
             case Sensor.TYPE_STEP_COUNTER:
-                if (reportedSteps < 1){
+                if (reportedSteps < 1) {
                     reportedSteps = (int)sensorEvent.values[0];
                 }
                 stepsTaken = (int)sensorEvent.values[0] - reportedSteps;
@@ -141,7 +141,7 @@ public class StepActivity extends Activity implements SensorEventListener {
     }
 
     public String getSteps() {
-        return Float.toString(this.stepsTaken);
+        return MessageFormat.format("{0}, {1}", this.stepDetector, this.stepsTaken);
     }
 
     public String getAceleration() {
