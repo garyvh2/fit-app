@@ -8,31 +8,32 @@
     <string name="action">Action</string>
     <string name="cancel">Cancel</string>
     <string name="accept">Accept</string>
+    <string name="back">Back Button</string>
 
 
     <!-- BMI -->
-    <string name="bmi">IMC</string>
-    <string name="bmi_extended">Índice de Masa Corporal</string>
-    <string name="height">Altura</string>
-    <string name="weight">Peso</string>
-    <string name="metric">Métrico</string>
+    <string name="bmi">BMI</string>
+    <string name="bmi_extended">Body Mass Index</string>
+    <string name="height">Height</string>
+    <string name="weight">Weight</string>
+    <string name="metric">Metric</string>
     <string name="retarded">Imperial</string>
-    <string name="super_underweight">Muy bajo peso</string>
-    <string name="underweight">Bajo peso</string>
+    <string name="super_underweight">Very Underweight</string>
+    <string name="underweight">Underweight</string>
     <string name="normal_weight">Normal</string>
-    <string name="overweight">Sobre peso</string>
-    <string name="obese1">Obeso Tipo 1</string>
-    <string name="obese2">Obeso Tipo 2</string>
-    <string name="obese3">Obeso Tipo 3</string>
+    <string name="overweight">Overweight</string>
+    <string name="obese1">Obese Type 1</string>
+    <string name="obese2">Obese Type 2</string>
+    <string name="obese3">Obese Type 3</string>
 
 
     <!-- WATER -->
-    <string name="water">Agua</string>
-    <string name="water_extended">Consumo de agua diario</string>
-    <string name="registrar">Registrar</string>
+    <string name="water">Water</string>
+    <string name="water_extended">Daily Water Consumption</string>
+    <string name="registrar">Register</string>
 
     <!-- STEPS -->
-    <string name="steps">Pasos</string>
+    <string name="steps">Steps</string>
 
     <!-- Metric Units -->
     <string name="metric_weight">kg</string>
@@ -51,9 +52,19 @@
     <string name="login_failed">"Login failed"</string>
     <string name="registration">RegistrationActivity</string>
 
+    <!-- Nutritional Advice -->
+    <string name="nutritional_advice_title">Nutritional Advice</string>
+    <string name="nutritional_advice_btn">Nutrition</string>
+    <string name="decrease_weight">Decrease Weight</string>
+    <string name="maintain_weight">Maintain Weight</string>
+    <string name="increase_weight">Gain Weight</string>
+    <string name="advice_detail_title">Advice to </string>
+    
     <!-- TEMP -->
     <string name="binding">Binding</string>
     <string name="loading">Loading</string>
+    <string name="loremParagraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean rutrum faucibus orci nec pulvinar. Nulla facilisi. Suspendisse sed mattis metus. Nullam sit amet dui varius, ullamcorper nisi eget, aliquet nulla. Curabitur mattis nibh id ex ultricies, a elementum purus feugiat. Duis nec lacus dolor. Quisque euismod felis non arcu efficitur, suscipit tristique tellus rutrum. Curabitur lacinia quis massa non vulputate. Maecenas bibendum, est quis imperdiet rhoncus, urna enim vestibulum purus, non dapibus massa dui vitae nunc. Sed hendrerit quam justo, quis dictum ante euismod quis.</string>
+
 
 
 </resources>
