@@ -1,9 +1,10 @@
 package com.gitgud.fitapp.ui.dashboard;
 
 
-
 import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,6 @@ import com.gitgud.fitapp.R;
 
 /**
  * A simple {@link Fragment} subclass.
- *
  */
 public class GoalsFragment extends Fragment {
 

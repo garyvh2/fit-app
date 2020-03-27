@@ -1,4 +1,4 @@
-package com.gitgud.fitapp.fragments;
+package com.gitgud.fitapp.ui.exercises;
 
 import android.content.Context;
 import android.net.Uri;

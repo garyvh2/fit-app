@@ -12,10 +12,10 @@ import android.view.ViewGroup;
 
 import com.gitgud.fitapp.R;
 
-public class Profile extends Fragment {
+public class ProfileFragment extends Fragment {
 
 
-    public Profile() {
+    public ProfileFragment() {
         // Required empty public constructor
     }
 

@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/dashboard_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/dashboard_graph"
+    app:startDestination="@id/dashboardFragment">
 
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.gitgud.fitapp.ui.dashboard.DashboardFragment"
+        android:label="Dashboard">
+        <action
+            android:id="@+id/action_dashboardFragment_to_goalsFragment2"
+            app:destination="@id/goalsFragment"
+            app:enterAnim="@anim/fragment_close_exit"
+            app:popUpTo="@+id/dashboardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/goalsFragment"
+        android:name="com.gitgud.fitapp.ui.dashboard.GoalsFragment"
+        android:label="Goals" />
 </navigation>

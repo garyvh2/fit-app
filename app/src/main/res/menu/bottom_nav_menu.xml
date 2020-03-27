@@ -1,27 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/dashboard_graph"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:enabled="true"
+        app:showAsAction="always"
         android:title="@string/title_dashboard" />
 
     <item
-        android:id="@+id/navigation_fitness"
+        android:id="@+id/exercises_graph"
         android:enabled="true"
+        app:showAsAction="always"
         android:icon="@drawable/ic_fitness_center_black_24dp"
         android:title="@string/exercises" />
 
     <item
-        android:id="@+id/navigation_nutrition"
+        android:id="@+id/nutritional_graph"
         android:enabled="true"
+        app:showAsAction="always"
         android:icon="@drawable/ic_nutricional"
         android:title="@string/nutrition" />
     <item
-        android:id="@+id/navigation_rewards"
+        android:id="@+id/reward_graph"
         android:enabled="true"
+        app:showAsAction="always"
         android:icon="@drawable/ic_shopping_cart"
         android:title="@string/my_rewards" />
+    <item
+        android:id="@+id/profile_graph"
+        android:enabled="true"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_person"
+        android:title="@string/profile" />
+
 
 </menu>

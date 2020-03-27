@@ -1,4 +1,4 @@
-package com.gitgud.fitapp.ui;
+package com.gitgud.fitapp.ui.rewards;
 
 import android.os.Bundle;
 
