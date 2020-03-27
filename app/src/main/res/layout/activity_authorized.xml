@@ -14,9 +14,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:titleTextColor="@color/white"
-            android:background="@color/orange"
-            android:elevation="4dp"
+            app:titleTextColor="@color/fontColor"
+            android:background="@android:color/transparent"
+            android:elevation="0dp"
  />
 
         <fragment
