@@ -1,4 +1,4 @@
-package com.gitgud.fitapp.fragments;
+package com.gitgud.fitapp.ui.profile;
 
 import android.content.Context;
 import android.net.Uri;
@@ -12,18 +12,20 @@ import android.view.ViewGroup;
 
 import com.gitgud.fitapp.R;
 
- public class RewardsFragment extends Fragment {
+public class Profile extends Fragment {
 
 
-    public RewardsFragment() {
+    public Profile() {
         // Required empty public constructor
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rewards, container, false);
+        return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
 
