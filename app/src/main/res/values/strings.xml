@@ -59,7 +59,14 @@
     <string name="maintain_weight">Maintain Weight</string>
     <string name="increase_weight">Gain Weight</string>
     <string name="advice_detail_title">Advice to </string>
-    
+
+    <!-- Badges -->
+    <string name="question_mark">\?</string>
+    <string name="star_mark1">\u2605</string>
+    <string name="star_mark2">\u2605\u2605</string>
+    <string name="star_mark3">\u2605\n\u2605\u2605</string>
+    <string name="star_mark4">\u2605\u2605\n\u2605\u2605</string>
+
     <!-- TEMP -->
     <string name="binding">Binding</string>
     <string name="loading">Loading</string>

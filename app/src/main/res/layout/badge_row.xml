@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="history"
+            type="com.gitgud.fitapp.ui.modules.history.HistoryModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/leftConstraint30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.30" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/leftConstraint35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/leftConstraint65"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/leftConstraint70"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.70" />
+
+        <FrameLayout
+            android:id="@+id/frameLayoutStart"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/badge_circle"
+            android:backgroundTint="@{(history.getSteps() >= @integer/steps_badge1) ? @color/colorAccent : @color/colorPrimaryDark}"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toEndOf="@+id/leftConstraint30"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/octarine_bold"
+                android:gravity="center"
+                android:text="@{(history.getSteps() >= @integer/steps_badge1) ? @string/star_mark1: @string/question_mark}"
+                android:textColor="@{(history.getSteps() >= @integer/steps_badge1) ? @color/colorAccent : @color/colorPrimaryDark}"
+                android:textSize="@dimen/fontMassive" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/textViewStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/tight"
+            android:fontFamily="@font/octarine"
+            android:gravity="center"
+            android:text="@{ `` + @integer/steps_badge1 + ' ' + @string/steps }"
+            android:textSize="@dimen/fontMedium"
+            app:layout_constraintEnd_toEndOf="@+id/frameLayoutStart"
+            app:layout_constraintStart_toStartOf="@+id/frameLayoutStart"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutStart" />
+
+        <FrameLayout
+            android:id="@+id/frameLayoutCenter"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/badge_circle"
+            android:backgroundTint="@{(history.getSteps() >= @integer/steps_badge2) ? @color/orange : @color/colorPrimaryDark}"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toEndOf="@+id/leftConstraint65"
+            app:layout_constraintStart_toStartOf="@+id/leftConstraint35"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/octarine_bold"
+                android:gravity="center"
+                android:text="@{(history.getSteps() >= @integer/steps_badge2) ? @string/star_mark1: @string/question_mark}"
+                android:textColor="@{(history.getSteps() >= @integer/steps_badge2) ? @color/orange : @color/colorPrimaryDark}"
+                android:textSize="@dimen/fontMassive" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/textViewCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/tight"
+            android:fontFamily="@font/octarine"
+            android:gravity="center"
+            android:text="@{ `` + @integer/steps_badge2 + ' ' + @string/steps }"
+            android:textSize="@dimen/fontMedium"
+            app:layout_constraintEnd_toEndOf="@+id/frameLayoutCenter"
+            app:layout_constraintStart_toStartOf="@+id/frameLayoutCenter"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutCenter" />
+
+        <FrameLayout
+            android:id="@+id/frameLayoutEnd"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/badge_circle"
+            android:backgroundTint="@{(history.getSteps() >= @integer/steps_badge3) ? @color/red : @color/colorPrimaryDark}"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/leftConstraint70"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/octarine_bold"
+                android:gravity="center"
+                android:text="@{(history.getSteps() >= @integer/steps_badge3) ? @string/star_mark1 : @string/question_mark}"
+                android:textColor="@{(history.getSteps() >= @integer/steps_badge3) ? @color/red : @color/colorPrimaryDark}"
+                android:textSize="@dimen/fontMassive" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/textViewEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/tight"
+            android:fontFamily="@font/octarine"
+            android:gravity="center"
+            android:text="@{ `` + @integer/steps_badge3 + ' ' + @string/steps }"
+            android:textSize="@dimen/fontMedium"
+            app:layout_constraintEnd_toEndOf="@+id/frameLayoutEnd"
+            app:layout_constraintStart_toStartOf="@+id/frameLayoutEnd"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutEnd" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
