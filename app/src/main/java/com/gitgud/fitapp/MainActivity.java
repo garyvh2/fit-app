@@ -3,6 +3,7 @@ package com.gitgud.fitapp;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.gitgud.fitapp.activities.NutriAdviceMainActivity;
 import com.gitgud.fitapp.ui.modules.pokemon.PokemonActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -17,7 +18,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
 
-    private Button bmiBtn, waterConsumeBtn, stepsBtn, bindingBtn;
+    private Button bmiBtn, waterConsumeBtn, stepsBtn, bindingBtn, nutriAdviceBtn;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -80,6 +81,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), PokemonActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        nutriAdviceBtn = findViewById(R.id.btnNutriAdvice);
+        nutriAdviceBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), NutriAdviceMainActivity.class);
                 startActivity(intent);
             }
         });
