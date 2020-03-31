@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <import type="android.view.View" />
-
         <variable
             name="history"
             type="com.gitgud.fitapp.ui.modules.history.HistoryModel" />
@@ -52,12 +50,12 @@
             android:id="@+id/badgeRowTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/badge_title_steps"
-            android:gravity="center"
             android:fontFamily="@font/octarine_bold"
-            android:textSize="@dimen/fontBig"
+            android:gravity="center"
             android:paddingTop="@dimen/normal"
             android:paddingBottom="@dimen/normal"
+            android:text="@string/badge_title_calories"
+            android:textSize="@dimen/fontBig"
             app:layout_constraintTop_toTopOf="parent" />
 
         <FrameLayout
@@ -65,7 +63,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/badge_circle"
-            android:backgroundTint="@{(history.getSteps() >= @integer/steps_badge1) ? @color/colorAccent : @color/colorPrimaryDark}"
+            android:backgroundTint="@{(history.getCalories() >= @integer/calories_badge1) ? @color/colorAccent : @color/colorPrimaryDark}"
+            android:padding="25dp"
             app:layout_constraintDimensionRatio="H,1:1"
             app:layout_constraintEnd_toEndOf="@+id/leftConstraint30"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,9 +75,18 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/octarine_bold"
                 android:gravity="center"
-                android:text="@{(history.getSteps() >= @integer/steps_badge1) ? @string/star_mark1: @string/question_mark}"
-                android:textColor="@{(history.getSteps() >= @integer/steps_badge1) ? @color/colorAccent : @color/colorPrimaryDark}"
-                android:textSize="@dimen/fontMassive" />
+                android:text="@{(history.getCalories() >= @integer/calories_badge1) ? @string/star_mark1: @string/question_mark}"
+                android:textColor="@{(history.getCalories() >= @integer/calories_badge1) ? @color/colorAccent : @color/colorPrimaryDark}"
+                android:textSize="@dimen/fontMassive"
+                android:visibility="@{(history.getCalories() >= @integer/calories_badge1) ? View.GONE : View.VISIBLE}" />
+
+            <ImageView
+                android:id="@+id/imageViewStart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/star"
+                android:backgroundTint="@color/colorAccent"
+                android:visibility="@{(history.getCalories() >= @integer/calories_badge1) ? View.VISIBLE : View.GONE}" />
         </FrameLayout>
 
         <TextView
@@ -88,7 +96,7 @@
             android:layout_marginTop="@dimen/tight"
             android:fontFamily="@font/octarine"
             android:gravity="center"
-            android:text="@{ `` + @integer/steps_badge1 + ' ' + @string/steps }"
+            android:text="@{ `` + @integer/calories_badge1 + ' ' + @string/calories }"
             android:textSize="@dimen/fontSmall"
             app:layout_constraintEnd_toEndOf="@+id/frameLayoutStart"
             app:layout_constraintStart_toStartOf="@+id/frameLayoutStart"
@@ -99,7 +107,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/badge_circle"
-            android:backgroundTint="@{(history.getSteps() >= @integer/steps_badge2) ? @color/orange : @color/colorPrimaryDark}"
+            android:backgroundTint="@{(history.getCalories() >= @integer/calories_badge2) ? @color/orange : @color/colorPrimaryDark}"
+            android:padding="25dp"
             app:layout_constraintDimensionRatio="H,1:1"
             app:layout_constraintEnd_toEndOf="@+id/leftConstraint65"
             app:layout_constraintStart_toStartOf="@+id/leftConstraint35"
@@ -110,9 +119,18 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/octarine_bold"
                 android:gravity="center"
-                android:text="@{(history.getSteps() >= @integer/steps_badge2) ? @string/star_mark1: @string/question_mark}"
-                android:textColor="@{(history.getSteps() >= @integer/steps_badge2) ? @color/orange : @color/colorPrimaryDark}"
-                android:textSize="@dimen/fontMassive" />
+                android:text="@{(history.getCalories() >= @integer/calories_badge2) ? @string/star_mark1: @string/question_mark}"
+                android:textColor="@{(history.getCalories() >= @integer/calories_badge2) ? @color/orange : @color/colorPrimaryDark}"
+                android:textSize="@dimen/fontMassive"
+                android:visibility="@{(history.getCalories() >= @integer/calories_badge2) ? View.GONE : View.VISIBLE}" />
+
+            <ImageView
+                android:id="@+id/imageViewCenter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/star"
+                android:backgroundTint="@color/orange"
+                android:visibility="@{(history.getCalories() >= @integer/calories_badge2) ? View.VISIBLE : View.GONE}" />
         </FrameLayout>
 
         <TextView
@@ -122,7 +140,7 @@
             android:layout_marginTop="@dimen/tight"
             android:fontFamily="@font/octarine"
             android:gravity="center"
-            android:text="@{ `` + @integer/steps_badge2 + ' ' + @string/steps }"
+            android:text="@{ `` + @integer/calories_badge2 + ' ' + @string/calories }"
             android:textSize="@dimen/fontSmall"
             app:layout_constraintEnd_toEndOf="@+id/frameLayoutCenter"
             app:layout_constraintStart_toStartOf="@+id/frameLayoutCenter"
@@ -133,7 +151,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/badge_circle"
-            android:backgroundTint="@{(history.getSteps() >= @integer/steps_badge3) ? @color/red : @color/colorPrimaryDark}"
+            android:backgroundTint="@{(history.getCalories() >= @integer/calories_badge3) ? @color/red : @color/colorPrimaryDark}"
+            android:padding="25dp"
             app:layout_constraintDimensionRatio="H,1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/leftConstraint70"
@@ -144,9 +163,18 @@
                 android:layout_height="match_parent"
                 android:fontFamily="@font/octarine_bold"
                 android:gravity="center"
-                android:text="@{(history.getSteps() >= @integer/steps_badge3) ? @string/star_mark1 : @string/question_mark}"
-                android:textColor="@{(history.getSteps() >= @integer/steps_badge3) ? @color/red : @color/colorPrimaryDark}"
-                android:textSize="@dimen/fontMassive" />
+                android:text="@{(history.getCalories() >= @integer/calories_badge3) ? @string/star_mark1 : @string/question_mark}"
+                android:textColor="@{(history.getCalories() >= @integer/calories_badge3) ? @color/red : @color/colorPrimaryDark}"
+                android:textSize="@dimen/fontMassive"
+                android:visibility="@{(history.getCalories() >= @integer/calories_badge3) ? View.GONE : View.VISIBLE}" />
+
+            <ImageView
+                android:id="@+id/imageViewEnd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/star"
+                android:backgroundTint="@color/red"
+                android:visibility="@{(history.getCalories() >= @integer/calories_badge3) ? View.VISIBLE : View.GONE}" />
         </FrameLayout>
 
         <TextView
@@ -156,7 +184,7 @@
             android:layout_marginTop="@dimen/tight"
             android:fontFamily="@font/octarine"
             android:gravity="center"
-            android:text="@{ `` + @integer/steps_badge3 + ' ' + @string/steps }"
+            android:text="@{ `` + @integer/calories_badge3 + ' ' + @string/calories }"
             android:textSize="@dimen/fontSmall"
             app:layout_constraintEnd_toEndOf="@+id/frameLayoutEnd"
             app:layout_constraintStart_toStartOf="@+id/frameLayoutEnd"

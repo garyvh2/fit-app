@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
+
         <variable
-            name="viewModel"
-            type="com.gitgud.fitapp.ui.modules.pokemon.PokemonViewModel" />
+            name="history"
+            type="com.gitgud.fitapp.ui.modules.history.HistoryModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,13 +21,38 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent">
 
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/badge_circle_dense"
+            android:backgroundTint="@color/white"
+            android:paddingStart="0dp"
+            android:paddingTop="0dp"
+            android:paddingEnd="0dp"
+            android:paddingBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toEndOf="@+id/subtitleCalories"
+            app:layout_constraintStart_toStartOf="@+id/subtitleCalories"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/flame"
+                android:backgroundTint="@color/half_orange" />
+
+        </FrameLayout>
+
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/titleCalories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/octarine_bold"
             android:gravity="center"
-            android:text="1500"
+            android:text="@{`` + history.getCalories()}"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/fontBig"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -33,15 +60,19 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:id="@+id/subtitleCalories"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/octarine"
+            android:fontFamily="@font/octarine_bold"
             android:gravity="center"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
             android:text="Calories"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/fontMedium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/titleCalories" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

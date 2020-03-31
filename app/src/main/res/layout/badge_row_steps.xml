@@ -52,12 +52,12 @@
             android:id="@+id/badgeRowTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/badge_title_steps"
-            android:gravity="center"
             android:fontFamily="@font/octarine_bold"
-            android:textSize="@dimen/fontBig"
+            android:gravity="center"
             android:paddingTop="@dimen/normal"
             android:paddingBottom="@dimen/normal"
+            android:text="@string/badge_title_steps"
+            android:textSize="@dimen/fontBig"
             app:layout_constraintTop_toTopOf="parent" />
 
         <FrameLayout
@@ -66,6 +66,7 @@
             android:layout_height="0dp"
             android:background="@drawable/badge_circle"
             android:backgroundTint="@{(history.getSteps() >= @integer/steps_badge1) ? @color/colorAccent : @color/colorPrimaryDark}"
+            android:padding="25dp"
             app:layout_constraintDimensionRatio="H,1:1"
             app:layout_constraintEnd_toEndOf="@+id/leftConstraint30"
             app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +79,16 @@
                 android:gravity="center"
                 android:text="@{(history.getSteps() >= @integer/steps_badge1) ? @string/star_mark1: @string/question_mark}"
                 android:textColor="@{(history.getSteps() >= @integer/steps_badge1) ? @color/colorAccent : @color/colorPrimaryDark}"
-                android:textSize="@dimen/fontMassive" />
+                android:textSize="@dimen/fontMassive"
+                android:visibility="@{(history.getSteps() >= @integer/steps_badge1) ? View.GONE : View.VISIBLE}" />
+
+            <ImageView
+                android:id="@+id/imageViewStart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/star"
+                android:backgroundTint="@color/colorAccent"
+                android:visibility="@{(history.getSteps() >= @integer/steps_badge1) ? View.VISIBLE : View.GONE}" />
         </FrameLayout>
 
         <TextView
@@ -100,6 +110,7 @@
             android:layout_height="0dp"
             android:background="@drawable/badge_circle"
             android:backgroundTint="@{(history.getSteps() >= @integer/steps_badge2) ? @color/orange : @color/colorPrimaryDark}"
+            android:padding="25dp"
             app:layout_constraintDimensionRatio="H,1:1"
             app:layout_constraintEnd_toEndOf="@+id/leftConstraint65"
             app:layout_constraintStart_toStartOf="@+id/leftConstraint35"
@@ -112,7 +123,16 @@
                 android:gravity="center"
                 android:text="@{(history.getSteps() >= @integer/steps_badge2) ? @string/star_mark1: @string/question_mark}"
                 android:textColor="@{(history.getSteps() >= @integer/steps_badge2) ? @color/orange : @color/colorPrimaryDark}"
-                android:textSize="@dimen/fontMassive" />
+                android:textSize="@dimen/fontMassive"
+                android:visibility="@{(history.getSteps() >= @integer/steps_badge2) ? View.GONE : View.VISIBLE}" />
+
+            <ImageView
+                android:id="@+id/imageViewCenter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/star"
+                android:backgroundTint="@color/orange"
+                android:visibility="@{(history.getSteps() >= @integer/steps_badge2) ? View.VISIBLE : View.GONE}" />
         </FrameLayout>
 
         <TextView
@@ -134,6 +154,7 @@
             android:layout_height="0dp"
             android:background="@drawable/badge_circle"
             android:backgroundTint="@{(history.getSteps() >= @integer/steps_badge3) ? @color/red : @color/colorPrimaryDark}"
+            android:padding="25dp"
             app:layout_constraintDimensionRatio="H,1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/leftConstraint70"
@@ -146,7 +167,16 @@
                 android:gravity="center"
                 android:text="@{(history.getSteps() >= @integer/steps_badge3) ? @string/star_mark1 : @string/question_mark}"
                 android:textColor="@{(history.getSteps() >= @integer/steps_badge3) ? @color/red : @color/colorPrimaryDark}"
-                android:textSize="@dimen/fontMassive" />
+                android:textSize="@dimen/fontMassive"
+                android:visibility="@{(history.getSteps() >= @integer/steps_badge3) ? View.GONE : View.VISIBLE}" />
+
+            <ImageView
+                android:id="@+id/imageViewEnd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/star"
+                android:backgroundTint="@color/red"
+                android:visibility="@{(history.getSteps() >= @integer/steps_badge3) ? View.VISIBLE : View.GONE}" />
         </FrameLayout>
 
         <TextView
@@ -161,6 +191,7 @@
             app:layout_constraintEnd_toEndOf="@+id/frameLayoutEnd"
             app:layout_constraintStart_toStartOf="@+id/frameLayoutEnd"
             app:layout_constraintTop_toBottomOf="@+id/frameLayoutEnd" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

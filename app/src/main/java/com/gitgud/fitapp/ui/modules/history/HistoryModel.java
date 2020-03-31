@@ -10,11 +10,13 @@ public class HistoryModel extends BaseObservable {
 
     // ATTRIBUTES START
     private int steps = 0;
+    private int calories = 0;
     private Boolean loading;
     // ATTRIBUTES END
 
-    public HistoryModel(@NonNull int steps) {
+    public HistoryModel(@NonNull int steps, @NonNull int calories) {
         this.steps = steps;
+        this.calories = calories;
     }
 
     @Bindable
@@ -25,7 +27,18 @@ public class HistoryModel extends BaseObservable {
     public void setSteps(int steps) {
         this.steps = steps;
         setLoading(false);
-        notifyPropertyChanged(BR.pokemons);
+        notifyPropertyChanged(BR.steps);
+    }
+
+    @Bindable
+    public int getCalories() {
+        return calories;
+    }
+
+    public void setCalories(int calories) {
+        this.calories = calories;
+        setLoading(false);
+        notifyPropertyChanged(BR.calories);
     }
 
     @Bindable

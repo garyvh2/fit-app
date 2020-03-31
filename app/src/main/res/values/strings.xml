@@ -34,6 +34,8 @@
 
     <!-- STEPS -->
     <string name="steps">Steps</string>
+    <!-- CALORIES -->
+    <string name="calories">Calories</string>
 
     <!-- Metric Units -->
     <string name="metric_weight">kg</string>
@@ -61,6 +63,8 @@
     <string name="advice_detail_title">Advice to </string>
 
     <!-- Badges -->
+    <string name="badge_title_steps">Steps</string>
+    <string name="badge_title_calories">Calories</string>
     <string name="question_mark">\?</string>
     <string name="star_mark1">\u2605</string>
     <string name="star_mark2">\u2605\u2605</string>
