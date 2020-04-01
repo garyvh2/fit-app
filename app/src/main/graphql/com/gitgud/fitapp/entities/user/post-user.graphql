@@ -1,0 +1,9 @@
+mutation addUser($name: String!, $lastName: String!, $email: String!, $password: String!, $userType: UserTypes!, $historyStats: [HistoryStatsInputType], $waterConsume: [WaterConsumeInputType] ) {
+    addUser(name: $name, lastName: $lastName, email: $email, password: $password, userType: $userType) {
+    name,
+    lastName,
+    email,
+
+    }
+
+}
