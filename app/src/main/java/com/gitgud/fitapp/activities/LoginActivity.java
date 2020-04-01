@@ -87,7 +87,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
 
     @Override
     public void onValidationSucceeded() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, AuthorizedActivity.class);
         startActivity(intent);
         Toast.makeText(this, "We got it right!", Toast.LENGTH_SHORT).show();
 

@@ -16,6 +16,11 @@
         <item name="android:textColor">@color/colorPrimaryDark</item>
     </style>
 
+    <style name="ActionButton" parent="@style/Widget.MaterialComponents.Button.TextButton">
+        <item name="android:backgroundTint">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/accent</item>
+    </style>
+
     <style name="CancelButton" parent="@style/Widget.MaterialComponents.Button.TextButton">
         <item name="android:backgroundTint">@color/colorPrimaryDark</item>
         <item name="android:textColor">@color/red</item>
@@ -25,6 +30,7 @@
         <item name="android:backgroundTint">@color/colorPrimaryDark</item>
         <item name="android:textColor">@color/aquaGreen</item>
     </style>
+
     <style name="AppTheme.NoActionBar.Launcher" parent="AppTheme">
         <item name="android:windowBackground">@drawable/bg_launcher</item>
         <item name="android:windowNoTitle">true</item>
