@@ -27,11 +27,14 @@ import com.google.android.gms.location.ActivityTransitionRequest;
 import com.google.android.gms.location.DetectedActivity;
 import com.google.android.gms.tasks.Task;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+
+import me.itangqi.waveloadingview.WaveLoadingView;
 
 public class StepsActivity extends AppCompatActivity implements SensorEventListener, Observer {
     private final int ACTIVITY_RECOGNITION_GRANTED = 1;
@@ -197,6 +200,7 @@ public class StepsActivity extends AppCompatActivity implements SensorEventListe
     protected void onResume() {
         super.onResume();
         registerSensors();
+        displaySteps();
     }
 
     protected void onPause() {
@@ -213,10 +217,25 @@ public class StepsActivity extends AppCompatActivity implements SensorEventListe
     public void onSensorChanged(SensorEvent sensorEvent) {
         switch (sensorEvent.sensor.getType())
         {
+            case Sensor.TYPE_STEP_COUNTER:
+                if (viewModel.getRecordedSteps() < 1) {
+                    viewModel.setRecordedSteps((int)sensorEvent.values[0]);
+                }
+                viewModel.setTakenSteps((int)sensorEvent.values[0] - viewModel.getRecordedSteps());
+                displaySteps();
+                break;
+
             case Sensor.TYPE_STEP_DETECTOR:
                 this.viewModel.setSteps(this.viewModel.getSteps() + 1);
                 break;
         }
+    }
+
+    public void displaySteps() {
+        WaveLoadingView waveLoadingView = findViewById(R.id.waveLoadingView);
+        waveLoadingView.setTopTitle(MessageFormat.format("Goal: {0}", viewModel.getGoal()));
+        waveLoadingView.setCenterTitle(String.valueOf(viewModel.getTakenSteps()));
+        waveLoadingView.setProgressValue((100 * viewModel.getTakenSteps()) / viewModel.getGoal());
     }
 
     public void onAccuracyChanged(Sensor sensor, int accuracy) {

@@ -15,4 +15,7 @@
 
     <color name="white">#FFFFFF</color>
 
+    <color name="wlv_background">#264CAF50</color>
+    <color name="wlv_waveColor">#4CAF50</color>
+
 </resources>
