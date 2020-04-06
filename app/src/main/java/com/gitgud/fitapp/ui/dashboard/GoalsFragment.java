@@ -37,7 +37,7 @@ public class GoalsFragment extends Fragment {
     }
 
     public void nextGoalClick (View v) {
-        NavDirections action = GoalsFragmentDirections.actionGoalsFragmentToCreateGoal();
+        NavDirections action = GoalsFragmentDirections.actionGoalsFragmentToUpdateGoalFragment();
         Navigation.findNavController(v).navigate(action);
     }
 
