@@ -1,4 +1,4 @@
-package com.gitgud.fitapp.activities;
+package com.gitgud.fitapp.ui.unauthorized.registration;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -6,12 +6,13 @@ import android.icu.text.SimpleDateFormat;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 
+import com.gitgud.fitapp.ui.unauthorized.login.LoginActivity;
 import com.gitgud.fitapp.adapters.TextInputLayoutAdapter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.gitgud.fitapp.databinding.ActivityRegistrationBinding;
+import com.gitgud.fitapp.entities.user.AddUserMutation;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import androidx.databinding.DataBindingUtil;
 
 import android.util.Log;
 import android.view.View;
@@ -28,13 +29,18 @@ import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 import java.util.Locale;
 
+import io.reactivex.annotations.NonNull;
+
 public class RegistrationActivity extends AppCompatActivity implements Validator.ValidationListener{
     final Calendar myCalendar = Calendar.getInstance();
+
+    @NonNull
+    private RegistrationViewModel registrationViewModel;
+
+    private ActivityRegistrationBinding binding;
 
     @NotEmpty
     TextInputLayout name;
@@ -77,6 +83,9 @@ public class RegistrationActivity extends AppCompatActivity implements Validator
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_registration);
+        registrationViewModel = RegistrationModule.createViewModel();
+        binding.setViewModel(registrationViewModel);
         validator = new Validator(this);
         validator.setValidationListener(this);
         validator.registerAdapter(TextInputLayout.class, new TextInputLayoutAdapter());
@@ -113,10 +122,26 @@ public class RegistrationActivity extends AppCompatActivity implements Validator
     }
     @Override
     public void onValidationSucceeded() {
+        registrationViewModel.addUserObservable(getInputText(name), getInputText(lastName),
+                getInputText(email), getInputText(password), getInputText(birthday)).subscribe(
+                this::onRegisteredUser,
+                throwable -> Log.e("[Registration]", throwable.toString())
+        );
+
+
+    }
+
+    public  void onRegisteredUser(AddUserMutation.Data user) {
+        registrationViewModel.setLoading(false);
+        Toast.makeText(this,  user.addUser().name() + " Registered!", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
-        Toast.makeText(this, "User Registred!", Toast.LENGTH_SHORT).show();
 
+    }
+
+
+    private String getInputText(TextInputLayout field) {
+        return field.getEditText().getText().toString();
     }
 
     @Override

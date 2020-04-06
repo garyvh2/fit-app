@@ -1,123 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.dashboard.GoalsFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+    android:layout_marginBottom="?attr/actionBarSize"
+        tools:context=".ui.dashboard.GoalsFragment">
 
-        <Button
-            android:id="@+id/set_Goal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Set Next Goal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/octarine_bold"
-            android:text="My Current Goal"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.github.lzyzsd.circleprogress.ArcProgress
-            android:id="@+id/calories_progress"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="40dp"
-            app:arc_bottom_text="Calories"
-            app:arc_finished_color="@color/aquaGreen"
-            app:arc_max="1200"
-            app:arc_progress="500"
-            app:arc_suffix_text="/1200"
-            app:arc_text_color="@color/aquaGreen"
-            app:arc_unfinished_color="@android:color/darker_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <TextView
-            android:id="@+id/goal_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:text="Goal Ends: April, 13th"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/calories_progress" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/my_activity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:checkable="true"
-            android:elevation="24dp"
-            app:cardBackgroundColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/goal_date"
-            app:strokeColor="@color/fontColor">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:padding="16dp">
 
-
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_event_black_24dp"
-                    android:tint="@color/lightGreen"
+                <Button
+                    android:id="@+id/set_Goal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Set Next Goal"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/octarine_bold"
-                    android:text="Goal History"
-                    android:textSize="24sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/imageView8"
-                    app:layout_constraintHorizontal_bias="0.442"
-                    app:layout_constraintStart_toEndOf="@+id/imageView6"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.458" />
-
-                <ImageView
-                    android:id="@+id/imageView8"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:tint="@color/fontColor"
-                    android:src="@drawable/ic_chevron_right"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:text="My Current Goal"
+                    android:textSize="30sp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <com.github.lzyzsd.circleprogress.ArcProgress
+                    android:id="@+id/calories_progress"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="40dp"
+                    app:arc_bottom_text="Calories"
+                    app:arc_finished_color="@color/aquaGreen"
+                    app:arc_max="1200"
+                    app:arc_progress="500"
+                    app:arc_suffix_text="/1200"
+                    app:arc_text_color="@color/aquaGreen"
+                    app:arc_unfinished_color="@android:color/darker_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+                <TextView
+                    android:id="@+id/goal_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp"
+                    android:text="Goal Ends: April, 13th"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/calories_progress" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/my_activity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:checkable="true"
+                    android:elevation="24dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/goal_date"
+                    app:strokeColor="@color/fontColor">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp">
+
+
+                        <ImageView
+                            android:id="@+id/imageView6"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_event_black_24dp"
+                            android:tint="@color/lightGreen"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textView4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/octarine_bold"
+                            android:text="Goal History"
+                            android:textSize="24sp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/imageView8"
+                            app:layout_constraintHorizontal_bias="0.442"
+                            app:layout_constraintStart_toEndOf="@+id/imageView6"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.458" />
+
+                        <ImageView
+                            android:id="@+id/imageView8"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/ic_chevron_right"
+                            android:tint="@color/fontColor"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+    </FrameLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</FrameLayout>

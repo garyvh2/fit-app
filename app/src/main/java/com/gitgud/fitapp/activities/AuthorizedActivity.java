@@ -1,21 +1,13 @@
 package com.gitgud.fitapp.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
-import android.view.MenuItem;
 
 import com.gitgud.fitapp.R;
-import com.gitgud.fitapp.ui.dashboard.DashboardFragment;
-import com.gitgud.fitapp.ui.exercises.ExercisesFragment;
-import com.gitgud.fitapp.ui.nutritional.NutritionalFragment;
-import com.gitgud.fitapp.ui.rewards.RewardsFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

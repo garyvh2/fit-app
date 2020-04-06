@@ -2,6 +2,7 @@ package com.gitgud.fitapp.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.gitgud.fitapp.R;
+import com.gitgud.fitapp.ui.unauthorized.login.LoginActivity;
 
 import android.content.Intent;
 import android.os.Bundle;

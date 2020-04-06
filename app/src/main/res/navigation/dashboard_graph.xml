@@ -5,16 +5,36 @@
 
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="com.gitgud.fitapp.ui.dashboard.DashboardFragment"
+        android:name="com.gitgud.fitapp.ui.dashboard.dashboard.view.DashboardFragment"
         android:label="Dashboard">
         <action
             android:id="@+id/action_dashboardFragment_to_goalsFragment2"
             app:destination="@id/goalsFragment"
-            app:enterAnim="@anim/fragment_close_exit"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@+id/dashboardFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_createGoal"
+            app:destination="@id/createGoal"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:popUpTo="@id/dashboardFragment"
+            app:popEnterAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/goalsFragment"
         android:name="com.gitgud.fitapp.ui.dashboard.GoalsFragment"
-        android:label="Goals" />
+        android:label="Goals" >
+        <action
+            android:id="@+id/action_goalsFragment_to_createGoal"
+            app:destination="@id/createGoal"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@+id/goalsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createGoal"
+        android:name="com.gitgud.fitapp.ui.dashboard.CreateGoalFragment"
+        android:label="Create Goal" />
 </navigation>
