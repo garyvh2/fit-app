@@ -6,14 +6,19 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
+        <item name="android:fontFamily">@font/octarine_light</item>
     </style>
 
     <!-- Button Styles -->
 
     <style name="PrimaryButton" parent="@style/Widget.MaterialComponents.Button.TextButton">
+        <item name="android:backgroundTint">@color/accent</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="ActionButton" parent="@style/Widget.MaterialComponents.Button.TextButton">
         <item name="android:backgroundTint">@color/colorPrimaryDark</item>
-        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textColor">@color/accent</item>
     </style>
 
     <style name="CancelButton" parent="@style/Widget.MaterialComponents.Button.TextButton">
@@ -24,6 +29,24 @@
     <style name="SuccessButton" parent="@style/Widget.MaterialComponents.Button.TextButton">
         <item name="android:backgroundTint">@color/colorPrimaryDark</item>
         <item name="android:textColor">@color/aquaGreen</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar.Launcher" parent="AppTheme">
+        <item name="android:windowBackground">@drawable/bg_launcher</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorPrimaryDark">@color/orange</item>
+        <item name="colorPrimary">@color/orange</item>
+        <item name="windowActionBar">false</item>
+    </style>
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/lightGreen</item>
+        <item name="colorControlHighlight">@color/lightGreen</item>
+        <item name="colorOnSurface">@color/white</item>
     </style>
 
 </resources>
