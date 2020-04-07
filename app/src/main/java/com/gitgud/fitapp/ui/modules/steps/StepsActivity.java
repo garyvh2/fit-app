@@ -22,7 +22,6 @@ import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.gitgud.fitapp.R;
-import com.gitgud.fitapp.data.model.ActivityRecord;
 import com.gitgud.fitapp.data.model.StepsRecord;
 import com.gitgud.fitapp.databinding.ActivityStepsBinding;
 import com.gitgud.fitapp.provider.database.AppDatabase;
@@ -72,6 +71,7 @@ public class StepsActivity extends AppCompatActivity implements SensorEventListe
 
         checkPermissions();
         listenToChanges();
+
     }
 
     @Override
@@ -79,7 +79,7 @@ public class StepsActivity extends AppCompatActivity implements SensorEventListe
         if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)){
             RoomExplorer.show(this, AppDatabase.class, "app_database");
         }
-        return true;
+        return super.onKeyDown(keyCode, event);
     }
 
     private void checkPermissions() {

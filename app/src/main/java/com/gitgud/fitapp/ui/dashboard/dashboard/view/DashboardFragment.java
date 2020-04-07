@@ -1,5 +1,6 @@
 package com.gitgud.fitapp.ui.dashboard.dashboard.view;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import com.gitgud.fitapp.R;
 
 import com.gitgud.fitapp.databinding.FragmentDashboardBinding;
+import com.gitgud.fitapp.ui.dashboard.updateGoal.UpdateGoalViewModel;
 import com.gitgud.fitapp.ui.unauthorized.login.LoginViewModel;
 import com.gitgud.fitapp.utils.UserSharedPreferences;
 import com.google.android.material.card.MaterialCardView;
@@ -26,7 +28,8 @@ public class DashboardFragment extends Fragment {
     DashboardViewModel dashboardViewModel;
 
     private FragmentDashboardBinding binding;
-
+    private  Boolean isGoal;
+    TextView welcomeMessage;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -41,28 +44,33 @@ public class DashboardFragment extends Fragment {
         binding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_dashboard, container, false);
         binding.setViewModel(dashboardViewModel);
-
+        binding.setLifecycleOwner(this);
         View view = binding.getRoot();
-        TextView welcomeMessage = view.findViewById(R.id.welcome_title);
-        welcomeMessage.setText("Welcome "+ dashboardViewModel.getUserName());
+        welcomeMessage = view.findViewById(R.id.welcome_title);
 
+        dashboardViewModel.getLoggedUser().observe(getViewLifecycleOwner(), loggedUser -> {
+            welcomeMessage.setText("Welcome " +  loggedUser.getName());
+        });
+
+        dashboardViewModel.getHaveGoals().observe(getViewLifecycleOwner(), haveGoals -> {
+            isGoal = haveGoals;
+        });
 
 
         MaterialCardView mCard = view.findViewById(R.id.goal_card);
-        mCard.setOnClickListener(dashboardViewModel.getHaveGoals().getValue() ? this::goalClick : this::noGoalClick);
+        mCard.setOnClickListener(this::goalClick);
         return view;
     }
 
     public void goalClick (View v) {
-        NavDirections action = DashboardFragmentDirections.actionDashboardFragmentToGoalsFragment2();
-        Navigation.findNavController(v).navigate(action);
+            if(isGoal) {
+                NavDirections action = DashboardFragmentDirections.actionDashboardFragmentToGoalsFragment2();
+                Navigation.findNavController(v).navigate(action);
+            } else {
+                NavDirections action = DashboardFragmentDirections.actionDashboardFragmentToCreateGoal();
+                Navigation.findNavController(v).navigate(action);
+            }
     }
-
-    public void noGoalClick (View v) {
-        NavDirections action = DashboardFragmentDirections.actionDashboardFragmentToCreateGoal();
-        Navigation.findNavController(v).navigate(action);
-    }
-
 
 
 }

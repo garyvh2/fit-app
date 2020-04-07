@@ -1,9 +1,11 @@
 package com.gitgud.fitapp.ui.dashboard.updateGoal;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,10 +33,12 @@ public class UpdateGoalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        updateGoalViewModel = new UpdateGoalViewModel();
+        updateGoalViewModel = new ViewModelProvider(this).get(UpdateGoalViewModel.class);
         binding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_update_goal, container, false);
         binding.setViewModel(updateGoalViewModel);
+        binding.setLifecycleOwner(this);
+
         View view = binding.getRoot();
         Button incrementBtn =  view.findViewById(R.id.incrementBtn);
         incrementBtn.setOnClickListener(this::incrementCounter);
@@ -46,19 +50,18 @@ public class UpdateGoalFragment extends Fragment {
     }
 
     public  void incrementCounter (View v) {
-        Integer counter = updateGoalViewModel.getGoalsCounter();
-        Integer progress = updateGoalViewModel.getProgress();
-        updateGoalViewModel.setGoalsCounter(++counter);
-        updateGoalViewModel.setProgress(++progress);
+        AsyncTask.execute(() -> {
+            updateGoalViewModel.setGoalsCounter(updateGoalViewModel.getGoalsCounter().getValue() + 1);
+            updateGoalViewModel.setProgress(updateGoalViewModel.getProgress().getValue() + 1);
+        });
     }
     public  void decrementCounter (View v) {
-        Integer counter = updateGoalViewModel.getGoalsCounter();
-        Integer progress = updateGoalViewModel.getProgress();
-        if(counter > 0) {
-            updateGoalViewModel.setGoalsCounter(--counter);
-            updateGoalViewModel.setProgress(--progress);
-        }
-
+        AsyncTask.execute(() -> {
+            if (updateGoalViewModel.getGoalsCounter().getValue() > 0) {
+                updateGoalViewModel.setGoalsCounter(updateGoalViewModel.getGoalsCounter().getValue() - 1);
+                updateGoalViewModel.setProgress(updateGoalViewModel.getProgress().getValue() - 1);
+            }
+        });
     }
 
 }

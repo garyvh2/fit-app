@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.gitgud.fitapp.R;
 import com.gitgud.fitapp.databinding.BadgeCaloriesTotalBinding;
@@ -43,7 +44,8 @@ public class BadgesFragment extends Fragment {
         bindingStepsRow = DataBindingUtil.inflate(inflater, R.layout.badge_row_steps, null, false);
         bindingCaloriesRow = DataBindingUtil.inflate(inflater, R.layout.badge_row_calories, null, false);
 
-        historyModel = new HistoryModel(1500, 2500);
+        historyModel = new ViewModelProvider(this).get(HistoryModel.class);
+
         bindingTotalCalories.setHistory(historyModel);
         bindingStepsRow.setHistory(historyModel);
         bindingCaloriesRow.setHistory(historyModel);

@@ -4,12 +4,16 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 
 import com.gitgud.fitapp.data.dao.GoalsDao;
 import com.gitgud.fitapp.data.model.Goal;
+import com.gitgud.fitapp.data.model.WaterRecord;
 import com.gitgud.fitapp.provider.database.AppDatabase;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class GoalsRepository {
     private GoalsDao goalsDao;
@@ -33,5 +37,5 @@ public class GoalsRepository {
 
     public LiveData<Goal> getCurrentGoal() { return goalsDao.getCurrentGoal(); }
 
-    public  LiveData<ArrayList<Goal>> getAllGoals() {return  goalsDao.getAllGoals();}
+    public  LiveData<List<Goal>> getAllGoals() {return  goalsDao.getAllGoals();}
 }

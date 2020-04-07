@@ -1,12 +1,15 @@
-package com.gitgud.fitapp.ui.profile;
+package com.gitgud.fitapp.ui.profile.profile;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +21,9 @@ import android.widget.TextView;
 
 import com.gitgud.fitapp.BMIActivity;
 import com.gitgud.fitapp.R;
+import com.gitgud.fitapp.databinding.FragmentProfileBinding;
+import com.gitgud.fitapp.provider.database.AppDatabase;
+import com.gitgud.fitapp.ui.unauthorized.login.LoginActivity;
 import com.gitgud.fitapp.utils.UserSharedPreferences;
 import com.github.lzyzsd.circleprogress.ArcProgress;
 
@@ -26,6 +32,8 @@ import org.w3c.dom.Text;
 public class ProfileFragment extends Fragment {
 
 
+    ProfileViewModel profileViewModel;
+    FragmentProfileBinding binding;
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -43,18 +51,31 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View fragmentView = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        binding = DataBindingUtil.inflate(
+                inflater, R.layout.fragment_profile, container, false);
+        View fragmentView = binding.getRoot();
+        binding.setViewModel(profileViewModel);
+        binding.setLifecycleOwner(this);
         theme = fragmentView.getContext().getTheme();
         ImageView editImc = fragmentView.findViewById(R.id.edit_imc);
         editImc.setOnClickListener(this::onEditImcClick);
         ImageView editProfile =fragmentView.findViewById(R.id.edit_profile);
 
         userName = fragmentView.findViewById(R.id.full_name);
-        userName.setText(UserSharedPreferences.getUserProperty(fragmentView.getContext(), "name")+ " " + UserSharedPreferences.getUserProperty(fragmentView.getContext(), "lastname"));
         email = fragmentView.findViewById(R.id.user_email);
-        email.setText(UserSharedPreferences.getUserProperty(fragmentView.getContext(), "email"));
         birthday = fragmentView.findViewById(R.id.user_birthdate);
-        birthday.setText(UserSharedPreferences.getUserProperty(fragmentView.getContext(), "birthday"));
+
+        profileViewModel.getLoggedUser().observe(getViewLifecycleOwner(), loggedUser -> {
+            userName.setText(loggedUser.getName() + " " + loggedUser.getLastName());
+            email.setText(loggedUser.getEmail());
+            birthday.setText(loggedUser.getBirthdate());
+        });
+
+
+        Button button = fragmentView.findViewById(R.id.logout);
+        button.setOnClickListener(this::clickLogOut);
 
         progressBar = fragmentView.findViewById(R.id.imc_progress);
         this.setIMCColors();
@@ -67,6 +88,16 @@ public class ProfileFragment extends Fragment {
 
         progressBar.setFinishedStrokeColor(getBMIColor(imc));
         progressBar.setTextColor(getBMIColor(imc));
+    }
+
+    public void clickLogOut(View v) {
+        AsyncTask.execute(() -> {
+            AppDatabase.getInstance(v.getContext()).clearAllTables();
+            Intent intent = new Intent(v.getContext(), LoginActivity.class);
+            startActivity(intent);
+        });
+
+
     }
 
     public void onEditImcClick (View v) {

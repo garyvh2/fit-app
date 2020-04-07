@@ -11,6 +11,8 @@ import com.gitgud.fitapp.data.model.Goal;
 import com.gitgud.fitapp.data.model.User;
 
 import java.util.ArrayList;
+import java.util.List;
+
 @Dao
 public interface GoalsDao {
     @Insert
@@ -26,5 +28,5 @@ public interface GoalsDao {
     LiveData<Goal> getCurrentGoal();
 
     @Query("SELECT * FROM goals")
-    LiveData<ArrayList<Goal>> getAllGoals();
+    LiveData<List<Goal>> getAllGoals();
 }

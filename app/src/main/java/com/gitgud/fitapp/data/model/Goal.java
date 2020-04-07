@@ -7,6 +7,16 @@ import com.gitgud.fitapp.data.model.enums.GoalType;
 import com.gitgud.fitapp.data.model.enums.Status;
 @Entity(tableName = "goals")
 public class Goal {
+
+    public Goal(String name, String date, int goal, int progress, String status, String goalType) {
+        this.name = name;
+        this.date = date;
+        this.goal = goal;
+        this.progress = progress;
+        this.status = status;
+        this.goalType = goalType;
+    }
+
     @PrimaryKey(autoGenerate = true)
     private long id;
     private String name;

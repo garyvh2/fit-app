@@ -14,31 +14,43 @@ import com.gitgud.fitapp.data.respository.UserRepository;
 import org.jetbrains.annotations.NotNull;
 
 public class DashboardViewModel extends AndroidViewModel {
-    UserRepository userRepository;
-    GoalsRepository goalsRepository;
-    LiveData<User> loggedUser;
-    LiveData<Goal> currentGoal;
+    private  UserRepository userRepository;
+    private  GoalsRepository goalsRepository;
+    private LiveData<User> loggedUser;
+    private LiveData<Goal> currentGoal;
     private MutableLiveData<Boolean> haveGoals;
 
-    DashboardViewModel(@NotNull Application application) {
+    public DashboardViewModel(@NotNull Application application) {
         super(application);
         userRepository = new UserRepository(application);
         goalsRepository = new GoalsRepository(application);
         loggedUser = userRepository.getCurrentUser();
         currentGoal = goalsRepository.getCurrentGoal();
-        setHaveGoals(currentGoal != null);
+        haveGoals = new MutableLiveData<>();
+        haveGoals.postValue(false);
     }
 
     public MutableLiveData<Boolean> getHaveGoals() {
         return haveGoals;
     }
 
-    public void setHaveGoals(Boolean haveGoals) {
-        this.haveGoals.postValue(haveGoals);
+    public LiveData<User> getLoggedUser() {
+        return loggedUser;
+    }
+
+    public LiveData<Goal> getCurrentGoal() {
+        return currentGoal;
+    }
+    public void setHaveGoals(Boolean isGoals) {
+        haveGoals.postValue(isGoals);
     }
 
     public  String getUserName() {
-        return loggedUser.getValue().getName();
+        User user = loggedUser.getValue();
+        if(user == null) {
+            return  "Welcome";
+        }
+        return "Welcome " + loggedUser.getValue().getName();
     }
 }
     // ATTRIBUTES START
