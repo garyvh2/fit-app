@@ -1,17 +1,21 @@
-package com.gitgud.fitapp.activities;
+package com.gitgud.fitapp.ui.unauthorized.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.gitgud.fitapp.MainActivity;
 import com.gitgud.fitapp.R;
+import com.gitgud.fitapp.activities.AuthorizedActivity;
 import com.gitgud.fitapp.adapters.TextInputLayoutAdapter;
+import com.gitgud.fitapp.data.source.UserDataSource;
+import com.gitgud.fitapp.entities.user.LoginUserQuery;
+import com.gitgud.fitapp.ui.unauthorized.registration.RegistrationActivity;
+import com.gitgud.fitapp.utils.UserSharedPreferences;
 import com.google.android.material.textfield.TextInputLayout;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
@@ -20,8 +24,13 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import java.util.List;
 
+import io.reactivex.annotations.NonNull;
+
 public class LoginActivity extends AppCompatActivity implements Validator.ValidationListener {
 
+
+    @NonNull
+    private LoginViewModel loginViewModel;
     @NotEmpty
     @Email
     private TextInputLayout email;
@@ -37,6 +46,8 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        loginViewModel = new LoginViewModel(UserDataSource.getInstance());
         setContentView(R.layout.activity_login);
         validator = new Validator(this);
         validator.setValidationListener(this);
@@ -87,10 +98,24 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
 
     @Override
     public void onValidationSucceeded() {
+        this.loginViewModel.loginObservable(getInputText(email), getInputText(password)).subscribe(
+        this::onSuccess,
+                this::onFailed
+        );
+
+    }
+
+    private void onSuccess(LoginUserQuery.Data user) {
+        UserSharedPreferences.setLoggedUser(this, user.loginUser());
         Intent intent = new Intent(this, AuthorizedActivity.class);
         startActivity(intent);
-        Toast.makeText(this, "We got it right!", Toast.LENGTH_SHORT).show();
-
+    }
+    private void onFailed(Throwable throwable) {
+        Log.e("Login", throwable.toString());
+        Toast.makeText(this, "We couldn't login please try again", Toast.LENGTH_SHORT).show();
+    }
+    private String getInputText(TextInputLayout field) {
+        return field.getEditText().getText().toString();
     }
 
     @Override

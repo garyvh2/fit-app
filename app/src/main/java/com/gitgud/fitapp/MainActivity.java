@@ -4,8 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.gitgud.fitapp.activities.NutriAdviceMainActivity;
-import com.gitgud.fitapp.ui.modules.pokemon.PokemonActivity;
-import com.gitgud.fitapp.ui.modules.steps.StepsActivity;
+//import com.gitgud.fitapp.ui.modules.pokemon.PokemonActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -77,14 +76,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        bindingBtn = findViewById(R.id.binding);
-        bindingBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), PokemonActivity.class);
-                startActivity(intent);
-            }
-        });
+//        bindingBtn = findViewById(R.id.binding);
+//        bindingBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getApplicationContext(), PokemonActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         nutriAdviceBtn = findViewById(R.id.btnNutriAdvice);
         nutriAdviceBtn.setOnClickListener(new View.OnClickListener() {

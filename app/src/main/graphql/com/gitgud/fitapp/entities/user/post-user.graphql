@@ -1,0 +1,25 @@
+# Write your query or mutation here
+mutation addUser(
+  $name: String!
+  $lastName: String!
+  $email: String!
+  $password: String!
+  $birthDate: String!
+  $userType: UserTypes!
+) {
+  addUser(
+    name: $name
+    lastName: $lastName
+    email: $email
+    password: $password
+    userType: $userType
+    birthDate: $birthDate
+  ) {
+    id
+    name
+    lastName
+    email,
+    birthDate,
+    userType
+  }
+}

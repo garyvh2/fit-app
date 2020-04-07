@@ -1,32 +1,37 @@
 package com.gitgud.fitapp.activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
+import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.view.View;
 
 import com.gitgud.fitapp.R;
-import com.gitgud.fitapp.ui.dashboard.DashboardFragment;
-import com.gitgud.fitapp.ui.exercises.ExercisesFragment;
-import com.gitgud.fitapp.ui.nutritional.NutritionalFragment;
-import com.gitgud.fitapp.ui.rewards.RewardsFragment;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.ArrayList;
 
 public class AuthorizedActivity extends AppCompatActivity{
 
     BottomNavigationView bottomNavigationView;
+
+    ArrayList<Integer> noToolbarFragments = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authorized);
-
+        noToolbarFragments.add(R.id.dashboardFragment);
+        noToolbarFragments.add(R.id.profileFragment);
+        noToolbarFragments.add(R.id.nutritionalFragment);
+        noToolbarFragments.add(R.id.exercisesFragment);
+        noToolbarFragments.add(R.id.rewardsFragment);
         setUpNavigation();
     }
 
@@ -43,13 +48,27 @@ public class AuthorizedActivity extends AppCompatActivity{
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         NavHostFragment navHostFragment =       (NavHostFragment)getSupportFragmentManager()
                 .findFragmentById(R.id.nav_host_fragment);
+        NavController navController = navHostFragment.getNavController();
         NavigationUI.setupWithNavController(bottomNavigationView,
-                navHostFragment.getNavController());
+                navController);
         AppBarConfiguration appBarConfiguration =
                 new AppBarConfiguration.Builder(R.id.dashboardFragment,
                         R.id.profileFragment, R.id.nutritionalFragment,
                         R.id.exercisesFragment, R.id.rewardsFragment).build();
-        NavigationUI.setupActionBarWithNavController(this,  navHostFragment.getNavController(), appBarConfiguration);
+        navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
+            @Override
+            public void onDestinationChanged(@NonNull NavController controller,
+                                             @NonNull NavDestination destination, @Nullable Bundle arguments) {
+
+                if(noToolbarFragments.contains(destination.getId())) {
+                    toolbar.setVisibility(View.GONE);
+
+                } else {
+                    toolbar.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        NavigationUI.setupActionBarWithNavController(this,  navController, appBarConfiguration);
     }
 
 }
