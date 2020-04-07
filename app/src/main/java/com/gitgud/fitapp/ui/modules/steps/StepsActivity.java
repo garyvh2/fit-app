@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
 import android.app.PendingIntent;
@@ -16,34 +18,42 @@ import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.gitgud.fitapp.R;
+import com.gitgud.fitapp.data.model.ActivityRecord;
+import com.gitgud.fitapp.data.model.StepsRecord;
 import com.gitgud.fitapp.databinding.ActivityStepsBinding;
+import com.gitgud.fitapp.provider.database.AppDatabase;
+import com.gitgud.fitapp.utils.Notifications;
 import com.gitgud.fitapp.utils.Permissions;
 import com.google.android.gms.location.ActivityRecognition;
 import com.google.android.gms.location.ActivityTransition;
 import com.google.android.gms.location.ActivityTransitionRequest;
 import com.google.android.gms.location.DetectedActivity;
 import com.google.android.gms.tasks.Task;
+import com.wajahatkarim3.roomexplorer.RoomExplorer;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
+import me.itangqi.waveloadingview.WaveLoadingView;
+
 public class StepsActivity extends AppCompatActivity implements SensorEventListener, Observer {
     private final int ACTIVITY_RECOGNITION_GRANTED = 1;
 
     @NonNull
-    private StepsViewModel viewModel;
+    private ActivityStepsBinding binding;
     @NonNull
-    ActivityStepsBinding binding;
+    private StepsViewModel viewModel;
 
 
     private SensorManager sensorManager;
-    private Sensor stepCounterSensor;
     private Sensor stepDetectorSensor;
 
     @Override
@@ -51,11 +61,25 @@ public class StepsActivity extends AppCompatActivity implements SensorEventListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_steps);
 
+        Notifications.createNotificationChannel(this);
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_steps);
-        viewModel = StepsModule.createViewModel();
+
+        viewModel = new ViewModelProvider(this).get(StepsViewModel.class);
         binding.setViewModel(viewModel);
 
+        binding.setLifecycleOwner(this);
+
         checkPermissions();
+        listenToChanges();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)){
+            RoomExplorer.show(this, AppDatabase.class, "app_database");
+        }
+        return true;
     }
 
     private void checkPermissions() {
@@ -94,7 +118,6 @@ public class StepsActivity extends AppCompatActivity implements SensorEventListe
 
     private void initSensors() {
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        stepCounterSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
         stepDetectorSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
 
         List<ActivityTransition> transitions = new ArrayList<>();
@@ -163,7 +186,6 @@ public class StepsActivity extends AppCompatActivity implements SensorEventListe
 
         Toast.makeText(this, "Registering sensors!", Toast.LENGTH_SHORT).show();
 
-        sensorManager.registerListener(this, stepCounterSensor, SensorManager.SENSOR_DELAY_FASTEST);
         sensorManager.registerListener(this, stepDetectorSensor, SensorManager.SENSOR_DELAY_FASTEST);
     }
 
@@ -173,8 +195,6 @@ public class StepsActivity extends AppCompatActivity implements SensorEventListe
             return;
         }
 
-        sensorManager.unregisterListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER));
-        sensorManager.unregisterListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR));
         sensorManager.unregisterListener(this, sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR));
     }
 
@@ -189,9 +209,7 @@ public class StepsActivity extends AppCompatActivity implements SensorEventListe
         // Check that the device supports the step counter and detector sensors
 
         return currentApiVersion >= 19
-                && packageManager.hasSystemFeature(PackageManager.FEATURE_SENSOR_STEP_COUNTER)
-                && packageManager.hasSystemFeature(PackageManager.FEATURE_SENSOR_STEP_DETECTOR)
-                && packageManager.hasSystemFeature(PackageManager.FEATURE_SENSOR_ACCELEROMETER);
+                && packageManager.hasSystemFeature(PackageManager.FEATURE_SENSOR_STEP_DETECTOR);
     }
 
     protected void onResume() {
@@ -214,9 +232,23 @@ public class StepsActivity extends AppCompatActivity implements SensorEventListe
         switch (sensorEvent.sensor.getType())
         {
             case Sensor.TYPE_STEP_DETECTOR:
-                this.viewModel.setSteps(this.viewModel.getSteps() + 1);
+                StepsRecord stepsRecord = viewModel.getTodayStepsRecord().getValue();
+                if (stepsRecord != null) {
+                    viewModel.updateTodaySteps(viewModel.getTodayStepsRecord().getValue(), stepsRecord.getSteps() + 1);
+                }
                 break;
         }
+    }
+
+    public void listenToChanges() {
+        viewModel.getTodayStepsRecord().observe(this, stepsRecord -> {
+            if (stepsRecord != null) {
+                WaveLoadingView waveLoadingView = findViewById(R.id.waveLoadingView);
+                waveLoadingView.setTopTitle(MessageFormat.format("Goal: {0}", stepsRecord.getGoal()));
+                waveLoadingView.setCenterTitle(String.valueOf(stepsRecord.getSteps()));
+                waveLoadingView.setProgressValue((100 * stepsRecord.getSteps()) / stepsRecord.getGoal());
+            }
+        });
     }
 
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -225,6 +257,6 @@ public class StepsActivity extends AppCompatActivity implements SensorEventListe
 
     @Override
     public void update(Observable observable, Object data) {
-        this.viewModel.setActivity(String.valueOf(data));
+
     }
 }

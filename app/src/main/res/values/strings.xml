@@ -6,6 +6,10 @@
     <string name="your_goal">Your Goal:</string>
     <string name="current">Current:</string>
 
+
+    <string name="channel_name">Fit App</string>
+    <string name="channel_description">Fitness Tracking App</string>
+
     <!-- Button Strings -->
     <string name="action">Action</string>
     <string name="cancel">Cancel</string>
