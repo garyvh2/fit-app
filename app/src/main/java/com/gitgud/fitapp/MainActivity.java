@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         stepsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), StepActivity.class);
+                Intent intent = new Intent(getApplicationContext(), StepsActivity.class);
                 startActivity(intent);
             }
         });

@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+        <variable
+            name="history"
+            type="com.gitgud.fitapp.ui.modules.history.HistoryModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/leftConstraint30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.30" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/leftConstraint35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/leftConstraint65"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.65" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/leftConstraint70"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.70" />
+
+        <TextView
+            android:id="@+id/badgeRowTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/octarine_bold"
+            android:gravity="center"
+            android:paddingTop="@dimen/normal"
+            android:paddingBottom="@dimen/normal"
+            android:text="@string/badge_title_calories"
+            android:textSize="@dimen/fontBig"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/frameLayoutStart"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/badge_circle"
+            android:backgroundTint="@{(history.getCalories() >= @integer/calories_badge1) ? @color/colorAccent : @color/colorPrimaryDark}"
+            android:padding="25dp"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toEndOf="@+id/leftConstraint30"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/badgeRowTitle">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/octarine_bold"
+                android:gravity="center"
+                android:text="@{(history.getCalories() >= @integer/calories_badge1) ? @string/star_mark1: @string/question_mark}"
+                android:textColor="@{(history.getCalories() >= @integer/calories_badge1) ? @color/colorAccent : @color/colorPrimaryDark}"
+                android:textSize="@dimen/fontMassive"
+                android:visibility="@{(history.getCalories() >= @integer/calories_badge1) ? View.GONE : View.VISIBLE}" />
+
+            <ImageView
+                android:id="@+id/imageViewStart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/star"
+                android:backgroundTint="@color/colorAccent"
+                android:visibility="@{(history.getCalories() >= @integer/calories_badge1) ? View.VISIBLE : View.GONE}" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/textViewStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/tight"
+            android:fontFamily="@font/octarine"
+            android:gravity="center"
+            android:text="@{ `` + @integer/calories_badge1 + ' ' + @string/calories }"
+            android:textSize="@dimen/fontSmall"
+            app:layout_constraintEnd_toEndOf="@+id/frameLayoutStart"
+            app:layout_constraintStart_toStartOf="@+id/frameLayoutStart"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutStart" />
+
+        <FrameLayout
+            android:id="@+id/frameLayoutCenter"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/badge_circle"
+            android:backgroundTint="@{(history.getCalories() >= @integer/calories_badge2) ? @color/orange : @color/colorPrimaryDark}"
+            android:padding="25dp"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toEndOf="@+id/leftConstraint65"
+            app:layout_constraintStart_toStartOf="@+id/leftConstraint35"
+            app:layout_constraintTop_toBottomOf="@+id/badgeRowTitle">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/octarine_bold"
+                android:gravity="center"
+                android:text="@{(history.getCalories() >= @integer/calories_badge2) ? @string/star_mark1: @string/question_mark}"
+                android:textColor="@{(history.getCalories() >= @integer/calories_badge2) ? @color/orange : @color/colorPrimaryDark}"
+                android:textSize="@dimen/fontMassive"
+                android:visibility="@{(history.getCalories() >= @integer/calories_badge2) ? View.GONE : View.VISIBLE}" />
+
+            <ImageView
+                android:id="@+id/imageViewCenter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/star"
+                android:backgroundTint="@color/orange"
+                android:visibility="@{(history.getCalories() >= @integer/calories_badge2) ? View.VISIBLE : View.GONE}" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/textViewCenter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/tight"
+            android:fontFamily="@font/octarine"
+            android:gravity="center"
+            android:text="@{ `` + @integer/calories_badge2 + ' ' + @string/calories }"
+            android:textSize="@dimen/fontSmall"
+            app:layout_constraintEnd_toEndOf="@+id/frameLayoutCenter"
+            app:layout_constraintStart_toStartOf="@+id/frameLayoutCenter"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutCenter" />
+
+        <FrameLayout
+            android:id="@+id/frameLayoutEnd"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/badge_circle"
+            android:backgroundTint="@{(history.getCalories() >= @integer/calories_badge3) ? @color/red : @color/colorPrimaryDark}"
+            android:padding="25dp"
+            app:layout_constraintDimensionRatio="H,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/leftConstraint70"
+            app:layout_constraintTop_toBottomOf="@+id/badgeRowTitle">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/octarine_bold"
+                android:gravity="center"
+                android:text="@{(history.getCalories() >= @integer/calories_badge3) ? @string/star_mark1 : @string/question_mark}"
+                android:textColor="@{(history.getCalories() >= @integer/calories_badge3) ? @color/red : @color/colorPrimaryDark}"
+                android:textSize="@dimen/fontMassive"
+                android:visibility="@{(history.getCalories() >= @integer/calories_badge3) ? View.GONE : View.VISIBLE}" />
+
+            <ImageView
+                android:id="@+id/imageViewEnd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/star"
+                android:backgroundTint="@color/red"
+                android:visibility="@{(history.getCalories() >= @integer/calories_badge3) ? View.VISIBLE : View.GONE}" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/textViewEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/tight"
+            android:fontFamily="@font/octarine"
+            android:gravity="center"
+            android:text="@{ `` + @integer/calories_badge3 + ' ' + @string/calories }"
+            android:textSize="@dimen/fontSmall"
+            app:layout_constraintEnd_toEndOf="@+id/frameLayoutEnd"
+            app:layout_constraintStart_toStartOf="@+id/frameLayoutEnd"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayoutEnd" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
