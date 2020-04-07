@@ -47,7 +47,6 @@ public class MenuCardAdapter extends ArrayAdapter<MenuCardItem> {
    public void onClickCard (View v) {
        int position = (Integer) v.getTag();
        MenuCardItem item = getItem(position);
-       Log.e("nut", "click");
        Intent intent = new Intent(v.getContext(), item.getView());
        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
        v.getContext().getApplicationContext().startActivity(intent);
