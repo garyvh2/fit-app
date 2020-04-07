@@ -6,5 +6,15 @@
     <fragment
         android:id="@+id/exercisesFragment"
         android:name="com.gitgud.fitapp.ui.exercises.ExercisesFragment"
-        android:label="Exercises" />
+        android:label="Exercises">
+        <action
+            android:id="@+id/action_exercisesFragment_to_badgesFragment"
+            app:destination="@id/badgesFragment"
+            app:enterAnim="@anim/fragment_close_exit"
+            app:popUpTo="@+id/exercisesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/badgesFragment"
+        android:name="com.gitgud.fitapp.ui.history.BadgesFragment"
+        android:label="Badges" />
 </navigation>

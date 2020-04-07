@@ -1,0 +1,8 @@
+query getAllUsers () {
+    users() {
+        id,
+        name,
+        lastName,
+        email,
+    }
+}
