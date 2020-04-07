@@ -86,7 +86,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:visibility="@{viewModel.goals ? View.VISIBLE : View.GONE}">
+                    android:visibility="@{Boolean.valueOf(viewModel.haveGoals) ? View.VISIBLE : View.GONE}">
 
                     <TextView
                         android:id="@+id/goal"
@@ -151,7 +151,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:visibility="@{!viewModel.goals ? View.VISIBLE : View.GONE}">
+                    android:visibility="@{!Boolean.valueOf(viewModel.haveGoals)? View.VISIBLE : View.GONE}">
 
                     <TextView
                         android:id="@+id/no_goal"

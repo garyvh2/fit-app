@@ -39,11 +39,6 @@ public class ExercisesFragment extends Fragment {
         adapter = new MenuCardAdapter(fragmentView.getContext(), menuItems);
         ListView listView = fragmentView.findViewById(R.id.exercises_menu);
         listView.setAdapter(adapter);
-
-        Button btnHistory = fragmentView.findViewById(R.id.btnHistory);
-        btnHistory.setOnClickListener((View v) -> {
-            Navigation.findNavController(fragmentView).navigate(R.id.badgesFragment);
-        });
         return fragmentView;
     }
 }

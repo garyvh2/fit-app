@@ -5,10 +5,16 @@ import android.app.Application;
 import androidx.databinding.Bindable;
 import androidx.lifecycle.AndroidViewModel;
 
+import com.gitgud.fitapp.data.model.Goal;
+import com.gitgud.fitapp.data.model.User;
+import com.gitgud.fitapp.data.respository.GoalsRepository;
+import com.gitgud.fitapp.data.respository.UserRepository;
 import com.gitgud.fitapp.data.source.UserDataSource;
 import com.gitgud.fitapp.entities.user.LoginUserQuery;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -19,13 +25,18 @@ public class LoginViewModel extends AndroidViewModel {
     // INJECTION START
     @NonNull
     private UserDataSource userDataSource;
+    private UserRepository userRepository;
+    private GoalsRepository goalsRepository;
     // ATTRIBUTES START
     private Boolean loading;
 
-    public LoginViewModel(@androidx.annotation.NonNull Application application) {
+    public LoginViewModel(@NonNull Application application) {
         super(application);
+        userRepository = new UserRepository(application);
+        goalsRepository =  new GoalsRepository(application);
         this.userDataSource = UserDataSource.getInstance();
     }
+
 
     public Observable<LoginUserQuery.Data> loginObservable(@NotNull String email, @NonNull String password) {
         setLoading(true);
@@ -34,6 +45,18 @@ public class LoginViewModel extends AndroidViewModel {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
+
+
+    public void saveLoggedUser(User user) {
+        userRepository.insert(user);
+    }
+
+    public  void saveGoals(ArrayList<Goal> goals) {
+        for (Goal goal: goals) {
+            goalsRepository.insert(goal);
+        }
+    }
+
 
     public Boolean getLoading() {
         return loading;

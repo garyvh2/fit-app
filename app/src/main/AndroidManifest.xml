@@ -16,6 +16,7 @@
         <activity
             android:name=".activities.AuthorizedActivity"
             android:configChanges="orientation"
+            android:noHistory="true"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
@@ -27,6 +28,7 @@
         <activity
             android:name=".ui.unauthorized.login.LoginActivity"
             android:configChanges="orientation"
+            android:noHistory="true"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
@@ -34,7 +36,7 @@
         <activity android:name=".WaterActivity" />
         <activity android:name=".BMIActivity" />
         <activity
-            android:name=".activities.SplashActivity"
+            android:name=".ui.unauthorized.splash.SplashActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.Launcher"

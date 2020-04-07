@@ -5,6 +5,6 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.gitgud.fitapp.ui.profile.ProfileFragment"
+        android:name="com.gitgud.fitapp.ui.profile.profile.ProfileFragment"
         android:label="Profile" />
 </navigation>

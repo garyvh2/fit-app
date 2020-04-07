@@ -71,6 +71,7 @@ public class StepsActivity extends AppCompatActivity implements SensorEventListe
 
         checkPermissions();
         listenToChanges();
+
     }
 
     @Override
@@ -78,7 +79,7 @@ public class StepsActivity extends AppCompatActivity implements SensorEventListe
         if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)){
             RoomExplorer.show(this, AppDatabase.class, "app_database");
         }
-        return true;
+        return super.onKeyDown(keyCode, event);
     }
 
     private void checkPermissions() {

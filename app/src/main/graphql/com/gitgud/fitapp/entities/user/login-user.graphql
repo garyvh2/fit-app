@@ -3,6 +3,10 @@ query loginUser($email: String!, $password: String!) {
     id
     name
     lastName
+    birthDate
     email
+    goals {
+      name
+    }
   }
 }

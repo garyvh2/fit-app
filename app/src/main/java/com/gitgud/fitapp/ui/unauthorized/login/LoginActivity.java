@@ -3,6 +3,7 @@ package com.gitgud.fitapp.ui.unauthorized.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -13,8 +14,12 @@ import androidx.lifecycle.ViewModelProvider;
 import com.gitgud.fitapp.R;
 import com.gitgud.fitapp.activities.AuthorizedActivity;
 import com.gitgud.fitapp.adapters.TextInputLayoutAdapter;
+import com.gitgud.fitapp.data.model.Goal;
+import com.gitgud.fitapp.data.model.User;
 import com.gitgud.fitapp.data.source.UserDataSource;
 import com.gitgud.fitapp.entities.user.LoginUserQuery;
+import com.gitgud.fitapp.provider.database.AppDatabase;
+import com.gitgud.fitapp.ui.modules.steps.StepsViewModel;
 import com.gitgud.fitapp.ui.unauthorized.registration.RegistrationActivity;
 import com.gitgud.fitapp.utils.UserSharedPreferences;
 import com.google.android.material.textfield.TextInputLayout;
@@ -22,7 +27,9 @@ import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.wajahatkarim3.roomexplorer.RoomExplorer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.annotations.NonNull;
@@ -106,10 +113,29 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
 
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)){
+            RoomExplorer.show(this, AppDatabase.class, "app_database");
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
     private void onSuccess(LoginUserQuery.Data user) {
-        UserSharedPreferences.setLoggedUser(this, user.loginUser());
-        Intent intent = new Intent(this, AuthorizedActivity.class);
-        startActivity(intent);
+        try {
+
+            User newUser =  new User(user.loginUser());
+            loginViewModel.saveLoggedUser(newUser);
+            loginViewModel.saveGoals(new ArrayList<Goal>());
+            Intent intent = new Intent(this, AuthorizedActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+            startActivity(intent);
+
+            this.finish();
+        } catch (Exception e) {
+            Log.e("login", e.getMessage());
+        }
     }
     private void onFailed(Throwable throwable) {
         Log.e("Login", throwable.toString());
