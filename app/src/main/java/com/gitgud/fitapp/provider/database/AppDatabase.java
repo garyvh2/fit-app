@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
@@ -14,13 +13,15 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.gitgud.fitapp.data.dao.ActivityRecordDao;
 import com.gitgud.fitapp.data.dao.StepsRecordDao;
 import com.gitgud.fitapp.data.dao.UserDao;
+import com.gitgud.fitapp.data.dao.WaterRecordDao;
 import com.gitgud.fitapp.data.model.ActivityRecord;
 import com.gitgud.fitapp.data.model.StepsRecord;
 import com.gitgud.fitapp.data.model.User;
+import com.gitgud.fitapp.data.model.WaterRecord;
 import com.gitgud.fitapp.utils.Converters;
 
 
-@Database(entities = {User.class, ActivityRecord.class, StepsRecord.class}, version = 3)
+@Database(entities = {User.class, ActivityRecord.class, StepsRecord.class, WaterRecord.class}, version = 4)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
@@ -42,6 +43,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
     public abstract ActivityRecordDao activityRecordDao();
     public abstract StepsRecordDao stepsRecordDao();
+    public abstract WaterRecordDao waterRecordDao();
 
     private static AppDatabase.Callback roomCallback = new RoomDatabase.Callback() {
         @Override

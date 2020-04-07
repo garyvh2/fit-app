@@ -32,7 +32,7 @@
                 android:id="@+id/goalCounter"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="@{viewModel.goalsCounter.toString()}"
+                android:text="@{String.valueOf(viewModel.goalsCounter)}"
                 android:textAlignment="center"
                 android:textSize="90dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -129,7 +129,7 @@
                 android:layout_marginStart="204dp"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/octarine_boldoblique"
-                android:text="@{viewModel.progress.toString()}"
+                android:text="@{String.valueOf(viewModel.progress)}"
                 android:textSize="24sp"
                 app:layout_constraintStart_toEndOf="@+id/textView8"
                 app:layout_constraintTop_toBottomOf="@+id/goal_txt" />

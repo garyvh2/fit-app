@@ -1,37 +1,37 @@
 package com.gitgud.fitapp.ui.dashboard.updateGoal;
 
-import androidx.databinding.BaseObservable;
+import android.app.Application;
+
+import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
-import com.gitgud.fitapp.BR;
 
-public class UpdateGoalViewModel extends BaseObservable {
+public class UpdateGoalViewModel extends AndroidViewModel {
+    private MutableLiveData<Integer> goalsCounter;
+    private MutableLiveData<Integer> progress;
 
-    private Integer goalsCounter = 0;
-
-    private Integer progress = 10;
-
-    public UpdateGoalViewModel(){
-
+    public UpdateGoalViewModel(@NonNull Application application) {
+        super(application);
+        progress = new MutableLiveData<>();
+        progress.postValue(0);
+        goalsCounter = new MutableLiveData<>();
+        goalsCounter.postValue(0);
     }
 
-    @Bindable
-    public Integer getProgress() {
+    public LiveData<Integer> getProgress() {
         return progress;
     }
-
     public void setProgress(Integer progress) {
-        this.progress = progress;
-        notifyPropertyChanged(BR.progress);
+        this.progress.postValue(progress);
     }
 
-    @Bindable
-    public Integer getGoalsCounter() {
+    public LiveData<Integer> getGoalsCounter() {
         return goalsCounter;
     }
-
     public void setGoalsCounter(Integer goalsCounter) {
-        this.goalsCounter = goalsCounter;
-        notifyPropertyChanged(BR.goalsCounter);
+        this.goalsCounter.postValue(goalsCounter);
     }
 }

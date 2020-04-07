@@ -2,53 +2,73 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.gitgud.fitapp">
-
     <!-- To access Google+ APIs: -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
-    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
-
-    <uses-feature android:name="android.hardware.sensor.stepdetector" android:required="true" />
-    <uses-feature android:name="android.hardware.sensor.stepcounter" android:required="true" />
-
-
-
-    <application android:allowBackup="true" android:networkSecurityConfig="@xml/network_security_config" android:icon="@mipmap/app_icon_v2" android:label="@string/app_name" android:roundIcon="@mipmap/app_icon_v2_round" android:supportsRtl="true" android:theme="@style/AppTheme">
-        <activity android:name=".activities.NutriAdviceDetailActivity"/>
-        <activity android:name=".activities.AuthorizedActivity"
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/app_icon_v2"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/app_icon_v2_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".ui.modules.water.WaterConsumeActivity"></activity>
+        <activity android:name=".activities.NutriAdviceDetailActivity" />
+        <activity
+            android:name=".activities.AuthorizedActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".ui.unauthorized.registration.RegistrationActivity" android:label="@string/registration"
+        <activity
+            android:name=".ui.unauthorized.registration.RegistrationActivity"
             android:configChanges="orientation"
+            android:label="@string/registration"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
-        <activity android:name=".ui.unauthorized.login.LoginActivity" android:label="@string/title_activity_login"
+        <activity
+            android:name=".ui.unauthorized.login.LoginActivity"
             android:configChanges="orientation"
+            android:label="@string/title_activity_login"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity"/>
+            tools:ignore="LockedOrientationActivity" />
         <activity android:name=".activities.NutriAdviceMainActivity" />
         <activity android:name=".WaterActivity" />
         <activity android:name=".BMIActivity" />
-        <activity android:name=".activities.SplashActivity" android:theme="@style/AppTheme.NoActionBar.Launcher"
+        <activity
+            android:name=".activities.SplashActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar.Launcher"
             tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:label="@string/app_name"/>
-        <activity android:name=".ui.modules.steps.StepsActivity"
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" />
+        <activity
+            android:name=".ui.modules.steps.StepsActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity">
-        </activity>
+            tools:ignore="LockedOrientationActivity"></activity>
 
-        <receiver android:name=".ui.modules.steps.StepsBroadcastReceiver" android:permission="com.google.android.gms.permission.ACTIVITY_RECOGNITION"></receiver>
-
+        <receiver
+            android:name=".ui.modules.steps.StepsBroadcastReceiver"
+            android:permission="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
     </application>
+    <uses-feature
+        android:name="android.hardware.sensor.stepcounter"
+        android:required="true" />
+    <uses-feature
+        android:name="android.hardware.sensor.stepdetector"
+        android:required="true" />
+    <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
 
 </manifest>

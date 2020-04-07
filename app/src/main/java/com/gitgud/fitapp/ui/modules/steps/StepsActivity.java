@@ -22,7 +22,6 @@ import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.gitgud.fitapp.R;
-import com.gitgud.fitapp.data.model.ActivityRecord;
 import com.gitgud.fitapp.data.model.StepsRecord;
 import com.gitgud.fitapp.databinding.ActivityStepsBinding;
 import com.gitgud.fitapp.provider.database.AppDatabase;
