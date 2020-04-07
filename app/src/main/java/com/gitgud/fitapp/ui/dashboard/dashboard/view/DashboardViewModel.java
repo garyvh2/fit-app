@@ -1,25 +1,48 @@
 package com.gitgud.fitapp.ui.dashboard.dashboard.view;
 
-import androidx.databinding.BaseObservable;
-import androidx.databinding.Bindable;
+import android.app.Application;
 
-public class DashboardViewModel extends BaseObservable {
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 
-    DashboardViewModel(){
+import com.gitgud.fitapp.data.model.Goal;
+import com.gitgud.fitapp.data.model.User;
+import com.gitgud.fitapp.data.respository.GoalsRepository;
+import com.gitgud.fitapp.data.respository.UserRepository;
 
+import org.jetbrains.annotations.NotNull;
+
+public class DashboardViewModel extends AndroidViewModel {
+    UserRepository userRepository;
+    GoalsRepository goalsRepository;
+    LiveData<User> loggedUser;
+    LiveData<Goal> currentGoal;
+    private MutableLiveData<Boolean> haveGoals;
+
+    DashboardViewModel(@NotNull Application application) {
+        super(application);
+        userRepository = new UserRepository(application);
+        goalsRepository = new GoalsRepository(application);
+        loggedUser = userRepository.getCurrentUser();
+        currentGoal = goalsRepository.getCurrentGoal();
+        setHaveGoals(currentGoal != null);
     }
 
-    // ATTRIBUTES START
-    private Boolean goals = true;
-
-
-    @Bindable
-    public Boolean getGoals() {
-        return goals;
+    public MutableLiveData<Boolean> getHaveGoals() {
+        return haveGoals;
     }
 
-    public void setGoals(Boolean goals) {
-        this.goals = goals;
-        notifyPropertyChanged(com.gitgud.fitapp.BR.goals);
+    public void setHaveGoals(Boolean haveGoals) {
+        this.haveGoals.postValue(haveGoals);
+    }
+
+    public  String getUserName() {
+        return loggedUser.getValue().getName();
     }
 }
+    // ATTRIBUTES START
+
+
+
+

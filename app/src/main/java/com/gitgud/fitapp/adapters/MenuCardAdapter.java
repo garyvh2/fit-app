@@ -10,8 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
+
 import com.gitgud.fitapp.R;
 import com.gitgud.fitapp.components.MenuCardItem;
+import com.gitgud.fitapp.ui.dashboard.dashboard.view.DashboardFragmentDirections;
 import com.google.android.material.card.MaterialCardView;
 
 import java.util.ArrayList;
@@ -47,8 +51,13 @@ public class MenuCardAdapter extends ArrayAdapter<MenuCardItem> {
    public void onClickCard (View v) {
        int position = (Integer) v.getTag();
        MenuCardItem item = getItem(position);
-       Intent intent = new Intent(v.getContext(), item.getView());
-       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-       v.getContext().getApplicationContext().startActivity(intent);
+       if (item.getIsView()) {
+           Intent intent = new Intent(v.getContext(), item.getView());
+           intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+           v.getContext().getApplicationContext().startActivity(intent);
+       } else {
+           Navigation.findNavController(v).navigate(item.getFragment());
+       }
+
    }
 }

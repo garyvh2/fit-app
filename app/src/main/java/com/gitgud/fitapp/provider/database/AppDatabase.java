@@ -12,6 +12,7 @@ import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.gitgud.fitapp.data.dao.ActivityRecordDao;
+import com.gitgud.fitapp.data.dao.GoalsDao;
 import com.gitgud.fitapp.data.dao.StepsRecordDao;
 import com.gitgud.fitapp.data.dao.UserDao;
 import com.gitgud.fitapp.data.model.ActivityRecord;
@@ -20,7 +21,7 @@ import com.gitgud.fitapp.data.model.User;
 import com.gitgud.fitapp.utils.Converters;
 
 
-@Database(entities = {User.class, ActivityRecord.class, StepsRecord.class}, version = 3)
+@Database(entities = {User.class, ActivityRecord.class, StepsRecord.class}, version = 4)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;
@@ -42,6 +43,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
     public abstract ActivityRecordDao activityRecordDao();
     public abstract StepsRecordDao stepsRecordDao();
+    public  abstract GoalsDao goalsDao();
 
     private static AppDatabase.Callback roomCallback = new RoomDatabase.Callback() {
         @Override

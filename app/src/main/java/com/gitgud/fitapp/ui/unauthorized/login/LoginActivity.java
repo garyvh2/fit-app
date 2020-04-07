@@ -8,12 +8,16 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.gitgud.fitapp.R;
 import com.gitgud.fitapp.activities.AuthorizedActivity;
 import com.gitgud.fitapp.adapters.TextInputLayoutAdapter;
+import com.gitgud.fitapp.data.model.Goal;
+import com.gitgud.fitapp.data.model.User;
 import com.gitgud.fitapp.data.source.UserDataSource;
 import com.gitgud.fitapp.entities.user.LoginUserQuery;
+import com.gitgud.fitapp.ui.modules.steps.StepsViewModel;
 import com.gitgud.fitapp.ui.unauthorized.registration.RegistrationActivity;
 import com.gitgud.fitapp.utils.UserSharedPreferences;
 import com.google.android.material.textfield.TextInputLayout;
@@ -22,6 +26,7 @@ import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.annotations.NonNull;
@@ -47,7 +52,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        loginViewModel = new LoginViewModel(UserDataSource.getInstance());
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         setContentView(R.layout.activity_login);
         validator = new Validator(this);
         validator.setValidationListener(this);
@@ -106,7 +111,9 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
     }
 
     private void onSuccess(LoginUserQuery.Data user) {
-        UserSharedPreferences.setLoggedUser(this, user.loginUser());
+        User newUser =  new User(user.loginUser());
+        loginViewModel.saveLoggedUser(newUser);
+        loginViewModel.saveGoals(new ArrayList<Goal>());
         Intent intent = new Intent(this, AuthorizedActivity.class);
         startActivity(intent);
     }
