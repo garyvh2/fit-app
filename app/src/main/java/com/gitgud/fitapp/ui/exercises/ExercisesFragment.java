@@ -14,10 +14,9 @@ import android.widget.ListView;
 import android.widget.Button;
 
 import com.gitgud.fitapp.R;
-import com.gitgud.fitapp.StepActivity;
-import com.gitgud.fitapp.WaterActivity;
 import com.gitgud.fitapp.adapters.MenuCardAdapter;
 import com.gitgud.fitapp.components.MenuCardItem;
+import com.gitgud.fitapp.ui.modules.steps.StepsActivity;
 
 import java.util.ArrayList;
 
@@ -29,7 +28,7 @@ public class ExercisesFragment extends Fragment {
     ArrayList<MenuCardItem> menuItems = new ArrayList<>();
 
     public  ExercisesFragment(){
-        menuItems.add(new MenuCardItem(R.drawable.ic_walk, "Steps Counter", StepActivity.class));
+        menuItems.add(new MenuCardItem(R.drawable.ic_walk, "Steps Counter", StepsActivity.class));
     }
 
     @Override
@@ -40,15 +39,10 @@ public class ExercisesFragment extends Fragment {
         adapter = new MenuCardAdapter(fragmentView.getContext(), menuItems);
         ListView listView = fragmentView.findViewById(R.id.exercises_menu);
         listView.setAdapter(adapter);
-        return fragmentView;
-        View view = inflater.inflate(R.layout.fragment_exercises, container, false);
 
         Button btnHistory = fragmentView.findViewById(R.id.btnHistory);
-        btnHistory.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Navigation.findNavController(fragmentView).navigate(R.id.badgesFragment);
-            }
+        btnHistory.setOnClickListener((View v) -> {
+            Navigation.findNavController(fragmentView).navigate(R.id.badgesFragment);
         });
         return fragmentView;
     }

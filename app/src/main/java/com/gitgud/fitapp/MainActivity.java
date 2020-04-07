@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.gitgud.fitapp.activities.NutriAdviceMainActivity;
 //import com.gitgud.fitapp.ui.modules.pokemon.PokemonActivity;
+import com.gitgud.fitapp.ui.modules.steps.StepsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -49,49 +50,29 @@ public class MainActivity extends AppCompatActivity {
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         bmiBtn = findViewById(R.id.bmi);
-        bmiBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), BMIActivity.class);
-                startActivity(intent);
-            }
+        bmiBtn.setOnClickListener((View view) -> {
+            Intent intent = new Intent(getApplicationContext(), BMIActivity.class);
+            startActivity(intent);
         });
 
         waterConsumeBtn = findViewById(R.id.waterConsume);
-        waterConsumeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), WaterActivity.class);
-                startActivity(intent);
-            }
+        waterConsumeBtn.setOnClickListener((View view) -> {
+            Intent intent = new Intent(getApplicationContext(), WaterActivity.class);
+            startActivity(intent);
         });
 
 
         stepsBtn = findViewById(R.id.steps);
-        stepsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), StepsActivity.class);
-                startActivity(intent);
-            }
+        stepsBtn.setOnClickListener((View view) -> {
+            Intent intent = new Intent(getApplicationContext(), StepsActivity.class);
+            startActivity(intent);
         });
 
-//        bindingBtn = findViewById(R.id.binding);
-//        bindingBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(), PokemonActivity.class);
-//                startActivity(intent);
-//            }
-//        });
 
         nutriAdviceBtn = findViewById(R.id.btnNutriAdvice);
-        nutriAdviceBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), NutriAdviceMainActivity.class);
-                startActivity(intent);
-            }
+        nutriAdviceBtn.setOnClickListener((View view) -> {
+            Intent intent = new Intent(getApplicationContext(), NutriAdviceMainActivity.class);
+            startActivity(intent);
         });
 
     }
