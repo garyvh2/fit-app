@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
-import com.gitgud.fitapp.BR;
 import com.gitgud.fitapp.data.source.PokemonDataSource;
 import com.gitgud.fitapp.entities.pokemon.PokemonQuery;
 import com.gitgud.fitapp.ui.modules.pokemon.PokemonNavigator;
@@ -54,7 +53,6 @@ public class PokemonInfoViewModel extends BaseObservable {
     public void setPokemon(PokemonQuery.Pokemon pokemon) {
         this.pokemon = pokemon;
         setLoading(false);
-        notifyPropertyChanged(BR.pokemon);
     }
 
     @Bindable
@@ -64,6 +62,5 @@ public class PokemonInfoViewModel extends BaseObservable {
 
     public void setLoading(Boolean loading) {
         this.loading = loading;
-        notifyPropertyChanged(BR.loading);
     }
 }
