@@ -43,19 +43,6 @@ public class NutritionalFragment extends Fragment {
         adapter = new MenuCardAdapter(fragmentView.getContext(), menuItems);
         ListView listView = fragmentView.findViewById(R.id.nutritional_menu);
         listView.setAdapter(adapter);
-        listView.setOnItemLongClickListener((AdapterView<?> parent, View view, int position, long id) -> {
-            MenuCardItem item = adapter.getItem(position);
-            Log.e("nut", "click");
-            Intent intent = new Intent(fragmentView.getContext(), item.getView());
-            startActivity(intent);
-            return true;
-        });
-        listView.setOnItemClickListener((AdapterView<?> parent, View view, int position, long id) -> {
-            MenuCardItem item = adapter.getItem(position);
-            Log.e("nut", "click");
-            Intent intent = new Intent(fragmentView.getContext(), item.getView());
-            startActivity(intent);
-        });
         return fragmentView;
     }
 
