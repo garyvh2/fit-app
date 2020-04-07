@@ -45,9 +45,9 @@ public class StepsRepository {
             if (stepsRecord == null) {
                 StepsRecord newRecord = new StepsRecord(0, 6000, new Date());
                 AsyncTask.execute(() -> stepsRecordDao.insert(newRecord));
-                stepsRecordMediator.setValue(newRecord);
+                stepsRecordMediator.postValue(newRecord);
             } else {
-                stepsRecordMediator.setValue(stepsRecord);
+                stepsRecordMediator.postValue(stepsRecord);
             }
         });
         return stepsRecordMediator;

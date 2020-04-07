@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.gitgud.fitapp.R;
 import com.gitgud.fitapp.activities.AuthorizedActivity;
@@ -47,7 +48,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        loginViewModel = new LoginViewModel(UserDataSource.getInstance());
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         setContentView(R.layout.activity_login);
         validator = new Validator(this);
         validator.setValidationListener(this);

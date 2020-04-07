@@ -20,6 +20,7 @@ import com.gitgud.fitapp.WaterActivity;
 import com.gitgud.fitapp.activities.AuthorizedActivity;
 import com.gitgud.fitapp.adapters.MenuCardAdapter;
 import com.gitgud.fitapp.components.MenuCardItem;
+import com.gitgud.fitapp.ui.modules.water.WaterConsumeActivity;
 
 import java.util.ArrayList;
 
@@ -31,7 +32,7 @@ public class NutritionalFragment extends Fragment {
     ArrayList<MenuCardItem> menuItems = new ArrayList<>();
 
     public NutritionalFragment() {
-       menuItems.add(new MenuCardItem(R.drawable.ic_bottle, "Water Consumption", WaterActivity.class));
+       menuItems.add(new MenuCardItem(R.drawable.ic_bottle, "Water Consumption", WaterConsumeActivity.class));
     }
 
 

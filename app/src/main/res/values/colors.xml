@@ -15,6 +15,9 @@
 
     <color name="white">#FFFFFF</color>
 
+    <color name="wlv_water_background">#342196F3</color>
+    <color name="wlv_water_waveColor">#03A9F4</color>
+
     <color name="wlv_background">#264CAF50</color>
     <color name="wlv_waveColor">#4CAF50</color>
     <!-- Alpha Manipulated Colors -->
