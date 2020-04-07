@@ -52,10 +52,10 @@ public abstract class AppDatabase extends RoomDatabase {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-            AsyncTask.execute(() -> {
-                UserDao userDao = INSTANCE.userDao();
-                userDao.insert(new User("Gary Valverde Hampton"));
-            });
+//            AsyncTask.execute(() -> {
+//                UserDao userDao = INSTANCE.userDao();
+//                userDao.insert(new User("Gary Valverde Hampton"));
+//            });
         }
     };
 }
