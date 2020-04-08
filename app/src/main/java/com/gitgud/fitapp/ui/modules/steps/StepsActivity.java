@@ -6,6 +6,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.app.PendingIntent;
@@ -22,6 +24,7 @@ import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.gitgud.fitapp.R;
+import com.gitgud.fitapp.adapters.ActitityAdapter;
 import com.gitgud.fitapp.data.model.StepsRecord;
 import com.gitgud.fitapp.databinding.ActivityStepsBinding;
 import com.gitgud.fitapp.provider.database.AppDatabase;
@@ -248,6 +251,14 @@ public class StepsActivity extends AppCompatActivity implements SensorEventListe
                 waveLoadingView.setCenterTitle(String.valueOf(stepsRecord.getSteps()));
                 waveLoadingView.setProgressValue((100 * stepsRecord.getSteps()) / stepsRecord.getGoal());
             }
+        });
+
+        viewModel.getTodayActivityRecords().observe(this, activityRecords -> {
+            LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+            RecyclerView recyclerView = findViewById(R.id.recycler_activities);
+            recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setHasFixedSize(true);
+            recyclerView.setAdapter(new ActitityAdapter(this, activityRecords));
         });
     }
 

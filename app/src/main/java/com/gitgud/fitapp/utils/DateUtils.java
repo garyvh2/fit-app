@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class DateUtils {
     public static boolean isSameDay(Date date1, Date date2) {
@@ -38,5 +39,11 @@ public class DateUtils {
     public static Date maxDate() {
         LocalDateTime localDateTime = LocalDateTime.now();
         return DateUtils.asDate(localDateTime.with(LocalTime.MAX));
+    }
+
+    public static String toHMS(long milliseconds) {
+        return String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(milliseconds),
+                TimeUnit.MILLISECONDS.toMinutes(milliseconds) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(milliseconds)),
+                TimeUnit.MILLISECONDS.toSeconds(milliseconds) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(milliseconds)));
     }
 }

@@ -13,6 +13,7 @@ import com.gitgud.fitapp.provider.database.AppDatabase;
 import com.gitgud.fitapp.utils.DateUtils;
 
 import java.util.Date;
+import java.util.List;
 
 public class ActivityRepository {
     private ActivityRecordDao activityRecordDao;
@@ -64,6 +65,10 @@ public class ActivityRepository {
 
     public LiveData<ActivityRecord> findActivityRecordByActiveAndTime(boolean active, Date from, Date to) {
         return activityRecordDao.findActivityRecordByActiveAndTime(active, from, to);
+    }
+
+    public LiveData<List<ActivityRecord>> findActivityRecordsByTime(Date from, Date to) {
+        return activityRecordDao.findActivityRecordsByTime(from, to);
     }
 
     public LiveData<ActivityRecord> findActivityRecordByTypeAndTime(String type, Date from, Date to) {
