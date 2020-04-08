@@ -1,4 +1,4 @@
-package com.gitgud.fitapp.ui.dashboard;
+package com.gitgud.fitapp.ui.dashboard.goal;
 
 
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.gitgud.fitapp.R;
+import com.gitgud.fitapp.ui.dashboard.goal.GoalsFragmentDirections;
 import com.google.android.material.card.MaterialCardView;
 
 /**

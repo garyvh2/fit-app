@@ -68,9 +68,12 @@ public class ProfileFragment extends Fragment {
         birthday = fragmentView.findViewById(R.id.user_birthdate);
 
         profileViewModel.getLoggedUser().observe(getViewLifecycleOwner(), loggedUser -> {
-            userName.setText(loggedUser.getName() + " " + loggedUser.getLastName());
-            email.setText(loggedUser.getEmail());
-            birthday.setText(loggedUser.getBirthdate());
+            if(loggedUser != null) {
+                userName.setText(loggedUser.getName() + " " + loggedUser.getLastName());
+                email.setText(loggedUser.getEmail());
+                birthday.setText(loggedUser.getBirthdate());
+            }
+
         });
 
 
@@ -92,9 +95,10 @@ public class ProfileFragment extends Fragment {
 
     public void clickLogOut(View v) {
         AsyncTask.execute(() -> {
-            AppDatabase.getInstance(v.getContext()).clearAllTables();
+
             Intent intent = new Intent(v.getContext(), LoginActivity.class);
             startActivity(intent);
+            AppDatabase.getInstance(v.getContext()).clearAllTables();
         });
 
 

@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
     android:layout_marginBottom="?attr/actionBarSize"
-        tools:context=".ui.dashboard.GoalsFragment">
+        tools:context=".ui.dashboard.goal.GoalsFragment">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
