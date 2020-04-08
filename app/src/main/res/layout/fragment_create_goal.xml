@@ -7,12 +7,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="?attr/actionBarSize"
-    tools:context=".ui.dashboard.CreateGoalFragment">
+    tools:context=".ui.dashboard.createGoal.CreateGoalFragment">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
-        tools:context=".ui.dashboard.CreateGoalFragment">
+        tools:context=".ui.dashboard.createGoal.CreateGoalFragment">
 
         <!-- TODO: Update blank fragment layout -->
 
@@ -30,8 +31,8 @@
 
         <RadioGroup
             android:id="@+id/radioGroup"
-            android:layout_width="298dp"
-            android:layout_height="83dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,18 +40,27 @@
             app:layout_constraintTop_toBottomOf="@+id/textView6">
 
             <RadioButton
-                android:id="@+id/rb_calories"
+                android:id="@+id/rb_time"
+                android:layout_width="111dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_weight="1"
                 android:checked="true"
+                android:text="Time" />
+
+            <RadioButton
+                android:id="@+id/rb_distance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="Calories" />
+                android:checked="true"
+                android:text="Distance" />
 
             <RadioButton
                 android:id="@+id/rb_weight"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
+                android:layout_marginLeft="32dp"
                 android:layout_marginTop="32dp"
                 android:text="Weight" />
         </RadioGroup>
@@ -59,19 +69,20 @@
             android:id="@+id/objective"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="60dp"
+            android:layout_marginTop="24dp"
             android:focusable="false"
             app:boxBackgroundMode="filled"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-            app:suffixText="KG"
-            tools:layout_editor_absoluteX="16dp">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/goal_name"
+            app:suffixText="Km">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/goal_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:hint="Calories"
+                android:hint="Distance"
                 android:inputType="date" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,13 +91,15 @@
             android:id="@+id/birthday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="24dp"
             android:clickable="true"
             android:editable="false"
             android:focusable="false"
             app:boxBackgroundMode="filled"
             app:endIconDrawable="@drawable/ic_event_black_24dp"
             app:endIconMode="custom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/objective">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -98,9 +111,9 @@
                 android:editable="false"
                 android:focusable="false"
                 android:hint="Goal Date"
-                android:inputType="date"
-                />
+                android:inputType="date" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:id="@+id/save_goal"
             android:layout_width="match_parent"
@@ -110,6 +123,24 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/goal_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:hint="Goal Name" />
+        </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.gitgud.fitapp.R;
 
+import com.gitgud.fitapp.data.model.enums.GoalType;
 import com.gitgud.fitapp.databinding.FragmentDashboardBinding;
 import com.gitgud.fitapp.ui.dashboard.updateGoal.UpdateGoalViewModel;
 import com.gitgud.fitapp.ui.unauthorized.login.LoginViewModel;
@@ -30,6 +31,8 @@ public class DashboardFragment extends Fragment {
     private FragmentDashboardBinding binding;
     private  Boolean isGoal;
     TextView welcomeMessage;
+    TextView goalTxt;
+    TextView goalTypeTxt;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -47,19 +50,33 @@ public class DashboardFragment extends Fragment {
         binding.setLifecycleOwner(this);
         View view = binding.getRoot();
         welcomeMessage = view.findViewById(R.id.welcome_title);
+        goalTxt = view.findViewById(R.id.goal);
+        goalTypeTxt = view.findViewById(R.id.calories_text);
+
 
         dashboardViewModel.getLoggedUser().observe(getViewLifecycleOwner(), loggedUser -> {
             welcomeMessage.setText("Welcome " +  loggedUser.getName());
         });
 
-        dashboardViewModel.getHaveGoals().observe(getViewLifecycleOwner(), haveGoals -> {
-            isGoal = haveGoals;
+        dashboardViewModel.getCurrentGoal().observe(getViewLifecycleOwner(), goal -> {
+            isGoal = goal != null;
+            dashboardViewModel.setHaveGoals(goal != null);
+            if(goal != null) {
+                goalTxt.setText(goal.getProgress() + " / " + goal.getGoal());
+                goalTypeTxt.setText(getUnit(goal.getGoalType()));
+            }
         });
 
 
         MaterialCardView mCard = view.findViewById(R.id.goal_card);
         mCard.setOnClickListener(this::goalClick);
         return view;
+    }
+
+    private String getUnit (String goalType) {
+        if(goalType == GoalType.RUNNING.getUrl()) return "Km";
+        if(goalType == GoalType.TIME.getUrl()) return  "min";
+        return "Kg";
     }
 
     public void goalClick (View v) {
