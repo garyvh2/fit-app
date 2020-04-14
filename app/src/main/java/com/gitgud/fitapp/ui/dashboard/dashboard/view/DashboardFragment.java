@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,8 +75,8 @@ public class DashboardFragment extends Fragment {
     }
 
     private String getUnit (String goalType) {
-        if(goalType == GoalType.RUNNING.getUrl()) return "Km";
-        if(goalType == GoalType.TIME.getUrl()) return  "min";
+        if(goalType.equals(GoalType.RUNNING.getUrl()) ) return "Km";
+        if(goalType.equals(GoalType.TIME.getUrl())) return  "min";
         return "Kg";
     }
 
