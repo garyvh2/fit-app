@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,14 +41,27 @@ public class UpdateGoalFragment extends Fragment {
         binding.setLifecycleOwner(this);
 
         View view = binding.getRoot();
+
+        updateGoalViewModel.getCurrentGoal().observe(getViewLifecycleOwner(), currentGoal -> {
+            if(currentGoal != null) {
+                updateGoalViewModel.setProgress(currentGoal.getProgress());
+            }
+        });
         Button incrementBtn =  view.findViewById(R.id.incrementBtn);
         incrementBtn.setOnClickListener(this::incrementCounter);
         Button decrementBtn = view.findViewById(R.id.decrementBtn);
         decrementBtn.setOnClickListener(this::decrementCounter);
-
+        Button updateGoal =  view.findViewById(R.id.btn_update);
+        updateGoal.setOnClickListener(this::updateGoal);
 
         return view;
     }
+
+    public  void updateGoal(View v) {
+        updateGoalViewModel.updateGoalCounter();
+        Navigation.findNavController(v).popBackStack();
+    }
+
 
     public  void incrementCounter (View v) {
         AsyncTask.execute(() -> {
