@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/exercises_graph"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/exercises_graph"
+    android:label=" "
     app:startDestination="@id/exercisesFragment">
 
     <fragment
@@ -12,9 +15,27 @@
             app:destination="@id/badgesFragment"
             app:enterAnim="@anim/fragment_close_exit"
             app:popUpTo="@+id/exercisesFragment" />
+        <action
+            android:id="@+id/action_exercisesFragment_to_routinesFragment"
+            app:destination="@id/routinesFragment"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
     </fragment>
     <fragment
         android:id="@+id/badgesFragment"
         android:name="com.gitgud.fitapp.ui.history.BadgesFragment"
         android:label="Badges" />
+    <fragment
+        android:id="@+id/routinesFragment"
+        android:name="com.gitgud.fitapp.ui.exercises.routines.RoutinesFragment"
+        android:label=" " >
+        <action
+            android:id="@+id/action_routinesFragment_to_routineFragment"
+            app:destination="@id/routineFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/routineFragment"
+        android:name="com.gitgud.fitapp.ui.exercises.routine.RoutineFragment"
+        android:label=" "
+        tools:layout="@layout/fragment_routine" />
 </navigation>

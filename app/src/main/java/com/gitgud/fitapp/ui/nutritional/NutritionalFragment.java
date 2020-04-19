@@ -32,7 +32,7 @@ public class NutritionalFragment extends Fragment {
     ArrayList<MenuCardItem> menuItems = new ArrayList<>();
 
     public NutritionalFragment() {
-       menuItems.add(new MenuCardItem(R.drawable.ic_bottle, "Water Consumption", WaterConsumeActivity.class));
+       menuItems.add(new MenuCardItem(R.layout.menu_card_component,R.drawable.ic_bottle, "Water Consumption", WaterConsumeActivity.class));
     }
 
 
