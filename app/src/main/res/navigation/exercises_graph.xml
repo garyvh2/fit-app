@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/exercises_graph"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/exercises_graph"
     app:startDestination="@id/exercisesFragment">
 
     <fragment
@@ -9,12 +11,12 @@
         android:label="Exercises">
         <action
             android:id="@+id/action_exercisesFragment_to_badgesFragment"
-            app:destination="@id/badgesFragment"
+            app:destination="@id/stepsFragment"
             app:enterAnim="@anim/fragment_close_exit"
             app:popUpTo="@+id/exercisesFragment" />
     </fragment>
     <fragment
-        android:id="@+id/badgesFragment"
-        android:name="com.gitgud.fitapp.ui.history.BadgesFragment"
-        android:label="Badges" />
+        android:id="@+id/stepsFragment"
+        android:name="com.gitgud.fitapp.ui.modules.steps.StepsFragment"
+        android:label="@string/steps" />
 </navigation>

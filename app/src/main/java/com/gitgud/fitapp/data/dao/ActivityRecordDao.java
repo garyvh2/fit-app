@@ -32,6 +32,12 @@ public interface ActivityRecordDao {
     @Query("SELECT * FROM activity_record_table WHERE date BETWEEN :from AND :to")
     LiveData<List<ActivityRecord>> findActivityRecordsByTime(Date from, Date to);
 
+    @Query("SELECT * FROM activity_record_table WHERE date BETWEEN :from AND :to")
+    List<ActivityRecord> findActivityRecordsByTimeSync(Date from, Date to);
+
+    @Query("SELECT * FROM activity_record_table WHERE active = :active")
+    List<ActivityRecord> getAllActive(Boolean active);
+
     @Query("SELECT * FROM activity_record_table WHERE active = :active AND date BETWEEN :from AND :to limit 1")
     ActivityRecord findActivityRecordByActiveAndTimeSync(boolean active, Date from, Date to);
 

@@ -80,11 +80,13 @@
     <!-- TEMP -->
     <string name="binding">Binding</string>
     <string name="goals">Loading</string>
+    <string name="goal">Goal</string>
     <string name="my_rewards">My Rewards</string>
     <string name="nutrition">Nutrition</string>
     <string name="exercises">Exercises</string>
 
     <string name="add_water">Add Water</string>
+    <string name="update_goal">Update Goal</string>
 
     <string name="water_quantity">Water Quantity</string>
 

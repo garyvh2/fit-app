@@ -27,4 +27,8 @@ public class WaterConsumeViewModel extends AndroidViewModel {
     public void updateTodayWater(WaterRecord waterRecord, int quantity) {
         this.waterRepository.updateTodayWater(waterRecord, quantity);
     }
+
+    public void updateSteps(int goal) {
+        waterRepository.updateTodayGoal(goal);
+    }
 }

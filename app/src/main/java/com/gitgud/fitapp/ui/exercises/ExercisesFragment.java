@@ -17,6 +17,7 @@ import com.gitgud.fitapp.R;
 import com.gitgud.fitapp.adapters.MenuCardAdapter;
 import com.gitgud.fitapp.components.MenuCardItem;
 import com.gitgud.fitapp.ui.modules.steps.StepsActivity;
+import com.gitgud.fitapp.ui.modules.steps.StepsFragment;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,7 @@ public class ExercisesFragment extends Fragment {
     ArrayList<MenuCardItem> menuItems = new ArrayList<>();
 
     public  ExercisesFragment(){
-        menuItems.add(new MenuCardItem(R.drawable.ic_walk, "Steps Counter", StepsActivity.class));
+        menuItems.add(new MenuCardItem(R.drawable.ic_walk, "Steps Counter", R.id.stepsFragment));
     }
 
     @Override
