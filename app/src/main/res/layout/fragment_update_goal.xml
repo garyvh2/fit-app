@@ -81,7 +81,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/btn_update"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Update Goal"
@@ -117,7 +117,7 @@
                 android:layout_marginStart="192dp"
                 android:layout_marginTop="92dp"
                 android:fontFamily="@font/octarine_boldoblique"
-                android:text="30"
+                android:text="@{String.valueOf(viewModel.currentGoal.getGoal())}"
                 android:textSize="24sp"
                 app:layout_constraintStart_toEndOf="@+id/your_goal"
                 app:layout_constraintTop_toBottomOf="@+id/goalCounter" />
