@@ -17,4 +17,5 @@
     <fragment android:id="@+id/exerciseFragment" android:name="com.gitgud.fitapp.ui.exercises.exercise.ExerciseFragment" android:label=" ">
         <argument android:name="routineId" app:argType="long" />
     </fragment>
+    <fragment android:id="@+id/stepsFragment" android:name="com.gitgud.fitapp.ui.modules.steps.StepsFragment" android:label="@string/steps" />
 </navigation>
