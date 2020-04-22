@@ -17,6 +17,7 @@ import com.gitgud.fitapp.R;
 import com.gitgud.fitapp.adapters.MenuCardAdapter;
 import com.gitgud.fitapp.components.MenuCardItem;
 import com.gitgud.fitapp.ui.modules.steps.StepsActivity;
+import com.gitgud.fitapp.ui.modules.steps.StepsFragment;
 
 import java.util.ArrayList;
 

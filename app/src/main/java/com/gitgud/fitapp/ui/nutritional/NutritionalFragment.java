@@ -32,7 +32,8 @@ public class NutritionalFragment extends Fragment {
     ArrayList<MenuCardItem> menuItems = new ArrayList<>();
 
     public NutritionalFragment() {
-       menuItems.add(new MenuCardItem(R.layout.menu_card_component,R.drawable.ic_bottle, "Water Consumption", WaterConsumeActivity.class));
+       menuItems.add(new MenuCardItem(R.layout.menu_card_component,R.drawable.ic_bottle, "Water Consumption", R.id.waterConsumeFragmentNav));
+       menuItems.add(new MenuCardItem(R.layout.menu_card_component,R.drawable.ic_food, "Nutritional", R.id.nutritionalDashboard));
     }
 
 
@@ -40,7 +41,7 @@ public class NutritionalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View fragmentView =  inflater.inflate(R.layout.fragment_nutritional, container, false);
+        View fragmentView = inflater.inflate(R.layout.fragment_nutritional, container, false);
         adapter = new MenuCardAdapter(fragmentView.getContext(), menuItems);
         ListView listView = fragmentView.findViewById(R.id.nutritional_menu);
         listView.setAdapter(adapter);

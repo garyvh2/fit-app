@@ -67,7 +67,7 @@ public class ActitityAdapter extends RecyclerView.Adapter<ActitityAdapter.DataVi
             case "running":
                 holder.activityImage.setImageResource(R.drawable.ic_running);
                 break;
-            case "on a bicycle":
+            case "on bicycle":
                 holder.activityImage.setImageResource(R.drawable.ic_bicycle);
                 break;
         }

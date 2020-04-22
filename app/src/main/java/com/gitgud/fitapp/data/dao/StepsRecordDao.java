@@ -24,4 +24,7 @@ public interface StepsRecordDao {
 
     @Query("SELECT * FROM steps_record_table WHERE date BETWEEN :from AND :to limit 1")
     LiveData<StepsRecord> findStepsRecordByDate(Date from, Date to);
+
+    @Query("SELECT * FROM steps_record_table WHERE date BETWEEN :from AND :to limit 1")
+    StepsRecord findStepsRecordByDateSync(Date from, Date to);
 }

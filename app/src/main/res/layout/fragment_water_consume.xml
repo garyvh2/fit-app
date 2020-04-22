@@ -9,8 +9,7 @@
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.modules.water.WaterConsumeActivity">
+        android:layout_height="match_parent">
 
         <me.itangqi.waveloadingview.WaveLoadingView
             android:id="@+id/waveLoadingView"
@@ -46,7 +45,7 @@
             app:layout_constraintTop_toBottomOf="@+id/waveLoadingView">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_name"
+                android:id="@+id/water_goal_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"

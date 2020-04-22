@@ -23,4 +23,7 @@ public interface WaterRecordDao {
 
     @Query("SELECT * FROM water_record_table WHERE date BETWEEN :from AND :to LIMIT 1")
     LiveData<WaterRecord> findActivityRecordByTime(Date from, Date to);
+
+    @Query("SELECT * FROM water_record_table WHERE date BETWEEN :from AND :to LIMIT 1")
+    WaterRecord findActivityRecordByTimeSync(Date from, Date to);
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.gitgud.fitapp.activities.NutriAdviceMainActivity;
 //import com.gitgud.fitapp.ui.modules.pokemon.PokemonActivity;
+import com.gitgud.fitapp.services.StepsService;
 import com.gitgud.fitapp.ui.modules.steps.StepsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -76,5 +77,4 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
 }

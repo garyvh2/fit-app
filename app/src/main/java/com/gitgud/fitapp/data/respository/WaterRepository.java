@@ -8,8 +8,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 
 import com.gitgud.fitapp.data.dao.WaterRecordDao;
+import com.gitgud.fitapp.data.model.StepsRecord;
 import com.gitgud.fitapp.data.model.WaterRecord;
 import com.gitgud.fitapp.provider.database.AppDatabase;
+import com.gitgud.fitapp.utils.DateUtils;
 
 import java.util.Date;
 
@@ -50,6 +52,14 @@ public class WaterRepository {
     public void updateTodayWater(WaterRecord waterRecord, int quantity) {
         AsyncTask.execute(() -> {
             waterRecord.setQuantity(quantity);
+            waterRecordDao.update(waterRecord);
+        });
+    }
+
+    public void updateTodayGoal(int goal) {
+        AsyncTask.execute(() -> {
+            WaterRecord waterRecord = waterRecordDao.findActivityRecordByTimeSync(DateUtils.minDate(), DateUtils.maxDate());
+            waterRecord.setGoal(goal);
             waterRecordDao.update(waterRecord);
         });
     }

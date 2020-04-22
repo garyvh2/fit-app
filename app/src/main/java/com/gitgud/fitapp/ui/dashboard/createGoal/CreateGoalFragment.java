@@ -102,7 +102,7 @@ public class CreateGoalFragment extends Fragment implements Validator.Validation
         rb_time = view.findViewById(R.id.rb_time);
         objective = view.findViewById(R.id.objective);
         goal_input = view.findViewById(R.id.goal_input);
-        goal_name = view.findViewById(R.id.goal_name);
+        goal_name = view.findViewById(R.id.goal_value);
         goal_date_text = view.findViewById(R.id.birthdayText);
         goal_date_layout = view.findViewById(R.id.birthday);
         create_goal_view = view;
