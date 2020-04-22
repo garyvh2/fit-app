@@ -129,6 +129,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
             loginViewModel.saveLoggedUser(newUser);
             loginViewModel.saveGoals(new ArrayList<Goal>());
             Intent intent = new Intent(this, AuthorizedActivity.class);
+            loginViewModel.createRoutine();
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
             startActivity(intent);
 

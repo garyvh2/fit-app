@@ -17,7 +17,7 @@ public class Exercise {
     private int time;
     private long routineId;
 
-    public Exercise(long id, String name, String description, String type, String image, String tutorial, Float caloriesBurned, int time) {
+    public Exercise(long id, String name, String description, String type, String image, String tutorial, Float caloriesBurned, int time, int repetitions) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -26,6 +26,7 @@ public class Exercise {
         this.tutorial = tutorial;
         this.caloriesBurned = caloriesBurned;
         this.time = time;
+        this.repetitions = repetitions;
     }
 
     public long getId() {

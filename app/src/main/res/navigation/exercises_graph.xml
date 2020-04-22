@@ -37,5 +37,19 @@
         android:id="@+id/routineFragment"
         android:name="com.gitgud.fitapp.ui.exercises.routine.RoutineFragment"
         android:label=" "
-        tools:layout="@layout/fragment_routine" />
+        tools:layout="@layout/fragment_routine" >
+        <action
+            android:id="@+id/action_routineFragment_to_exerciseFragment"
+            app:destination="@id/exerciseFragment"
+            app:popUpTo="@id/routinesFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseFragment"
+        android:name="com.gitgud.fitapp.ui.exercises.exercise.ExerciseFragment"
+        android:label=" ">
+        <argument
+            android:name="routineId"
+            app:argType="long" />
+    </fragment>
 </navigation>

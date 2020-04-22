@@ -83,6 +83,7 @@
     <string name="my_rewards">My Rewards</string>
     <string name="nutrition">Nutrition</string>
     <string name="exercises">Exercises</string>
+    <string name="exericises_lower">exercises</string>
 
     <string name="add_water">Add Water</string>
 
@@ -92,6 +93,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile">Profile</string>
     <string name="loremParagraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean rutrum faucibus orci nec pulvinar. Nulla facilisi. Suspendisse sed mattis metus. Nullam sit amet dui varius, ullamcorper nisi eget, aliquet nulla. Curabitur mattis nibh id ex ultricies, a elementum purus feugiat. Duis nec lacus dolor. Quisque euismod felis non arcu efficitur, suscipit tristique tellus rutrum. Curabitur lacinia quis massa non vulputate. Maecenas bibendum, est quis imperdiet rhoncus, urna enim vestibulum purus, non dapibus massa dui vitae nunc. Sed hendrerit quam justo, quis dictum ante euismod quis.</string>
+    <string name="exercise_description">This is a test description</string>
 
 
 </resources>

@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import com.gitgud.fitapp.data.model.Goal;
 import com.gitgud.fitapp.data.model.User;
 import com.gitgud.fitapp.data.respository.GoalsRepository;
+import com.gitgud.fitapp.data.respository.RoutineRepository;
 import com.gitgud.fitapp.data.respository.UserRepository;
 import com.gitgud.fitapp.data.source.UserDataSource;
 import com.gitgud.fitapp.entities.user.LoginUserQuery;
@@ -27,6 +28,7 @@ public class LoginViewModel extends AndroidViewModel {
     private UserDataSource userDataSource;
     private UserRepository userRepository;
     private GoalsRepository goalsRepository;
+    private RoutineRepository routineRepository;
     // ATTRIBUTES START
     private Boolean loading;
 
@@ -34,6 +36,7 @@ public class LoginViewModel extends AndroidViewModel {
         super(application);
         userRepository = new UserRepository(application);
         goalsRepository =  new GoalsRepository(application);
+        routineRepository =  new RoutineRepository(application);
         this.userDataSource = UserDataSource.getInstance();
     }
 
@@ -55,6 +58,10 @@ public class LoginViewModel extends AndroidViewModel {
         for (Goal goal: goals) {
             goalsRepository.insert(goal);
         }
+    }
+
+    public void createRoutine () {
+        routineRepository.initBaseRoutine();
     }
 
 
