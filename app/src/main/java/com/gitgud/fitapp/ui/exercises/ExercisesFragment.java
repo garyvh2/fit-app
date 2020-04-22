@@ -29,7 +29,7 @@ public class ExercisesFragment extends Fragment {
     ArrayList<MenuCardItem> menuItems = new ArrayList<>();
 
     public  ExercisesFragment(){
-        menuItems.add(new MenuCardItem(R.layout.menu_card_component ,R.drawable.ic_walk, "Steps Counter", StepsActivity.class));
+        menuItems.add(new MenuCardItem(R.layout.menu_card_component ,R.drawable.ic_walk, "Steps Counter", R.id.stepsFragment));
         menuItems.add(new MenuCardItem(R.layout.menu_card_component ,R.drawable.ic_fitness_center_black_24dp, "Routines", R.id.routinesFragment));
     }
 
