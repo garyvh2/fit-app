@@ -26,7 +26,7 @@ public class RewardsFragment extends Fragment {
     public RewardsFragment() {
         // Required empty public constructor
         menuItems.add(new MenuCardItem(R.layout.menu_card_component, R.drawable.ic_stars, "Milestones", R.id.badgesFragment2));
-        menuItems.add(new MenuCardItem(R.drawable.ic_sale, "Rewards", R.id.rewardsListFragment));
+        menuItems.add(new MenuCardItem(R.layout.menu_card_component, R.drawable.ic_sale, "Rewards", R.id.rewardsListFragment));
     }
 
     @Override
