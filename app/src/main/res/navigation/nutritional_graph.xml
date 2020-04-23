@@ -23,7 +23,7 @@
     <fragment
         android:id="@+id/nutritionalDashboard"
         android:name="com.gitgud.fitapp.ui.nutritional.dashboard.NutritionalDashboardFragment"
-        android:label="Dashboard">
+        android:label="Nutritional Dashboard">
         <action
             android:id="@+id/action_nutritionalDashboard_to_nutritionalScanner"
             app:destination="@id/nutritionalScanner" />
@@ -31,5 +31,23 @@
     <fragment
         android:id="@+id/nutritionalScanner"
         android:name="com.gitgud.fitapp.ui.nutritional.scanner.NutritionalScannerFragment"
-        android:label="Scanner" />
+        android:label="Nutritional Scanner">
+        <action
+            android:id="@+id/nutritionalCreateAction"
+            app:destination="@id/nutritionalCreate" />
+        <action
+            android:id="@+id/action_nutritionalScanner_to_nutritionalDashboard"
+            app:destination="@id/nutritionalDashboard" />
+    </fragment>
+    <fragment
+        android:id="@+id/nutritionalCreate"
+        android:name="com.gitgud.fitapp.ui.nutritional.create.NutritionalCreate"
+        android:label="Nutritional Create">
+        <action
+            android:id="@+id/action_nutritionalCreate_to_nutritionalDashboard"
+            app:destination="@id/nutritionalDashboard" />
+        <argument
+            android:name="sku"
+            app:argType="string" />
+    </fragment>
 </navigation>

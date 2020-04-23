@@ -30,5 +30,6 @@ public class UserRepository {
         AsyncTask.execute(() -> userDao.delete(user));
     }
 
+    public User getCurrentUserSync() { return userDao.getCurrentUserSync(); }
     public LiveData<User> getCurrentUser() { return userDao.getCurrentUser(); }
 }

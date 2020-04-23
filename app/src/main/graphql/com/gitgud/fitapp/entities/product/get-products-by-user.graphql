@@ -1,0 +1,20 @@
+query getProductsByUser($email: String) {
+    userFood(email: $email) {
+        date
+        product {
+            id
+            name
+            calories
+            portion
+            nutritionalFacts
+            image
+            sku
+            company {
+                id
+                name
+                description
+                logo
+            }
+        }
+    }
+}

@@ -12,11 +12,13 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -25,10 +27,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.gitgud.fitapp.R;
+import com.gitgud.fitapp.data.model.User;
 import com.gitgud.fitapp.databinding.NutritionalScannerFragmentBinding;
 import com.gitgud.fitapp.services.QrCodeAnalyzer;
+import com.gitgud.fitapp.type.ProductInputType;
 import com.gitgud.fitapp.utils.Permissions;
 import com.google.common.util.concurrent.ListenableFuture;
 
@@ -45,6 +51,7 @@ public class NutritionalScannerFragment extends Fragment {
 
     private View fragment;
     private Button button;
+    private ProgressBar progressBar;
     private PreviewView previewView;
     private NutritionalScannerFragmentBinding binding;
     private NutritionalScannerViewModel viewModel;
@@ -68,6 +75,8 @@ public class NutritionalScannerFragment extends Fragment {
 
         previewView = fragment.findViewById(R.id.camera_view);
         button = fragment.findViewById(R.id.cameraRequest);
+        progressBar = fragment.findViewById(R.id.loading);
+
 
         button.setOnClickListener((View v) -> {
             requestPermissions();
@@ -132,15 +141,47 @@ public class NutritionalScannerFragment extends Fragment {
                 ImageAnalysis imageAnalysis = new ImageAnalysis.Builder()
                         .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                         .build();
-                QrCodeAnalyzer qrCodeAnalyzer = new QrCodeAnalyzer(firebaseVisionBarcodes -> {
+                QrCodeAnalyzer qrCodeAnalyzer = new QrCodeAnalyzer(progressBar, (firebaseVisionBarcodes, imageProxy) -> {
                     firebaseVisionBarcodes.forEach(firebaseVisionBarcode -> {
+                        Toast.makeText(getContext(), firebaseVisionBarcode.getDisplayValue(), Toast.LENGTH_SHORT).show();
                         Log.i("NutritionalScannerFragment", firebaseVisionBarcode.getDisplayValue());
+
+                        viewModel.getProductBySku(firebaseVisionBarcode.getDisplayValue())
+                                .subscribe(
+                                        product -> {
+                                            if (product.isPresent()) {
+                                                AsyncTask.execute(()->{
+                                                    User user = viewModel.getCurrentUser();
+                                                    if (user != null) {
+                                                        viewModel.insertProductUser(user.getEmail(), ProductInputType.builder().id(product.get().id()).build())
+                                                                .subscribe(
+                                                                        productUser -> {
+                                                                            Navigation.findNavController(fragment).navigate(R.id.nutritionalDashboard);
+                                                                            imageProxy.close();
+                                                                        },
+                                                                        throwable -> {
+                                                                            button.setVisibility(View.INVISIBLE);
+                                                                            imageProxy.close();
+                                                                            Log.e("NutritionalScannerFragment", throwable.toString());
+                                                                        }
+                                                                );
+                                                    }
+                                                });
+                                            } else {
+                                                NutritionalScannerFragmentDirections.NutritionalCreateAction action = NutritionalScannerFragmentDirections.nutritionalCreateAction(firebaseVisionBarcode.getDisplayValue());
+                                                Navigation.findNavController(fragment).navigate(action);
+                                                imageProxy.close();
+                                            }
+                                        },
+                                        throwable -> {
+                                            button.setVisibility(View.INVISIBLE);
+                                            imageProxy.close();
+                                            Log.e("NutritionalScannerFragment", throwable.toString());
+                                        }
+                                );
                     });
                     return null;
                 });
-                HandlerThread handlerThread = new HandlerThread("AnalysisThread");
-                handlerThread.start();
-                Handler handler = new Handler();
 
                 Camera camera = cameraProvider.bindToLifecycle(getViewLifecycleOwner(), cameraSelector, preview, imageAnalysis);
 

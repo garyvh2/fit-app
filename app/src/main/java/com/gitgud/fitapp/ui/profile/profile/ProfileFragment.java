@@ -1,9 +1,7 @@
 package com.gitgud.fitapp.ui.profile.profile;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -16,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.gitgud.fitapp.BMIActivity;
@@ -24,10 +21,7 @@ import com.gitgud.fitapp.R;
 import com.gitgud.fitapp.databinding.FragmentProfileBinding;
 import com.gitgud.fitapp.provider.database.AppDatabase;
 import com.gitgud.fitapp.ui.unauthorized.login.LoginActivity;
-import com.gitgud.fitapp.utils.UserSharedPreferences;
 import com.github.lzyzsd.circleprogress.ArcProgress;
-
-import org.w3c.dom.Text;
 
 public class ProfileFragment extends Fragment {
 
@@ -80,7 +74,7 @@ public class ProfileFragment extends Fragment {
         Button button = fragmentView.findViewById(R.id.logout);
         button.setOnClickListener(this::clickLogOut);
 
-        progressBar = fragmentView.findViewById(R.id.imc_progress);
+        progressBar = fragmentView.findViewById(R.id.progress);
         this.setIMCColors();
         return fragmentView;
     }

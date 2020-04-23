@@ -88,7 +88,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/birthday"
+            android:id="@+id/skuContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -103,14 +103,14 @@
             app:layout_constraintTop_toBottomOf="@+id/objective">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/birthdayText"
+                android:id="@+id/sku"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
                 android:clickable="true"
                 android:editable="false"
                 android:focusable="false"
-                android:hint="Goal Date"
+                android:hint="Selected Date"
                 android:inputType="date" />
         </com.google.android.material.textfield.TextInputLayout>
 

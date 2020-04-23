@@ -15,8 +15,8 @@
 
         <me.itangqi.waveloadingview.WaveLoadingView
             android:id="@+id/waveLoadingView"
-            android:layout_width="275dp"
-            android:layout_height="275dp"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="64dp"
             android:layout_marginEnd="8dp"
@@ -39,57 +39,111 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="center"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="24dp"
             android:layout_marginBottom="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/updateStepsGoal">
+            app:layout_constraintTop_toBottomOf="@+id/goal_input_container">
 
         </androidx.recyclerview.widget.RecyclerView>
 
-        <EditText
-            android:id="@+id/date_input"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:ems="10"
-            android:hint="Viewed Date"
-            android:inputType="date"
-            android:text="@={viewModel.selectedDate}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/waveLoadingView" />
-
-        <EditText
-            android:id="@+id/goal_input"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:ems="10"
-            android:hint="Goal"
-            android:inputType="date"
-            android:text="@{String.valueOf(viewModel.todayStepsRecord.goal)}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/date_input" />
-
-        <Button
-            android:id="@+id/updateStepsGoal"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/date_input_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:text="@string/update_goal"
+            android:clickable="true"
+            android:focusable="false"
+            app:boxBackgroundMode="filled"
+            app:endIconDrawable="@drawable/ic_event_black_24dp"
+            app:endIconMode="custom"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/goal_input" />
+            app:layout_constraintTop_toBottomOf="@+id/caloriesIcon">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/date_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:clickable="true"
+                android:focusable="false"
+                android:hint="Viewed Date"
+                android:inputType="date" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/goal_input_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            app:boxBackgroundMode="filled"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date_input_container">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/goal_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:hint="Goal"
+                android:inputType="number"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/caloriesIcon"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/waveLoadingView"
+            app:srcCompat="@drawable/flame" />
+
+        <ImageView
+            android:id="@+id/imageView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fillColor="#000000"
+            app:layout_constraintBottom_toTopOf="@+id/date_input_container"
+            app:layout_constraintEnd_toStartOf="@+id/distance"
+            app:layout_constraintTop_toBottomOf="@+id/waveLoadingView"
+            app:srcCompat="@drawable/ic_walk" />
+
+        <TextView
+            android:id="@+id/calories"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:minWidth="100dp"
+            android:text="230 kcal"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/date_input_container"
+            app:layout_constraintStart_toEndOf="@+id/caloriesIcon"
+            app:layout_constraintTop_toBottomOf="@+id/waveLoadingView" />
+
+        <TextView
+            android:id="@+id/distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:minWidth="100dp"
+            android:text="14.5 km"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/date_input_container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/waveLoadingView" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

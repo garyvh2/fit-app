@@ -1,10 +1,8 @@
 package com.gitgud.fitapp.services;
 
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -21,19 +19,13 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.lifecycle.LifecycleService;
-import androidx.lifecycle.LiveData;
 import androidx.navigation.NavDeepLinkBuilder;
-import androidx.navigation.NavDirections;
-import androidx.navigation.Navigation;
 
 import com.gitgud.fitapp.R;
 import com.gitgud.fitapp.activities.AuthorizedActivity;
-import com.gitgud.fitapp.data.model.StepsRecord;
 import com.gitgud.fitapp.data.respository.ActivityRepository;
 import com.gitgud.fitapp.data.respository.StepsRepository;
 import com.gitgud.fitapp.services.utils.ActivityRecognitionUtils;
-import com.gitgud.fitapp.ui.dashboard.dashboard.view.DashboardFragmentDirections;
-import com.gitgud.fitapp.ui.modules.steps.StepsActivity;
 import com.gitgud.fitapp.utils.App;
 import com.gitgud.fitapp.utils.DateUtils;
 import com.google.android.gms.location.ActivityRecognition;

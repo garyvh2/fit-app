@@ -80,7 +80,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/birthday"
+                android:id="@+id/skuContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -94,7 +94,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/email">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/birthdayText"
+                    android:id="@+id/sku"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
@@ -114,7 +114,7 @@
                 android:autofillHints="@string/prompt_password"
                 app:boxBackgroundMode="filled"
                 app:endIconMode="password_toggle"
-                app:layout_constraintTop_toBottomOf="@+id/birthday">
+                app:layout_constraintTop_toBottomOf="@+id/skuContainer">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"

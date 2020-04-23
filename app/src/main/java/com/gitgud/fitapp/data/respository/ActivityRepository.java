@@ -1,6 +1,5 @@
 package com.gitgud.fitapp.data.respository;
 
-import android.app.Application;
 import android.content.Context;
 import android.os.AsyncTask;
 
@@ -8,7 +7,6 @@ import androidx.lifecycle.LiveData;
 
 import com.gitgud.fitapp.data.dao.ActivityRecordDao;
 import com.gitgud.fitapp.data.model.ActivityRecord;
-import com.gitgud.fitapp.data.model.StepsRecord;
 import com.gitgud.fitapp.provider.database.AppDatabase;
 import com.gitgud.fitapp.utils.DateUtils;
 
