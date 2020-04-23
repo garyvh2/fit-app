@@ -44,7 +44,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/exercise_title"
                 app:showFullScreenButton="false"
-                app:videoId="S0Q4gqBUs7c" />
+                app:videoId="nmwgirgXLYM" />
 
 
             <androidx.core.widget.NestedScrollView
