@@ -100,7 +100,7 @@
         android:layout_height="240dp"
         android:layout_marginTop="@dimen/normal"
         android:background="@drawable/rounded_rectangle"
-        android:backgroundTint="@color/colorPrimaryDark"
+        android:backgroundTint="@color/transparent"
         android:ems="10"
         android:gravity="center"
         android:text="@string/bmi"

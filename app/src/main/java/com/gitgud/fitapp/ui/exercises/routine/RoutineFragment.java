@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.gitgud.fitapp.R;
 import com.gitgud.fitapp.adapters.ActitityAdapter;
@@ -33,6 +34,7 @@ public class RoutineFragment extends Fragment {
     List<Exercise> exerciseList =  new ArrayList<>();
     RoutineViewModel viewModel;
     FragmentRoutineBinding binding;
+    TextView routineName;
     Routine routine;
 
     public RoutineFragment() {
@@ -54,6 +56,7 @@ public class RoutineFragment extends Fragment {
         View view = binding.getRoot();
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
+        routineName =  view.findViewById(R.id.routine_name);
         LinearLayoutManager layoutManager = new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false);
         RecyclerView recyclerView = view.findViewById(R.id.recycler_exercises);
         recyclerView.setLayoutManager(layoutManager);
@@ -62,6 +65,7 @@ public class RoutineFragment extends Fragment {
         viewModel.getRoutine().observe(getViewLifecycleOwner(), routineAndExercise -> {
             if(routineAndExercise != null) {
                 this.routine  = routineAndExercise.routine;
+                routineName.setText(routine.getName());
                 recyclerView.setAdapter(new ExerciseAdapter(view.getContext(), routineAndExercise.exerciseList));
             }
         });
