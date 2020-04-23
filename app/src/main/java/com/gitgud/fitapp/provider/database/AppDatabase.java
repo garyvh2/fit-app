@@ -19,6 +19,7 @@ import com.gitgud.fitapp.data.dao.WaterRecordDao;
 import com.gitgud.fitapp.data.model.ActivityRecord;
 import com.gitgud.fitapp.data.model.Exercise;
 import com.gitgud.fitapp.data.model.Goal;
+import com.gitgud.fitapp.data.model.HistoryStat;
 import com.gitgud.fitapp.data.model.Routine;
 import com.gitgud.fitapp.data.model.RoutineAndExercise;
 import com.gitgud.fitapp.data.model.StepsRecord;
@@ -30,7 +31,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-@Database(entities = {User.class, ActivityRecord.class, StepsRecord.class, WaterRecord.class, Goal.class, Routine.class, Exercise.class}, version = 6)
+@Database(entities = {User.class, ActivityRecord.class, StepsRecord.class, WaterRecord.class, Goal.class, Routine.class, Exercise.class, HistoryStat.class}, version = 8)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;

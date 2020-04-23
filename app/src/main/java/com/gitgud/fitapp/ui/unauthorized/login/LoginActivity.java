@@ -15,6 +15,7 @@ import com.gitgud.fitapp.R;
 import com.gitgud.fitapp.activities.AuthorizedActivity;
 import com.gitgud.fitapp.adapters.TextInputLayoutAdapter;
 import com.gitgud.fitapp.data.model.Goal;
+import com.gitgud.fitapp.data.model.HistoryStat;
 import com.gitgud.fitapp.data.model.User;
 import com.gitgud.fitapp.data.source.UserDataSource;
 import com.gitgud.fitapp.entities.user.LoginUserQuery;
@@ -124,9 +125,12 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
 
     private void onSuccess(LoginUserQuery.Data user) {
         try {
-
+            List<HistoryStat> historyStatList = new ArrayList<>();
             User newUser =  new User(user.loginUser());
-            loginViewModel.saveLoggedUser(newUser);
+            for (LoginUserQuery.HistoryStat stat : user.loginUser().historyStats()){
+                historyStatList.add(new HistoryStat(stat));
+            }
+            loginViewModel.saveLoggedUser(newUser, historyStatList);
             loginViewModel.saveGoals(new ArrayList<Goal>());
             Intent intent = new Intent(this, AuthorizedActivity.class);
             loginViewModel.createRoutine();

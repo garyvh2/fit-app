@@ -15,6 +15,7 @@ public class User {
     private String lastName;
     private String email;
     private String birthdate;
+    private String db_id;
 
 
 
@@ -27,6 +28,7 @@ public class User {
         this.lastName = user.lastName();
         this.email = user.email();
         this.birthdate = user.birthDate();
+        this.db_id = user.id();
 
     }
 
@@ -68,5 +70,13 @@ public class User {
 
     public void setBirthdate(String birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public void setDb_id(String db_id) {
+        this.db_id = db_id;
+    }
+
+    public String getDb_id() {
+        return db_id;
     }
 }

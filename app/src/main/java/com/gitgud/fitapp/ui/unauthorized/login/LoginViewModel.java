@@ -6,6 +6,7 @@ import androidx.databinding.Bindable;
 import androidx.lifecycle.AndroidViewModel;
 
 import com.gitgud.fitapp.data.model.Goal;
+import com.gitgud.fitapp.data.model.HistoryStat;
 import com.gitgud.fitapp.data.model.User;
 import com.gitgud.fitapp.data.respository.GoalsRepository;
 import com.gitgud.fitapp.data.respository.RoutineRepository;
@@ -16,6 +17,7 @@ import com.gitgud.fitapp.entities.user.LoginUserQuery;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -50,8 +52,8 @@ public class LoginViewModel extends AndroidViewModel {
     }
 
 
-    public void saveLoggedUser(User user) {
-        userRepository.insert(user);
+    public void saveLoggedUser(User user, List<HistoryStat> historyStatList) {
+        userRepository.insert(user, historyStatList);
     }
 
     public  void saveGoals(ArrayList<Goal> goals) {

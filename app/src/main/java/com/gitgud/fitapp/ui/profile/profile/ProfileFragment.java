@@ -10,6 +10,8 @@ import android.os.Bundle;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,6 +69,19 @@ public class ProfileFragment extends Fragment {
         email = fragmentView.findViewById(R.id.user_email);
         birthday = fragmentView.findViewById(R.id.user_birthdate);
 
+        profileViewModel.getCurrentStat().observe(getViewLifecycleOwner(), stat -> {
+            if(stat != null) {
+                String doubleAsString = String.valueOf(stat.getImc());
+                int indexOfDecimal = doubleAsString.indexOf(".");
+                String decimalStr = doubleAsString.substring(indexOfDecimal, indexOfDecimal + 2);
+                progressBar.setProgress(stat.getImc().intValue());
+                progressBar.setSuffixText(decimalStr);
+                progressBar.setBottomText(getBMIResult(stat.getImc()));
+                setIMCColors();
+            }
+
+        });
+
         profileViewModel.getLoggedUser().observe(getViewLifecycleOwner(), loggedUser -> {
             if(loggedUser != null) {
                 userName.setText(loggedUser.getName() + " " + loggedUser.getLastName());
@@ -105,8 +120,8 @@ public class ProfileFragment extends Fragment {
     }
 
     public void onEditImcClick (View v) {
-        Intent intent = new Intent(v.getContext(), BMIActivity.class);
-        startActivity(intent);
+        NavDirections action = ProfileFragmentDirections.actionProfileFragmentToEditIMCFragment();
+        Navigation.findNavController(v).navigate(action);
     }
 
 

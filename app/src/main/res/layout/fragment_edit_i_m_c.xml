@@ -60,46 +60,47 @@
                 android:id="@+id/sliderWeight"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/bottomConstraint"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toStartOf="@+id/rightConstraint"
-                app:layout_constraintStart_toStartOf="@+id/leftConstraint" />
+                app:layout_constraintStart_toStartOf="@+id/leftConstraint"
+                app:layout_constraintTop_toBottomOf="@+id/lblWeight" />
 
             <TextView
                 android:id="@+id/lblWeight"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="@dimen/tight"
                 android:ems="10"
                 android:text="@string/weight"
                 android:textSize="@dimen/fontMedium"
-                app:layout_constraintBottom_toTopOf="@+id/sliderWeight"
                 app:layout_constraintEnd_toStartOf="@+id/rightConstraint"
-                app:layout_constraintStart_toStartOf="@+id/leftConstraint" />
+                app:layout_constraintStart_toStartOf="@+id/leftConstraint"
+                app:layout_constraintTop_toBottomOf="@+id/sliderHeight" />
 
             <SeekBar
                 android:id="@+id/sliderHeight"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/normal"
-                app:layout_constraintBottom_toTopOf="@+id/lblWeight"
+                android:layout_marginTop="8dp"
                 app:layout_constraintEnd_toStartOf="@+id/rightConstraint"
-                app:layout_constraintStart_toStartOf="@+id/leftConstraint" />
+                app:layout_constraintStart_toStartOf="@+id/leftConstraint"
+                app:layout_constraintTop_toBottomOf="@+id/lblHeight" />
 
             <TextView
                 android:id="@+id/lblHeight"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="@dimen/tight"
                 android:ems="10"
                 android:text="@string/height"
                 android:textSize="@dimen/fontMedium"
-                app:layout_constraintBottom_toTopOf="@+id/sliderHeight"
                 app:layout_constraintEnd_toStartOf="@+id/rightConstraint"
-                app:layout_constraintStart_toStartOf="@+id/leftConstraint" />
+                app:layout_constraintStart_toStartOf="@+id/leftConstraint"
+                app:layout_constraintTop_toBottomOf="@+id/lblBMI" />
 
             <TextView
                 android:id="@+id/lblBMI"
@@ -129,7 +130,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/rightConstraint"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/leftConstraint"
-                app:layout_constraintTop_toTopOf="@+id/topConstraint" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ProgressBar
                 android:id="@+id/circleProgress"
@@ -159,6 +160,19 @@
                 app:layout_constraintEnd_toStartOf="@+id/rightConstraint"
                 app:layout_constraintStart_toStartOf="@+id/leftConstraint"
                 app:layout_constraintTop_toTopOf="@+id/lblBMI" />
+
+            <Button
+                android:id="@+id/save"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/orange"
+                android:text="Save"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
