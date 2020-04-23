@@ -3,6 +3,7 @@ package com.gitgud.fitapp.ui.dashboard.dashboard.view;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -24,16 +25,22 @@ import com.gitgud.fitapp.ui.unauthorized.login.LoginViewModel;
 import com.gitgud.fitapp.utils.UserSharedPreferences;
 import com.google.android.material.card.MaterialCardView;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 
 public class DashboardFragment extends Fragment {
 
     DashboardViewModel dashboardViewModel;
+    long routineId;
 
     private FragmentDashboardBinding binding;
     private  Boolean isGoal;
     TextView welcomeMessage;
     TextView goalTxt;
     TextView goalTypeTxt;
+    MaterialCardView todayRoutine;
+    TextView routineName;
 
     public DashboardFragment() {
         // Required empty public constructor
@@ -44,6 +51,8 @@ public class DashboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE");
+        String day =  LocalDate.now().format(formatter);
         dashboardViewModel = new ViewModelProvider(this).get(DashboardViewModel.class);
         binding = DataBindingUtil.inflate(
                 inflater, R.layout.fragment_dashboard, container, false);
@@ -53,10 +62,22 @@ public class DashboardFragment extends Fragment {
         welcomeMessage = view.findViewById(R.id.welcome_title);
         goalTxt = view.findViewById(R.id.goal);
         goalTypeTxt = view.findViewById(R.id.calories_text);
+        todayRoutine =  view.findViewById(R.id.today_rutine);
+        todayRoutine.setVisibility(View.GONE);
+        routineName = view.findViewById(R.id.routine_name);
 
 
         dashboardViewModel.getLoggedUser().observe(getViewLifecycleOwner(), loggedUser -> {
             welcomeMessage.setText("Welcome " +  loggedUser.getName());
+        });
+
+        dashboardViewModel.getTodayRoutine(day).observe(getViewLifecycleOwner(), routine -> {
+            if(routine != null) {
+                routineId = routine.getId();
+                todayRoutine.setVisibility(View.VISIBLE);
+                todayRoutine.setOnClickListener(this::routineClick);
+                routineName.setText(routine.getName());
+            }
         });
 
         dashboardViewModel.getCurrentGoal().observe(getViewLifecycleOwner(), goal -> {
@@ -78,6 +99,12 @@ public class DashboardFragment extends Fragment {
         if(goalType.equals(GoalType.RUNNING.getUrl()) ) return "Km";
         if(goalType.equals(GoalType.TIME.getUrl())) return  "min";
         return "Kg";
+    }
+
+    public  void routineClick (View v) {
+        Bundle bundle =  new Bundle();
+        NavDirections action = DashboardFragmentDirections.actionDashboardFragmentToRoutineFragment2(routineId, true);
+        Navigation.findNavController(v).navigate(action);
     }
 
     public void goalClick (View v) {

@@ -30,4 +30,8 @@ public interface  RoutineDao {
     @Transaction
     @Query("Select * from routine")
      LiveData<List<RoutineAndExercise>> getRoutines();
+
+    @Transaction
+    @Query("SELECT * from routine where weekdays like :day limit 1")
+    LiveData<Routine> getTodayRoutine(String day);
 }
