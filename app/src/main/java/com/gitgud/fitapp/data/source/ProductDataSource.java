@@ -1,8 +1,12 @@
 package com.gitgud.fitapp.data.source;
 
+import android.graphics.Bitmap;
+import android.widget.ImageView;
+
 import androidx.annotation.Nullable;
 
 import com.apollographql.apollo.ApolloCall;
+import com.apollographql.apollo.api.FileUpload;
 import com.apollographql.apollo.rx2.Rx2Apollo;
 import com.gitgud.fitapp.entities.product.GetProductBySkuQuery;
 import com.gitgud.fitapp.entities.product.GetProductsByUserQuery;
@@ -13,6 +17,7 @@ import com.gitgud.fitapp.type.CompanyInputType;
 import com.gitgud.fitapp.type.ProductInputType;
 import com.gitgud.fitapp.utils.DateUtils;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -37,7 +42,7 @@ public class ProductDataSource {
     }
 
     @Nullable
-    public Observable<Optional<InsertProductMutation.AddProduct>> insertProduct (String sku, String name, Double calories, Double portion, List<String> nutritionalFacts) {
+    public Observable<Optional<InsertProductMutation.AddProduct>> insertProduct (String sku, String name, Double calories, Double portion, List<String> nutritionalFacts, File image) {
         ApolloCall<InsertProductMutation.Data> apolloCall = ApolloProvider.getApolloInstance()
                 .mutate(
                         InsertProductMutation.builder()
@@ -49,6 +54,7 @@ public class ProductDataSource {
                                 .company(
                                         CompanyInputType.builder().identifier("5e8d285bfb961700172465f4").build()
                                 )
+                                .image(new FileUpload("image/png", image))
                                 .build()
                 );
 
