@@ -32,6 +32,9 @@
             app:enterAnim="@anim/fragment_fade_enter"
             app:popExitAnim="@anim/fragment_fade_exit"
             app:popUpTo="@+id/goalsFragment" />
+        <action
+            android:id="@+id/action_goalsFragment_to_goalHistory"
+            app:destination="@id/goalHistory" />
     </fragment>
     <fragment
         android:id="@+id/createGoal"
@@ -40,5 +43,9 @@
     <fragment
         android:id="@+id/updateGoalFragment"
         android:name="com.gitgud.fitapp.ui.dashboard.updateGoal.UpdateGoalFragment"
+        android:label=" " />
+    <fragment
+        android:id="@+id/goalHistory"
+        android:name="com.gitgud.fitapp.ui.dashboard.goalHistory.GoalHistory"
         android:label=" " />
 </navigation>
