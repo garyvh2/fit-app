@@ -12,9 +12,16 @@
             app:destination="@id/badgesFragment2"
             app:enterAnim="@anim/fragment_close_enter"
             app:exitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_rewardsFragment_to_rewardsListFragment"
+            app:destination="@id/rewardsListFragment" />
     </fragment>
     <fragment
         android:id="@+id/badgesFragment2"
         android:name="com.gitgud.fitapp.ui.history.BadgesFragment"
         android:label="Milestones" />
+    <fragment
+        android:id="@+id/rewardsListFragment"
+        android:name="com.gitgud.fitapp.ui.rewards.list.RewardsListFragment"
+        android:label="Rewards List" />
 </navigation>

@@ -37,7 +37,6 @@ import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
 import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
@@ -106,7 +105,7 @@ public class NutritionalCreate extends Fragment implements Validator.ValidationL
             }
         });
 
-        photo = fragment.findViewById(R.id.photo);
+        photo = fragment.findViewById(R.id.logo);
         photo.setOnClickListener(view -> {
             Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             if (takePictureIntent.resolveActivity(getContext().getPackageManager()) != null) {

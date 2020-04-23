@@ -1,0 +1,17 @@
+mutation insertUserReward($email: String, $reward: RewardInputType) {
+    addUserReward(email: $email, reward: $reward) {
+        reward {
+            id
+            minimunScore
+            discount
+            description
+            company {
+                id
+                name
+                description
+                logo
+            }
+        }
+        date
+    }
+}

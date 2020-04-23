@@ -75,7 +75,7 @@ public class NutritionalProductsAdapter extends RecyclerView.Adapter<Nutritional
         }
 
         public void setImage(String url) {
-            Picasso.get().load(url).placeholder(R.drawable.nutrition).resize(75, 75).centerCrop().into(image);
+            Picasso.get().load(url).placeholder(R.drawable.placeholder).resize(75, 75).centerCrop().into(image);
         }
     }
 

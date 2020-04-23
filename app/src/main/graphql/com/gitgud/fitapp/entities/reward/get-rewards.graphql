@@ -1,0 +1,14 @@
+query getRewards {
+    getRewards {
+        id
+        minimunScore
+        discount
+        description
+        company {
+            id
+            name
+            description
+            logo
+        }
+    }
+}

@@ -1,0 +1,17 @@
+query getRewardsByUser($email: String) {
+    userRewards(email: $email) {
+        reward {
+            id
+            minimunScore
+            discount
+            description
+            company {
+                id
+                name
+                description
+                logo
+            }
+        }
+        date
+    }
+}
