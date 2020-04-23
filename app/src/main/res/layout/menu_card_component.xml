@@ -28,7 +28,7 @@
             >
 
             <ImageView
-                android:id="@+id/card_menu_icon"
+                android:id="@+id/exercise_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/ic_bottle"
@@ -41,7 +41,7 @@
 
 
         <TextView
-            android:id="@+id/menu_card_title"
+            android:id="@+id/exercise_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Water"

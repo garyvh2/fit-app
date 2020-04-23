@@ -2,13 +2,16 @@ package com.gitgud.fitapp.components;
 
 public class MenuCardItem {
 
+    private int cardComponent;
     private int icon;
     private String title;
     private Class view;
     private Boolean isView;
     private int fragment;
+    private long id;
 
-    public MenuCardItem(int icon, String text, Class view) {
+    public MenuCardItem(int cardComponent, int icon, String text, Class view) {
+        this.cardComponent = cardComponent;
         this.icon = icon;
         this.title = text;
         this.view = view;
@@ -16,11 +19,20 @@ public class MenuCardItem {
 
     }
 
-    public MenuCardItem(int icon, String text, int fragment) {
+    public MenuCardItem(int cardComponent, int icon, String text, int fragment) {
+        this.cardComponent = cardComponent;
         this.icon = icon;
         this.title = text;
         this.fragment = fragment;
         this.isView = false;
+    }
+    public MenuCardItem(int cardComponent, int icon, String text, int fragment, long id) {
+        this.cardComponent = cardComponent;
+        this.icon = icon;
+        this.title = text;
+        this.fragment = fragment;
+        this.isView = false;
+        this.id = id;
     }
 
     public String getTitle() {
@@ -42,4 +54,15 @@ public class MenuCardItem {
         return  isView;
     }
 
+    public int getCardComponent() {
+        return cardComponent;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 }

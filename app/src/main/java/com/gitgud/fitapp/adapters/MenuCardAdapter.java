@@ -2,6 +2,7 @@ package com.gitgud.fitapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,15 +32,16 @@ public class MenuCardAdapter extends ArrayAdapter<MenuCardItem> {
         MenuCardItem cardItem = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.menu_card_component, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(cardItem.getCardComponent(), parent, false);
         }
 
         // Lookup view for data population
-        ImageView icon = (ImageView) convertView.findViewById(R.id.card_menu_icon);
-        TextView title = (TextView) convertView.findViewById(R.id.menu_card_title);
+        ImageView icon = (ImageView) convertView.findViewById(R.id.exercise_image);
+        TextView title = (TextView) convertView.findViewById(R.id.exercise_name);
         MaterialCardView card = convertView.findViewById(R.id.menu_card_container);
         card.setTag(position);
         card.setOnClickListener(this::onClickCard);
+
 
         // Populate the data into the template view using the data object
         icon.setImageResource(cardItem.getIcon());
@@ -56,7 +58,14 @@ public class MenuCardAdapter extends ArrayAdapter<MenuCardItem> {
            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
            v.getContext().getApplicationContext().startActivity(intent);
        } else {
-           Navigation.findNavController(v).navigate(item.getFragment());
+           if (item.getId() != 0) {
+               Bundle bundle = new Bundle();
+               bundle.putLong("id", item.getId());
+               Navigation.findNavController(v).navigate(item.getFragment(), bundle);
+           } else {
+               Navigation.findNavController(v).navigate(item.getFragment());
+           }
+
        }
 
    }

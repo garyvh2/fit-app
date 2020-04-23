@@ -90,8 +90,10 @@
                 app:strokeColor="@color/fontColor">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/goal_history"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
                     android:padding="16dp">
 
 

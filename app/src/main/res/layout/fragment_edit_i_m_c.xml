@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarSize="16dp"
+            tools:context=".BMIActivity">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/topConstraint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/bottomConstraint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.90" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/centerConstraintH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.50" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/leftConstraint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.10" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/centerConstraintV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.50" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/rightConstraint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.90" />
+
+            <SeekBar
+                android:id="@+id/sliderWeight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/rightConstraint"
+                app:layout_constraintStart_toStartOf="@+id/leftConstraint"
+                app:layout_constraintTop_toBottomOf="@+id/lblWeight" />
+
+            <TextView
+                android:id="@+id/lblWeight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:text="@string/weight"
+                android:textSize="@dimen/fontMedium"
+                app:layout_constraintEnd_toStartOf="@+id/rightConstraint"
+                app:layout_constraintStart_toStartOf="@+id/leftConstraint"
+                app:layout_constraintTop_toBottomOf="@+id/sliderHeight" />
+
+            <SeekBar
+                android:id="@+id/sliderHeight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/rightConstraint"
+                app:layout_constraintStart_toStartOf="@+id/leftConstraint"
+                app:layout_constraintTop_toBottomOf="@+id/lblHeight" />
+
+            <TextView
+                android:id="@+id/lblHeight"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:ems="10"
+                android:text="@string/height"
+                android:textSize="@dimen/fontMedium"
+                app:layout_constraintEnd_toStartOf="@+id/rightConstraint"
+                app:layout_constraintStart_toStartOf="@+id/leftConstraint"
+                app:layout_constraintTop_toBottomOf="@+id/lblBMI" />
+
+            <TextView
+                android:id="@+id/lblBMI"
+                android:layout_width="0dp"
+                android:layout_height="240dp"
+                android:layout_marginTop="@dimen/normal"
+                android:background="@drawable/rounded_rectangle"
+                android:backgroundTint="@color/transparent"
+                android:ems="10"
+                android:gravity="center"
+                android:text="@string/bmi"
+                android:textColor="@color/colorPrimary"
+                android:textSize="56sp"
+                app:layout_constraintEnd_toStartOf="@+id/rightConstraint"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/leftConstraint"
+                app:layout_constraintTop_toBottomOf="@+id/titleWater" />
+
+            <TextView
+                android:id="@+id/titleWater"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="@string/bmi_extended"
+                android:textAlignment="center"
+                android:textSize="@dimen/fontBig"
+                app:layout_constraintEnd_toStartOf="@+id/rightConstraint"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/leftConstraint"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/circleProgress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="240dp"
+                android:layout_height="0dp"
+                android:indeterminate="false"
+                android:progress="75"
+                android:progressDrawable="@drawable/fit_seekbar"
+                android:secondaryProgress="0"
+                app:layout_constraintBottom_toBottomOf="@+id/lblBMI"
+                app:layout_constraintEnd_toStartOf="@+id/rightConstraint"
+                app:layout_constraintStart_toStartOf="@+id/lblBMI"
+                app:layout_constraintTop_toTopOf="@+id/lblBMI" />
+
+            <TextView
+                android:id="@+id/lblBMIResult"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:ems="10"
+                android:gravity="bottom|center_horizontal"
+                android:paddingBottom="24dp"
+                android:text="@string/normal_weight"
+                android:textColor="@color/orange"
+                android:textSize="@dimen/fontMedium"
+                app:layout_constraintBottom_toBottomOf="@+id/lblBMI"
+                app:layout_constraintEnd_toStartOf="@+id/rightConstraint"
+                app:layout_constraintStart_toStartOf="@+id/leftConstraint"
+                app:layout_constraintTop_toTopOf="@+id/lblBMI" />
+
+            <Button
+                android:id="@+id/save"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="8dp"
+                android:backgroundTint="@color/orange"
+                android:text="Save"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>
+

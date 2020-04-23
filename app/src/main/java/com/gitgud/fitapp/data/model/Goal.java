@@ -5,6 +5,11 @@ import androidx.room.PrimaryKey;
 
 import com.gitgud.fitapp.data.model.enums.GoalType;
 import com.gitgud.fitapp.data.model.enums.Status;
+import com.gitgud.fitapp.entities.user.LoginUserQuery;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 @Entity(tableName = "goals")
 public class Goal {
 
@@ -16,6 +21,19 @@ public class Goal {
         this.status = status;
         this.goalType = goalType;
     }
+    public  Goal (LoginUserQuery.Goal goal) {
+        this.name = goal.name();
+        this.date = goal.limitDate();
+        this.goal = goal.objective().intValue();
+        this.progress = goal.current().intValue();
+        this.dbId = goal._id();
+        goalType = goal.type();
+        DateTimeFormatter oldFormatter = DateTimeFormatter.ofPattern("MM/dd/yy");
+        LocalDate lDate = LocalDate.parse(date, oldFormatter);
+        this.status = lDate.compareTo(LocalDate.now()) > 0 && this.goal != progress ?
+                Status.ACTIVE.getUrl() :
+                Status.INACTIVE.getUrl();
+    }
 
     @PrimaryKey(autoGenerate = true)
     private long id;
@@ -25,6 +43,7 @@ public class Goal {
     private int progress;
     private String status;
     private String goalType;
+    private String dbId;
 
     public long getId() {
         return id;
@@ -64,6 +83,9 @@ public class Goal {
 
     public void setProgress(int progress) {
         this.progress = progress;
+        if(progress == goal) {
+            status = Status.INACTIVE.getUrl();
+        }
     }
 
     public String getGoalType() {
@@ -80,5 +102,13 @@ public class Goal {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getDbId() {
+        return dbId;
+    }
+
+    public void setDbId(String dbId) {
+        this.dbId = dbId;
     }
 }

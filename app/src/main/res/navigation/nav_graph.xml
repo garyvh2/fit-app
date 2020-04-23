@@ -3,7 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
     app:startDestination="@id/dashboard_graph">
 
-    <include app:graph="@navigation/dashboard_graph" />
+    <include app:graph="@navigation/dashboard_graph" >
+        <action
+            android:id="@+id/action_global_exercises_graph"
+            app:destination="@id/exercises_graph" />
+    </include>
     <include app:graph="@navigation/exercises_graph" />
     <include app:graph="@navigation/nutritional_graph" />
     <include app:graph="@navigation/profile_graph" />
