@@ -84,6 +84,15 @@ public class EditIMCFragment extends Fragment {
         btnSave =  view.findViewById(R.id.save);
         btnSave.setOnClickListener(this::onClickSave);
 
+        editIMCViewModel.getCurrentStat().observe(getViewLifecycleOwner(), stat -> {
+            if(stat != null) {
+
+                sliderHeight.setProgress(stat.getHeight().intValue());
+                sliderWeight.setProgress(stat.getWeight().intValue());
+                updateBMITV();
+            }
+        });
+
         editIMCViewModel.getUserLiveData().observe(getViewLifecycleOwner(), user -> {
             if(user != null) {
                 dbId = user.getDb_id();

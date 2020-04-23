@@ -23,11 +23,13 @@ public class EditIMCViewModel extends AndroidViewModel {
     private UserRepository userRepository;
     private UserDataSource userDataSource;
     private LiveData<User> userLiveData;
+    private LiveData<HistoryStat> currentStat;
     public EditIMCViewModel(@NotNull Application application) {
         super(application);
         userRepository = new UserRepository(application);
         this.userDataSource = UserDataSource.getInstance();
         userLiveData = userRepository.getCurrentUser();
+        currentStat = userRepository.getCurrentStat();
 
     }
 
@@ -45,5 +47,9 @@ public class EditIMCViewModel extends AndroidViewModel {
         return userDataSource.postStat(dbId, historyStat )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public LiveData<HistoryStat> getCurrentStat() {
+        return currentStat;
     }
 }
