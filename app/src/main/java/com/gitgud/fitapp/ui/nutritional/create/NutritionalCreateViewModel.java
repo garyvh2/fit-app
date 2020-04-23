@@ -19,6 +19,7 @@ import com.gitgud.fitapp.entities.product.InsertProductMutation;
 import com.gitgud.fitapp.entities.product.InsertProductUserMutation;
 import com.gitgud.fitapp.type.ProductInputType;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -60,8 +61,8 @@ public class NutritionalCreateViewModel extends AndroidViewModel {
         return userRepository.getCurrentUserSync();
     }
 
-    public Observable<Optional<InsertProductMutation.AddProduct>> insertProduct(String sku, String name, Double calories, Double portion, List<String> nutritionalFacts) {
-        return this.productDataSource.insertProduct(sku, name, calories, portion, nutritionalFacts)
+    public Observable<Optional<InsertProductMutation.AddProduct>> insertProduct(String sku, String name, Double calories, Double portion, List<String> nutritionalFacts, File image) {
+        return this.productDataSource.insertProduct(sku, name, calories, portion, nutritionalFacts, image)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

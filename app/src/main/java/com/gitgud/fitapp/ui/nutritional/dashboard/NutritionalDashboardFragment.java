@@ -29,11 +29,15 @@ import com.gitgud.fitapp.adapters.NutritionalFactsAdapter;
 import com.gitgud.fitapp.adapters.NutritionalProductsAdapter;
 import com.gitgud.fitapp.data.model.User;
 import com.gitgud.fitapp.databinding.FragmentNutritionalDashboardBinding;
+import com.gitgud.fitapp.entities.product.GetProductsByUserQuery;
 import com.gitgud.fitapp.type.ProductInputType;
 import com.gitgud.fitapp.ui.dashboard.dashboard.view.DashboardFragmentDirections;
+import com.gitgud.fitapp.utils.DateUtils;
 import com.github.lzyzsd.circleprogress.ArcProgress;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -81,7 +85,14 @@ public class NutritionalDashboardFragment extends Fragment {
                         .subscribe(
                                 nutritionalProducts -> {
                                     if (nutritionalProducts.isPresent()) {
-                                        nutritionalProductsAdapter.setNutritionalProducts(nutritionalProducts.get());
+                                        List<GetProductsByUserQuery.UserFood> userFoods = nutritionalProducts.get()
+                                                .stream()
+                                                .filter(userFood -> {
+                                                    Date userFoodDate = new Date(Date.parse(userFood.date()));
+                                                    return DateUtils.isSameDay(new Date(), userFoodDate);
+                                                })
+                                                .collect(Collectors.toList());
+                                        nutritionalProductsAdapter.setNutritionalProducts(userFoods);
                                         nutritionalProductsAdapter.notifyDataSetChanged();
 
                                         loading.setVisibility(View.INVISIBLE);
