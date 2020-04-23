@@ -45,8 +45,7 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.DataVi
         Exercise exercise = exerciseList.get(position);
 
         if(exercise.getImage() != null && exercise.getImage() != "") {
-            String url = exercise.getImage().replace("http", "https");
-            Picasso.get().load(url).into(holder.exerciseImage);
+            Picasso.get().load(exercise.getImage()).into(holder.exerciseImage);
         } else {
             holder.exerciseImage.setImageResource(R.drawable.jumping_jacks);
         }
