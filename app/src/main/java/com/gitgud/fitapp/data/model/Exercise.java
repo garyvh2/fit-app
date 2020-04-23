@@ -3,6 +3,8 @@ package com.gitgud.fitapp.data.model;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import com.gitgud.fitapp.entities.user.LoginUserQuery;
+
 @Entity(tableName = "exercise")
 public class Exercise {
     @PrimaryKey(autoGenerate = true)
@@ -27,6 +29,17 @@ public class Exercise {
         this.caloriesBurned = caloriesBurned;
         this.time = time;
         this.repetitions = repetitions;
+    }
+
+    public  Exercise(LoginUserQuery.Exercise exercise) {
+        name = exercise.title();
+        description = exercise.description();
+        type = exercise.type().rawValue();
+        image = exercise.image();
+        tutorial = exercise.tutorial();
+        caloriesBurned =exercise.caloriesBurned().floatValue();
+        time = exercise.time();
+        repetitions = exercise.repetitions();
     }
 
     public long getId() {

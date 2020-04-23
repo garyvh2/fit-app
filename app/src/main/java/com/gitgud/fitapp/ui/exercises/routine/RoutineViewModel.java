@@ -25,11 +25,10 @@ public class RoutineViewModel  extends AndroidViewModel {
         super(application);
         routineRepository =  new RoutineRepository(application);
 
-        routine = routineRepository.getRoutine(1);
     }
 
-    public LiveData<RoutineAndExercise> getRoutine() {
-        return routine;
+    public LiveData<RoutineAndExercise> getRoutine(long id) {
+        return routineRepository.getRoutine(id);
     }
 
     public LiveData<List<RoutineAndExercise>> getRoutines() {

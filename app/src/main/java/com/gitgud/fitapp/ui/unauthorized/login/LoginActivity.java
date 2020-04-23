@@ -14,8 +14,11 @@ import androidx.lifecycle.ViewModelProvider;
 import com.gitgud.fitapp.R;
 import com.gitgud.fitapp.activities.AuthorizedActivity;
 import com.gitgud.fitapp.adapters.TextInputLayoutAdapter;
+import com.gitgud.fitapp.data.model.Exercise;
 import com.gitgud.fitapp.data.model.Goal;
 import com.gitgud.fitapp.data.model.HistoryStat;
+import com.gitgud.fitapp.data.model.Routine;
+import com.gitgud.fitapp.data.model.RoutineAndExercise;
 import com.gitgud.fitapp.data.model.User;
 import com.gitgud.fitapp.data.source.UserDataSource;
 import com.gitgud.fitapp.entities.user.LoginUserQuery;
@@ -127,6 +130,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
         try {
             List<HistoryStat> historyStatList = new ArrayList<>();
             List<Goal> goalList = new ArrayList<>();
+            List<RoutineAndExercise> routineAndExerciseList =  new ArrayList<>();
             User newUser =  new User(user.loginUser());
             for (LoginUserQuery.HistoryStat stat : user.loginUser().historyStats()){
                 historyStatList.add(new HistoryStat(stat));
@@ -134,10 +138,20 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
             for (LoginUserQuery.Goal goal : user.loginUser().goals()) {
                 goalList.add(new Goal(goal));
             }
+            for (LoginUserQuery.Routine routine : user.loginUser().routines()) {
+                RoutineAndExercise routineAndExercise = new RoutineAndExercise();
+                routineAndExercise.routine = new Routine(routine.name());
+                routineAndExercise.exerciseList =  new ArrayList<>();
+                for (LoginUserQuery.Exercise exercise : routine.routine().exercises()) {
+                    routineAndExercise.exerciseList.add(new Exercise(exercise));
+                }
+                routineAndExerciseList.add(routineAndExercise);
+            }
             loginViewModel.saveLoggedUser(newUser, historyStatList);
             loginViewModel.saveGoals(goalList);
+            loginViewModel.createRoutine(routineAndExerciseList);
             Intent intent = new Intent(this, AuthorizedActivity.class);
-            loginViewModel.createRoutine();
+
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
             startActivity(intent);
 

@@ -62,7 +62,7 @@ public class RoutineFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(new ExerciseAdapter(view.getContext(), exerciseList));
-        viewModel.getRoutine().observe(getViewLifecycleOwner(), routineAndExercise -> {
+        viewModel.getRoutine(getArguments().getLong("id")).observe(getViewLifecycleOwner(), routineAndExercise -> {
             if(routineAndExercise != null) {
                 this.routine  = routineAndExercise.routine;
                 routineName.setText(routine.getName());

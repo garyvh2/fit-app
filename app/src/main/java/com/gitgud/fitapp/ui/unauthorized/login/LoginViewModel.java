@@ -7,6 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 
 import com.gitgud.fitapp.data.model.Goal;
 import com.gitgud.fitapp.data.model.HistoryStat;
+import com.gitgud.fitapp.data.model.RoutineAndExercise;
 import com.gitgud.fitapp.data.model.User;
 import com.gitgud.fitapp.data.respository.GoalsRepository;
 import com.gitgud.fitapp.data.respository.RoutineRepository;
@@ -60,8 +61,8 @@ public class LoginViewModel extends AndroidViewModel {
        goalsRepository.insertAll(goals);
     }
 
-    public void createRoutine () {
-        routineRepository.initBaseRoutine();
+    public void createRoutine (List<RoutineAndExercise> routineAndExerciseList) {
+        routineRepository.initBaseRoutine(routineAndExerciseList);
     }
 
 

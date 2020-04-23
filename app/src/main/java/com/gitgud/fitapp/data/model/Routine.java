@@ -1,6 +1,7 @@
 package com.gitgud.fitapp.data.model;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "routine")
@@ -11,6 +12,11 @@ public class Routine {
 
     public Routine(long id, String name) {
         this.id = id;
+        this.name = name;
+    }
+
+    @Ignore
+    public Routine(String name) {
         this.name = name;
     }
 
