@@ -32,6 +32,7 @@ import java.time.format.DateTimeFormatter;
 public class DashboardFragment extends Fragment {
 
     DashboardViewModel dashboardViewModel;
+    long routineId;
 
     private FragmentDashboardBinding binding;
     private  Boolean isGoal;
@@ -72,7 +73,9 @@ public class DashboardFragment extends Fragment {
 
         dashboardViewModel.getTodayRoutine(day).observe(getViewLifecycleOwner(), routine -> {
             if(routine != null) {
+                routineId = routine.getId();
                 todayRoutine.setVisibility(View.VISIBLE);
+                todayRoutine.setOnClickListener(this::routineClick);
                 routineName.setText(routine.getName());
             }
         });
@@ -96,6 +99,12 @@ public class DashboardFragment extends Fragment {
         if(goalType.equals(GoalType.RUNNING.getUrl()) ) return "Km";
         if(goalType.equals(GoalType.TIME.getUrl())) return  "min";
         return "Kg";
+    }
+
+    public  void routineClick (View v) {
+        Bundle bundle =  new Bundle();
+        NavDirections action = DashboardFragmentDirections.actionDashboardFragmentToRoutineFragment2(routineId, true);
+        Navigation.findNavController(v).navigate(action);
     }
 
     public void goalClick (View v) {

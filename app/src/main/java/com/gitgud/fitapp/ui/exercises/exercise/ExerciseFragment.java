@@ -84,18 +84,21 @@ public class ExerciseFragment extends Fragment {
     public  void setExerciseObserver () {
         exerciseViewModel.getCurrentExercise().observe(getViewLifecycleOwner(), exercise -> {
             if(exercise != null) {
-                String videoId = exercise.getTutorial().split("/")[3];
+                if(exercise.getTutorial() != "") {
+                    String videoId = exercise.getTutorial().split("/")[3];
 
-                youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-                    @Override
-                    public void onReady(@NonNull YouTubePlayer youTubePlayer) {
-                        mYouTubePlayer = youTubePlayer;
-                        youTubePlayer.cueVideo(videoId, 0);
+                    youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+                        @Override
+                        public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                            mYouTubePlayer = youTubePlayer;
+                            youTubePlayer.cueVideo(videoId, 0);
+                        }
+                    });
+                    if(mYouTubePlayer != null) {
+                        mYouTubePlayer.cueVideo(videoId, 0);
                     }
-                });
-                if(mYouTubePlayer != null) {
-                    mYouTubePlayer.cueVideo(videoId, 0);
                 }
+
                 amountExercise.setText(exerciseViewModel.getAmountExercise());
                 description.setText(exercise.getDescription());
                 title.setText(exercise.getName());

@@ -58,6 +58,6 @@ public class RoutineRepository {
     }
 
     public LiveData<Routine> getTodayRoutine(String day) {
-        return routineDao.getTodayRoutine(day);
+        return routineDao.getTodayRoutine("%"+day+"%");
     }
 }

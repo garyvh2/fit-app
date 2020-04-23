@@ -38,12 +38,7 @@ public class RoutineFragment extends Fragment {
     Routine routine;
 
     public RoutineFragment() {
-
-        Exercise exercise = new Exercise(1, "Jumping Jack", "umping Jack", "", "","",1f, 0, 16 );
-
-        exerciseList.add(exercise);
-
-
+        
     }
 
     @Override
@@ -77,6 +72,13 @@ public class RoutineFragment extends Fragment {
 
     private  void startExercise(View v) {
         NavDirections action = RoutineFragmentDirections.actionRoutineFragmentToExerciseFragment(this.routine.getId());
-        Navigation.findNavController(v).navigate(action);
+        if (getArguments().getBoolean("onDashboard", false) != false ) {
+            Bundle bundle =  new Bundle();
+            bundle.putLong("routineId", this.routine.getId());
+            Navigation.findNavController(v).navigate(R.id.exerciseFragment2, bundle);
+        } else {
+            Navigation.findNavController(v).navigate(action);
+        }
+
     }
 }

@@ -21,6 +21,9 @@
             app:enterAnim="@anim/fragment_fade_enter"
             app:popUpTo="@id/dashboardFragment"
             app:popEnterAnim="@anim/fragment_fade_exit" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_routineFragment2"
+            app:destination="@id/routineFragment2" />
     </fragment>
     <fragment
         android:id="@+id/goalsFragment"
@@ -47,5 +50,23 @@
     <fragment
         android:id="@+id/goalHistory"
         android:name="com.gitgud.fitapp.ui.dashboard.goalHistory.GoalHistory"
+        android:label=" " />
+    <fragment
+        android:id="@+id/routineFragment2"
+        android:name="com.gitgud.fitapp.ui.exercises.routine.RoutineFragment"
+        android:label=" ">
+        <action
+            android:id="@+id/action_routineFragment2_to_exerciseFragment2"
+            app:destination="@id/exerciseFragment2" />
+        <argument
+            android:name="id"
+            app:argType="long" />
+        <argument
+            android:name="onDashboard"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseFragment2"
+        android:name="com.gitgud.fitapp.ui.exercises.exercise.ExerciseFragment"
         android:label=" " />
 </navigation>
