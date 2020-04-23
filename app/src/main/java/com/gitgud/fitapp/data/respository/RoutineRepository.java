@@ -57,24 +57,7 @@ public class RoutineRepository {
        routineDao.insertAllExercises(routineAndExercise.exerciseList);
     }
 
-    public void createDefaultRoutines(){
-        MediatorLiveData<RoutineAndExercise> stepsRecordMediator = new MediatorLiveData<>();
-        stepsRecordMediator.addSource(routineDao.getRoutineWithExercise(1), routine -> {
-            if (routine == null) {
-                Routine rout = new Routine(1,"Arms routine");
-                Exercise exercise1 = new Exercise(1, "jumping jacks"
-                        ,"is a physical jumping exercise performed by jumping to a position with the legs spread wide and the hands going overhead, sometimes in a clap, and then returning to a position with the feet together and the arms at the sides."
-                ,"", "https://image.shutterstock.com/image-vector/woman-doing-jumping-jack-exercise-260nw-1457642288.jpg", "", 250f, 0, 16);
-                Exercise exercise2 = new Exercise(1, "jumping"
-                        ,"is a physical jumping exercise performed by jumping to a position with the legs spread wide and the hands going overhead, sometimes in a clap"
-                        ,"", "https://image.shutterstock.com/image-photo/young-woman-doing-exercise-jumping-260nw-502211857.jpg", "", 250f, 0, 16);
-                List<Exercise> exerciseList = Arrays.asList(exercise1, exercise2);
-                RoutineAndExercise newRoutine = new RoutineAndExercise();
-                newRoutine.routine = rout;
-                newRoutine.exerciseList = exerciseList;
-                insertRoutineWithExercises(newRoutine);
-            }
-        });
-
+    public LiveData<Routine> getTodayRoutine(String day) {
+        return routineDao.getTodayRoutine(day);
     }
 }

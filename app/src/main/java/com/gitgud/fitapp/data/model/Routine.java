@@ -9,15 +9,18 @@ public class Routine {
     @PrimaryKey(autoGenerate = true)
     private long id;
     public  String name;
+    public  String weekdays;
 
-    public Routine(long id, String name) {
+    public Routine(long id, String name, String weekdays) {
         this.id = id;
         this.name = name;
+        this.weekdays = weekdays;
     }
 
     @Ignore
-    public Routine(String name) {
+    public Routine(String name, String weekdays) {
         this.name = name;
+        this.weekdays = weekdays;
     }
 
     public long getId() {
@@ -34,5 +37,13 @@ public class Routine {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getWeekdays() {
+        return weekdays;
+    }
+
+    public void setWeekdays(String weekdays) {
+        this.weekdays = weekdays;
     }
 }

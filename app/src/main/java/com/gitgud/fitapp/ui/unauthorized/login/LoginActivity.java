@@ -140,7 +140,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
             }
             for (LoginUserQuery.Routine routine : user.loginUser().routines()) {
                 RoutineAndExercise routineAndExercise = new RoutineAndExercise();
-                routineAndExercise.routine = new Routine(routine.name());
+                routineAndExercise.routine = new Routine(routine.name(), routine.weekdays().toString().toLowerCase());
                 routineAndExercise.exerciseList =  new ArrayList<>();
                 for (LoginUserQuery.Exercise exercise : routine.routine().exercises()) {
                     routineAndExercise.exerciseList.add(new Exercise(exercise));
@@ -157,6 +157,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
 
             this.finish();
         } catch (Exception e) {
+            Toast.makeText(this, "We couldn't login please try again", Toast.LENGTH_SHORT).show();
             Log.e("login", e.getMessage());
         }
     }
