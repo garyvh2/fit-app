@@ -22,5 +22,8 @@ public interface UserDao {
     void delete(User user);
 
     @Query("SELECT * FROM user_table limit 1")
+    User getCurrentUserSync();
+
+    @Query("SELECT * FROM user_table limit 1")
     LiveData<User> getCurrentUser();
 }

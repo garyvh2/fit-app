@@ -10,11 +10,14 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.gitgud.fitapp.R;
+import com.gitgud.fitapp.provider.database.AppDatabase;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.wajahatkarim3.roomexplorer.RoomExplorer;
 
 import java.util.ArrayList;
 
@@ -39,6 +42,14 @@ public class AuthorizedActivity extends AppCompatActivity{
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)){
+            RoomExplorer.show(this, AppDatabase.class, "app_database");
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 

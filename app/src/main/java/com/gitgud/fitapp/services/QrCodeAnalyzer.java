@@ -3,6 +3,8 @@ package com.gitgud.fitapp.services;
 import android.annotation.SuppressLint;
 import android.media.Image;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.camera.core.ImageAnalysis;
@@ -16,12 +18,15 @@ import com.google.firebase.ml.vision.common.FirebaseVisionImage;
 import com.google.firebase.ml.vision.common.FirebaseVisionImageMetadata;
 
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class QrCodeAnalyzer implements ImageAnalysis.Analyzer {
-    private Function<List<FirebaseVisionBarcode>, Void> callback;
+    private ProgressBar progressBar;
+    private BiFunction<List<FirebaseVisionBarcode>, ImageProxy, Void> callback;
 
-    public QrCodeAnalyzer(Function<List<FirebaseVisionBarcode>, Void>  callback) {
+    public QrCodeAnalyzer(ProgressBar progressBar, BiFunction<List<FirebaseVisionBarcode>, ImageProxy, Void>  callback) {
+        this.progressBar = progressBar;
         this.callback = callback;
     }
 
@@ -48,9 +53,11 @@ public class QrCodeAnalyzer implements ImageAnalysis.Analyzer {
         detector.detectInImage(visionImage)
             .addOnSuccessListener(firebaseVisionBarcodes -> {
                 if (!firebaseVisionBarcodes.isEmpty()) {
-                    callback.apply(firebaseVisionBarcodes);
+                    progressBar.setVisibility(View.VISIBLE);
+                    callback.apply(firebaseVisionBarcodes, image);
+                } else {
+                    image.close();
                 }
-                image.close();
             })
             .addOnFailureListener(e -> {
                 Log.e("QrCodeAnalyzer", e.getMessage());

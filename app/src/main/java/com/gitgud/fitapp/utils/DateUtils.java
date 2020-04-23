@@ -15,6 +15,13 @@ public class DateUtils {
         return fmt.format(date1).equals(fmt.format(date2));
     }
 
+    public static String toString(Date date) {
+        SimpleDateFormat fmt = new SimpleDateFormat("MM/dd/yyyy");
+        return fmt.format(date);
+    }
+
+
+
     public static Date asDate(LocalDate localDate) {
         return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
     }
@@ -40,6 +47,18 @@ public class DateUtils {
         LocalDateTime localDateTime = LocalDateTime.now();
         return DateUtils.asDate(localDateTime.with(LocalTime.MAX));
     }
+
+    public static Date minDate(Date date) {
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
+        return DateUtils.asDate(localDateTime.with(LocalTime.MIN));
+    }
+
+    public static Date maxDate(Date date) {
+        LocalDateTime localDateTime = LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());;
+        return DateUtils.asDate(localDateTime.with(LocalTime.MAX));
+    }
+
+
 
     public static String toHMS(long milliseconds) {
         return String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(milliseconds),

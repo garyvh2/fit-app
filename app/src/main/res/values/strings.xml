@@ -98,4 +98,11 @@
     <string name="exercise_description">This is a test description</string>
 
 
+    <string name="product_sku">SKU</string>
+    <string name="product_name">Name</string>
+    <string name="product_calories">Calories</string>
+    <string name="product_portion">Portion</string>
+    <string name="product_nutritional_fact">Nutritional Fact</string>
+
+
 </resources>
