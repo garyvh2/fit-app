@@ -1,0 +1,19 @@
+mutation updateUserGoal(
+  $userId: ID!
+  $goalId: ID!
+  $name: String!
+  $objective: Float!
+  $current: Float!
+  $type: String!
+  $limitDate: String!
+) {
+  updateUserGoal(userId:$userId, goalId: $goalId, name: $name, objective: $objective, current: $current, type: $type, limitDate: $limitDate) {
+    _id,
+    name,
+    objective,
+    current,
+    type,
+    limitDate
+
+  }
+}

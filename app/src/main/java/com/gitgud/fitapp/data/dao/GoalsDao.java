@@ -24,7 +24,10 @@ public interface GoalsDao {
     @Delete
     void delete(Goal goal);
 
-    @Query("SELECT * FROM goals limit 1")
+    @Insert
+    void  insertAll(List<Goal> goals);
+
+    @Query("SELECT * FROM goals where status = 'ACTIVE' ORDER BY id DESC  limit 1")
     LiveData<Goal> getCurrentGoal();
 
     @Query("SELECT * FROM goals")

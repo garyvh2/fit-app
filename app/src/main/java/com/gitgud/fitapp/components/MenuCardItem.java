@@ -8,6 +8,7 @@ public class MenuCardItem {
     private Class view;
     private Boolean isView;
     private int fragment;
+    private long id;
 
     public MenuCardItem(int cardComponent, int icon, String text, Class view) {
         this.cardComponent = cardComponent;
@@ -24,6 +25,14 @@ public class MenuCardItem {
         this.title = text;
         this.fragment = fragment;
         this.isView = false;
+    }
+    public MenuCardItem(int cardComponent, int icon, String text, int fragment, long id) {
+        this.cardComponent = cardComponent;
+        this.icon = icon;
+        this.title = text;
+        this.fragment = fragment;
+        this.isView = false;
+        this.id = id;
     }
 
     public String getTitle() {
@@ -47,5 +56,13 @@ public class MenuCardItem {
 
     public int getCardComponent() {
         return cardComponent;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

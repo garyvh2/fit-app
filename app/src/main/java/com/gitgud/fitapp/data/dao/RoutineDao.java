@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Transaction;
 
 import com.gitgud.fitapp.data.model.Exercise;
 import com.gitgud.fitapp.data.model.Routine;
@@ -18,14 +19,15 @@ public interface  RoutineDao {
 
 
     @Insert
-     void insertAll(List<Exercise> exercises);
+     void insertAllExercises(List<Exercise> exercises);
 
     @Insert
-     void insert(Routine routine);
+     long insert(Routine routine);
 
+    @Transaction
     @Query("Select * from routine where id = :id")
-      LiveData<RoutineAndExercise> getRoutineWithExercise(int id);
-
+      LiveData<RoutineAndExercise> getRoutineWithExercise(long id);
+    @Transaction
     @Query("Select * from routine")
      LiveData<List<RoutineAndExercise>> getRoutines();
 }

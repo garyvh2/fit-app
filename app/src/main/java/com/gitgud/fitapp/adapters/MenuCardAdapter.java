@@ -2,6 +2,7 @@ package com.gitgud.fitapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,6 +42,7 @@ public class MenuCardAdapter extends ArrayAdapter<MenuCardItem> {
         card.setTag(position);
         card.setOnClickListener(this::onClickCard);
 
+
         // Populate the data into the template view using the data object
         icon.setImageResource(cardItem.getIcon());
         title.setText(cardItem.getTitle());
@@ -56,7 +58,14 @@ public class MenuCardAdapter extends ArrayAdapter<MenuCardItem> {
            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
            v.getContext().getApplicationContext().startActivity(intent);
        } else {
-           Navigation.findNavController(v).navigate(item.getFragment());
+           if (item.getId() != 0) {
+               Bundle bundle = new Bundle();
+               bundle.putLong("id", item.getId());
+               Navigation.findNavController(v).navigate(item.getFragment(), bundle);
+           } else {
+               Navigation.findNavController(v).navigate(item.getFragment());
+           }
+
        }
 
    }

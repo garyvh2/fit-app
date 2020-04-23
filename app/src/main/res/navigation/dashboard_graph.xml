@@ -24,7 +24,8 @@
     </fragment>
     <fragment
         android:id="@+id/goalsFragment"
-        android:name="com.gitgud.fitapp.ui.dashboard.goal.GoalsFragment">
+        android:name="com.gitgud.fitapp.ui.dashboard.goal.GoalsFragment"
+        android:label=" ">
         <action
             android:id="@+id/action_goalsFragment_to_updateGoalFragment"
             app:destination="@id/updateGoalFragment"
@@ -34,8 +35,10 @@
     </fragment>
     <fragment
         android:id="@+id/createGoal"
-        android:name="com.gitgud.fitapp.ui.dashboard.createGoal.CreateGoalFragment" />
+        android:name="com.gitgud.fitapp.ui.dashboard.createGoal.CreateGoalFragment"
+        android:label=" " />
     <fragment
         android:id="@+id/updateGoalFragment"
-        android:name="com.gitgud.fitapp.ui.dashboard.updateGoal.UpdateGoalFragment" />
+        android:name="com.gitgud.fitapp.ui.dashboard.updateGoal.UpdateGoalFragment"
+        android:label=" " />
 </navigation>

@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/waterConsumeFragmentNav"
         android:name="com.gitgud.fitapp.ui.modules.water.WaterConsumeFragment"
-        android:label="WaterConsumeFragment" />
+        android:label=" " />
     <fragment
         android:id="@+id/nutritionalDashboard"
         android:name="com.gitgud.fitapp.ui.nutritional.dashboard.NutritionalDashboardFragment"

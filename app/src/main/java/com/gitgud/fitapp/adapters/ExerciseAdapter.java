@@ -16,6 +16,7 @@ import com.gitgud.fitapp.R;
 import com.gitgud.fitapp.data.model.ActivityRecord;
 import com.gitgud.fitapp.data.model.Exercise;
 import com.gitgud.fitapp.utils.DateUtils;
+import com.squareup.picasso.Picasso;
 
 
 import java.util.List;
@@ -43,7 +44,13 @@ public class ExerciseAdapter extends RecyclerView.Adapter<ExerciseAdapter.DataVi
     public void onBindViewHolder(ExerciseAdapter.DataViewHolder holder, int position) {
         Exercise exercise = exerciseList.get(position);
 
-        holder.exerciseImage.setImageResource(R.drawable.jumping_jacks);
+        if(exercise.getImage() != null && exercise.getImage() != "") {
+            Picasso.get().load(exercise.getImage()).into(holder.exerciseImage);
+        } else {
+            holder.exerciseImage.setImageResource(R.drawable.jumping_jacks);
+        }
+
+
         holder.exerciseName.setText(exercise.getName());
         if(exercise.getTime() != 0) {
             holder.repetition.setText(exercise.getTime() + "s");

@@ -23,6 +23,7 @@ import com.gitgud.fitapp.adapters.TextInputLayoutAdapter;
 import com.gitgud.fitapp.data.model.Goal;
 import com.gitgud.fitapp.data.model.enums.GoalType;
 import com.gitgud.fitapp.data.model.enums.Status;
+import com.gitgud.fitapp.entities.user.AddUserGoalMutation;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.mobsandgeeks.saripaar.ValidationError;
@@ -46,6 +47,8 @@ public class CreateGoalFragment extends Fragment implements Validator.Validation
     private  CreateGoalViewModel createGoalViewModel;
 
     View create_goal_view;
+    String userId;
+    String goalId;
 
     @NotEmpty
     TextInputLayout objective;
@@ -59,6 +62,7 @@ public class CreateGoalFragment extends Fragment implements Validator.Validation
     RadioButton rb_weight;
     RadioButton rb_time;
     Button save_goal;
+    View view;
 
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
 
@@ -89,7 +93,7 @@ public class CreateGoalFragment extends Fragment implements Validator.Validation
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         createGoalViewModel = new ViewModelProvider(this).get(CreateGoalViewModel.class);
-        View view =  inflater.inflate(R.layout.fragment_create_goal, container, false);
+        view =  inflater.inflate(R.layout.fragment_create_goal, container, false);
         this.initFagment(view);
 
         return view;
@@ -114,6 +118,12 @@ public class CreateGoalFragment extends Fragment implements Validator.Validation
         rb_time.setOnClickListener(this::onClickRadioButton);
         goal_date_text.setOnClickListener(this::onClickDatePicker);
         save_goal.setOnClickListener(this::onClickSubmit);
+
+        createGoalViewModel.getCurrentUser().observe(getViewLifecycleOwner(), user -> {
+            if(user != null) {
+                userId = user.getDb_id();
+            }
+        });
 
 
         validator = new Validator(this);
@@ -160,17 +170,37 @@ public class CreateGoalFragment extends Fragment implements Validator.Validation
     }
     @Override
     public void onValidationSucceeded() {
+        Goal goal =  new Goal(goal_name.getEditText().getText().toString(),
+                goal_date_text.getText().toString(), Integer.parseInt(goal_input.getText().toString())
+                , 0, Status.ACTIVE.toString(), this.goalType.toString());
+        createGoalViewModel.createGoal(userId, goal).subscribe(
+                this::onSuccess,
+                this::onFailure
+        );
+
+
+    }
+
+    private  void onSuccess(AddUserGoalMutation.Data createdGoal) {
+        goalId = createdGoal.addUserGoal()._id();
+
         AsyncTask.execute(() -> {
             Goal goal =  new Goal(goal_name.getEditText().getText().toString(),
                     goal_date_text.getText().toString(), Integer.parseInt(goal_input.getText().toString())
                     , 0, Status.ACTIVE.toString(), this.goalType.toString());
-            createGoalViewModel.createGoal(goal);
+            createGoalViewModel.createLocalGoal(goalId, goal);
         });
+
         Toast.makeText(create_goal_view.getContext(), "Goal Registred!", Toast.LENGTH_SHORT).show();
 
         Navigation.findNavController(create_goal_view).popBackStack();
 
     }
+
+    private void onFailure(Throwable throwable) {
+        Toast.makeText(view.getContext(), "Couldn't create your goal", Toast.LENGTH_SHORT).show();
+    }
+
 
     @Override
     public void onValidationFailed(List<ValidationError> errors) {
