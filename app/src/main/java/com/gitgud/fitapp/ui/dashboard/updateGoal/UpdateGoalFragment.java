@@ -12,15 +12,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.gitgud.fitapp.R;
+import com.gitgud.fitapp.data.model.Goal;
 import com.gitgud.fitapp.databinding.FragmentUpdateGoalBinding;
+import com.gitgud.fitapp.entities.user.UpdateUserGoalMutation;
 
 
 public class UpdateGoalFragment extends Fragment {
 
     UpdateGoalViewModel updateGoalViewModel;
     FragmentUpdateGoalBinding binding;
+
+    String userId;
+    Goal goal;
+    View view;
 
 
     public UpdateGoalFragment() {
@@ -40,10 +47,15 @@ public class UpdateGoalFragment extends Fragment {
         binding.setViewModel(updateGoalViewModel);
         binding.setLifecycleOwner(this);
 
-        View view = binding.getRoot();
+        view = binding.getRoot();
+
+        updateGoalViewModel.getCurrentUser().observe(getViewLifecycleOwner(), user -> {
+            userId = user.getDb_id();
+        });
 
         updateGoalViewModel.getCurrentGoal().observe(getViewLifecycleOwner(), currentGoal -> {
             if(currentGoal != null) {
+                this.goal = currentGoal;
                 updateGoalViewModel.setProgress(currentGoal.getProgress());
             }
         });
@@ -58,15 +70,32 @@ public class UpdateGoalFragment extends Fragment {
     }
 
     public  void updateGoal(View v) {
+        goal.setProgress(updateGoalViewModel.getProgress().getValue());
+        updateGoalViewModel.update(userId, goal).subscribe(
+                this::onSuccess,
+                this::onFailure
+        );
         updateGoalViewModel.updateGoalCounter();
         Navigation.findNavController(v).popBackStack();
     }
 
+    public  void onSuccess(UpdateUserGoalMutation.Data updatedGoal) {
+        updateGoalViewModel.updateGoalCounter();
+        Toast.makeText(view.getContext(), "Goal Updated!", Toast.LENGTH_SHORT).show();
+
+        Navigation.findNavController(view).popBackStack();
+    }
+    private void onFailure(Throwable throwable) {
+        Toast.makeText(view.getContext(), "Couldn't update your goal", Toast.LENGTH_SHORT).show();
+    }
 
     public  void incrementCounter (View v) {
         AsyncTask.execute(() -> {
-            updateGoalViewModel.setGoalsCounter(updateGoalViewModel.getGoalsCounter().getValue() + 1);
-            updateGoalViewModel.setProgress(updateGoalViewModel.getProgress().getValue() + 1);
+            if(goal != null && updateGoalViewModel.getProgress().getValue() < goal.getGoal()) {
+                updateGoalViewModel.setGoalsCounter(updateGoalViewModel.getGoalsCounter().getValue() + 1);
+                updateGoalViewModel.setProgress(updateGoalViewModel.getProgress().getValue() + 1);
+            }
+
         });
     }
     public  void decrementCounter (View v) {

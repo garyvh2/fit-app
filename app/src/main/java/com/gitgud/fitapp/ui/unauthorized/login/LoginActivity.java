@@ -126,12 +126,16 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
     private void onSuccess(LoginUserQuery.Data user) {
         try {
             List<HistoryStat> historyStatList = new ArrayList<>();
+            List<Goal> goalList = new ArrayList<>();
             User newUser =  new User(user.loginUser());
             for (LoginUserQuery.HistoryStat stat : user.loginUser().historyStats()){
                 historyStatList.add(new HistoryStat(stat));
             }
+            for (LoginUserQuery.Goal goal : user.loginUser().goals()) {
+                goalList.add(new Goal(goal));
+            }
             loginViewModel.saveLoggedUser(newUser, historyStatList);
-            loginViewModel.saveGoals(new ArrayList<Goal>());
+            loginViewModel.saveGoals(goalList);
             Intent intent = new Intent(this, AuthorizedActivity.class);
             loginViewModel.createRoutine();
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);

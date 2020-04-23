@@ -31,7 +31,7 @@ import java.util.Arrays;
 import java.util.List;
 
 
-@Database(entities = {User.class, ActivityRecord.class, StepsRecord.class, WaterRecord.class, Goal.class, Routine.class, Exercise.class, HistoryStat.class}, version = 8)
+@Database(entities = {User.class, ActivityRecord.class, StepsRecord.class, WaterRecord.class, Goal.class, Routine.class, Exercise.class, HistoryStat.class}, version = 9)
 @TypeConverters({Converters.class})
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase INSTANCE;

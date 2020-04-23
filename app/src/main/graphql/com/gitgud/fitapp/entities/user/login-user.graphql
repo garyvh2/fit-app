@@ -33,8 +33,12 @@ query loginUser($email: String!, $password: String!) {
           }
         }
         goals {
+          _id
           name
-
+          objective
+          current
+          type
+          limitDate
         }
   }
 }

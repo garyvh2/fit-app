@@ -56,10 +56,8 @@ public class LoginViewModel extends AndroidViewModel {
         userRepository.insert(user, historyStatList);
     }
 
-    public  void saveGoals(ArrayList<Goal> goals) {
-        for (Goal goal: goals) {
-            goalsRepository.insert(goal);
-        }
+    public  void saveGoals(List<Goal> goals) {
+       goalsRepository.insertAll(goals);
     }
 
     public void createRoutine () {
