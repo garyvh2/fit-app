@@ -18,9 +18,14 @@ import com.gitgud.fitapp.R;
 import com.gitgud.fitapp.data.model.Exercise;
 import com.gitgud.fitapp.databinding.FragmentExerciseBinding;
 import com.gitgud.fitapp.ui.exercises.routine.RoutineViewModel;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import io.reactivex.annotations.NonNull;
 
 
 public class ExerciseFragment extends Fragment {
@@ -32,8 +37,9 @@ public class ExerciseFragment extends Fragment {
     TextView amountExercise;
     TextView title;
     TextView description;
-    ImageView image;
     Button btnNext;
+    YouTubePlayerView youTubePlayerView;
+    YouTubePlayer mYouTubePlayer;
 
     public ExerciseFragment() {
         // Required empty public constructor
@@ -53,6 +59,8 @@ public class ExerciseFragment extends Fragment {
         binding.setViewModel(exerciseViewModel);
         binding.setLifecycleOwner(this);
         this.setExerciseObserver();
+        youTubePlayerView = view.findViewById(R.id.youtube_player_view);
+        getLifecycle().addObserver(youTubePlayerView);
 
         exerciseViewModel.getRoutine(getArguments().getLong("routineId"))
                 .observe(getViewLifecycleOwner(), routineAndExercise -> {
@@ -68,7 +76,6 @@ public class ExerciseFragment extends Fragment {
         title =  view.findViewById(R.id.exercise_title);
         description = view.findViewById(R.id.exercise_description);
         amountExercise =  view.findViewById(R.id.exercise_repetition);
-        image = view.findViewById(R.id.exercise_image);
 
         // Inflate the layout for this fragment
         return view;
@@ -77,10 +84,22 @@ public class ExerciseFragment extends Fragment {
     public  void setExerciseObserver () {
         exerciseViewModel.getCurrentExercise().observe(getViewLifecycleOwner(), exercise -> {
             if(exercise != null) {
+                String videoId = exercise.getTutorial().split("/")[3];
+
+                youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
+                    @Override
+                    public void onReady(@NonNull YouTubePlayer youTubePlayer) {
+                        mYouTubePlayer = youTubePlayer;
+                        youTubePlayer.cueVideo(videoId, 0);
+                    }
+                });
+                if(mYouTubePlayer != null) {
+                    mYouTubePlayer.cueVideo(videoId, 0);
+                }
                 amountExercise.setText(exerciseViewModel.getAmountExercise());
                 description.setText(exercise.getDescription());
                 title.setText(exercise.getName());
-                Picasso.get().load(exercise.getImage()).into(image);
+
             }
 
         });

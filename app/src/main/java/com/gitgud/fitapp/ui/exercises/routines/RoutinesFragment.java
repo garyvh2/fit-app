@@ -47,15 +47,19 @@ public class RoutinesFragment extends Fragment {
         binding.setLifecycleOwner(this);
         routineViewModel.getRoutines().observe(getViewLifecycleOwner(), routineAndExercises -> {
             if(routineAndExercises != null) {
+                menuItems.clear();
                 for(RoutineAndExercise routine : routineAndExercises) {
                     String routineName = routine.routine.name;
                     menuItems.add(new MenuCardItem(R.layout.menu_routine_component,
                             getRoutineImage(routineName),
                             routineName,R.id.routineFragment, routine.routine.getId()));
                 }
-                adapter = new MenuCardAdapter(view.getContext(), menuItems);
-                ListView listView = view.findViewById(R.id.routines_menu);
-                listView.setAdapter(adapter);
+
+                    adapter = new MenuCardAdapter(view.getContext(), menuItems);
+                    ListView listView = view.findViewById(R.id.routines_menu);
+                    listView.setAdapter(adapter);
+
+
             }
 
         });
