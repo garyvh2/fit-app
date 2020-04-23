@@ -10,6 +10,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +18,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -56,6 +58,11 @@ public class RewardsListFragment extends Fragment {
         RecyclerView recyclerView = fragment.findViewById(R.id.rewards);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setHasFixedSize(true);
+
+        Button cupons = fragment.findViewById(R.id.myCupons);
+        cupons.setOnClickListener(view -> {
+            Navigation.findNavController(fragment).navigate(R.id.rewardsListUserFragment);
+        });
 
         rewardsAdapter = new RewardsAdapter(getContext(), new ArrayList<>(), (view, reward) -> {
             view.setCuponEnable(false);
