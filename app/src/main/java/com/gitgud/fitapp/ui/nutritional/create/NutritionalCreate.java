@@ -1,5 +1,7 @@
 package com.gitgud.fitapp.ui.nutritional.create;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -12,12 +14,14 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.gitgud.fitapp.R;
@@ -32,11 +36,17 @@ import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 public class NutritionalCreate extends Fragment implements Validator.ValidationListener {
+    private int REQUEST_IMAGE_CAPTURE = 1;
 
     private View fragment;
     private ImageButton addNutritional;
@@ -48,6 +58,10 @@ public class NutritionalCreate extends Fragment implements Validator.ValidationL
     private Validator validator;
 
     private Button save;
+
+    private ImageView photo;
+
+    private File image;
 
     @NotEmpty
     private TextInputEditText sku;
@@ -89,6 +103,14 @@ public class NutritionalCreate extends Fragment implements Validator.ValidationL
                 nutritionalFacts.add(nutritionalFact.getText().toString());
                 viewModel.setNutritionalFacts(nutritionalFacts);
                 nutritionalFact.setText("");
+            }
+        });
+
+        photo = fragment.findViewById(R.id.photo);
+        photo.setOnClickListener(view -> {
+            Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            if (takePictureIntent.resolveActivity(getContext().getPackageManager()) != null) {
+                startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
         });
 
@@ -135,7 +157,7 @@ public class NutritionalCreate extends Fragment implements Validator.ValidationL
 
     @Override
     public void onValidationSucceeded() {
-        save.setEnabled(false);
+        this.setEnabled(false);
         AsyncTask.execute(() -> {
             try {
                 String sku = this.viewModel.getSku().getValue();
@@ -144,35 +166,70 @@ public class NutritionalCreate extends Fragment implements Validator.ValidationL
                 Double portion = new BigDecimal(this.viewModel.getPortion().getValue()).doubleValue();
                 List<String> nutritionalFact = this.viewModel.getNutritionalFacts().getValue();
 
-                viewModel.insertProduct(sku, name, calories, portion, nutritionalFact)
-                        .subscribe(
-                                product -> {
-                                    if (product.isPresent()) {
-                                        AsyncTask.execute(()->{
-                                            User user = viewModel.getCurrentUser();
-                                            if (user != null) {
-                                                viewModel.insertProductUser(user.getEmail(), ProductInputType.builder().id(product.get().id()).build())
-                                                        .subscribe(
-                                                                productUser -> {
-                                                                    Navigation.findNavController(fragment).navigate(R.id.nutritionalDashboard);
-                                                                },
-                                                                throwable -> {
-                                                                    Log.e("NutritionalCreate", throwable.toString());
-                                                                }
-                                                        );
-                                            }
-                                        });
+                if (image != null) {
+                    viewModel.insertProduct(sku, name, calories, portion, nutritionalFact, image)
+                            .subscribe(
+                                    product -> {
+                                        if (product.isPresent()) {
+                                            AsyncTask.execute(()->{
+                                                User user = viewModel.getCurrentUser();
+                                                if (user != null) {
+                                                    viewModel.insertProductUser(user.getEmail(), ProductInputType.builder().id(product.get().id()).build())
+                                                            .subscribe(
+                                                                    productUser -> {
+                                                                        Navigation.findNavController(fragment).navigate(R.id.nutritionalDashboard);
+                                                                    },
+                                                                    throwable -> {
+                                                                        Log.e("NutritionalCreate", throwable.toString());
+                                                                    }
+                                                            );
+                                                }
+                                            });
+                                        }
+                                    },
+                                    throwable -> {
+                                        Log.e("NutritionalCreate", throwable.toString());
                                     }
-                                },
-                                throwable -> {
-                                    Log.e("NutritionalCreate", throwable.toString());
-                                }
-                        );
+                            );
+                } else {
+                    Toast.makeText(getContext(), "Please setup an image", Toast.LENGTH_SHORT).show();
+                }
+
 
             } catch (Exception e) {
                 Log.e("NutritionalCreate", e.getMessage());
+                this.setEnabled(true);
             }
         });
+    }
+
+    private void setEnabled(boolean state) {
+        getActivity().runOnUiThread(() -> {
+            save.setEnabled(state);
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == getActivity().RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            photo.setImageBitmap(imageBitmap);
+
+            try {
+                File file = new File(getContext().getCacheDir().getPath(), "product_photo");
+                if (!file.exists()) {
+                    file.createNewFile();
+                }
+                OutputStream os = new BufferedOutputStream(new FileOutputStream(file));
+                imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                os.close();
+                image = file;
+            } catch (Exception e) {
+                Log.e("NutritionalCreate", e.getMessage());
+            }
+        }
     }
 
     @Override
