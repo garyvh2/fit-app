@@ -107,13 +107,13 @@ public class RegistrationActivity extends AppCompatActivity implements Validator
         myCalendar.set(Calendar.YEAR, 1980);
         myCalendar.set(Calendar.MONTH, Calendar.JANUARY);
         myCalendar.set(Calendar.DAY_OF_MONTH, 1);
-        birthdayText = findViewById(R.id.birthdayText);
+        birthdayText = findViewById(R.id.sku);
         name = findViewById(R.id.name);
         lastName = findViewById(R.id.lastName);
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         confirmPassword = findViewById(R.id.confirm_password);
-        birthday = findViewById(R.id.birthday);
+        birthday = findViewById(R.id.skuContainer);
     }
 
 

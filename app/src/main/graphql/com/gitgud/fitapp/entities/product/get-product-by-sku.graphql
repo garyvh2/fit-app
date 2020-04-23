@@ -1,0 +1,17 @@
+query getProductBySku($sku: String) {
+    products(sku: $sku) {
+        id
+        name
+        calories
+        portion
+        nutritionalFacts
+        image
+        sku
+        company {
+            id
+            name
+            description
+            logo
+        }
+    }
+}

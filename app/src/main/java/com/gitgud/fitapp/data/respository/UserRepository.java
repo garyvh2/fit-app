@@ -42,6 +42,7 @@ public class UserRepository {
     public void insertNewStat(HistoryStat historyStat) {AsyncTask.execute(()-> userDao.insertAll(Arrays.asList(historyStat)));}
     public  void insertStats(List<HistoryStat> historyStatList) {AsyncTask.execute(() -> userDao.insertAll(historyStatList));}
 
+    public User getCurrentUserSync() { return userDao.getCurrentUserSync(); }
     public LiveData<User> getCurrentUser() { return userDao.getCurrentUser(); }
     public LiveData<HistoryStat> getCurrentStat(){ return  userDao.getCurrentStat();}
 }
