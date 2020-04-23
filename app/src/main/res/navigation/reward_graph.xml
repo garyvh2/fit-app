@@ -23,5 +23,13 @@
     <fragment
         android:id="@+id/rewardsListFragment"
         android:name="com.gitgud.fitapp.ui.rewards.list.RewardsListFragment"
-        android:label="Rewards List" />
+        android:label="Rewards List" >
+        <action
+            android:id="@+id/action_rewardsListFragment_to_rewardsListUserFragment"
+            app:destination="@id/rewardsListUserFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/rewardsListUserFragment"
+        android:name="com.gitgud.fitapp.ui.rewards.user.RewardsListUserFragment"
+        android:label="RewardsListUserFragment" />
 </navigation>
