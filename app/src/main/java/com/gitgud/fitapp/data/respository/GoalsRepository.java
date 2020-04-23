@@ -40,4 +40,6 @@ public class GoalsRepository {
     public LiveData<Goal> getCurrentGoal() { return goalsDao.getCurrentGoal(); }
 
     public  LiveData<List<Goal>> getAllGoals() {return  goalsDao.getAllGoals();}
+
+    public  LiveData<List<Goal>> getInactiveGoals() { return goalsDao.getInactiveGoals();}
 }

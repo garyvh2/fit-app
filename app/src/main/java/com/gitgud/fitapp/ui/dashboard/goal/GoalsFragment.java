@@ -3,6 +3,7 @@ package com.gitgud.fitapp.ui.dashboard.goal;
 
 import android.os.Bundle;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
@@ -40,6 +41,7 @@ public class GoalsFragment extends Fragment {
     ArcProgress progress;
     TextView goalDate;
     String pattern = "MMMM, dd";
+    ConstraintLayout btnHistory;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 
 
@@ -62,6 +64,7 @@ public class GoalsFragment extends Fragment {
         progress = view.findViewById(R.id.calories_progress);
         goalDate = view.findViewById(R.id.goal_date);
         nextGoal.setOnClickListener(this::nextGoalClick);
+        btnHistory = view.findViewById(R.id.goal_history);
 
         goalViewModel.getCurrentGoal().observe(getViewLifecycleOwner(), currentGoal -> {
             if(currentGoal != null) {
@@ -73,6 +76,7 @@ public class GoalsFragment extends Fragment {
                 goalDate.setText("Goal Ends: "+ getDateString(currentGoal.getDate()));
             }
         });
+        btnHistory.setOnClickListener(this::onHistoryClick);
         return  view;
     }
 
@@ -92,6 +96,11 @@ public class GoalsFragment extends Fragment {
         LocalDate lDate = LocalDate.parse(date, oldFormatter);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMMM, dd");
         return lDate.format(formatter);
+    }
+
+    public  void onHistoryClick (View v) {
+        NavDirections action = GoalsFragmentDirections.actionGoalsFragmentToGoalHistory();
+        Navigation.findNavController(v).navigate(action);
     }
 
 

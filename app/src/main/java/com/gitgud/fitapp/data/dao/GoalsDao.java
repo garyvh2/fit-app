@@ -32,4 +32,7 @@ public interface GoalsDao {
 
     @Query("SELECT * FROM goals")
     LiveData<List<Goal>> getAllGoals();
+
+    @Query("SELECT * FROM goals where status = 'INACTIVE' ORDER BY id DESC ")
+    LiveData<List<Goal>> getInactiveGoals();
 }
