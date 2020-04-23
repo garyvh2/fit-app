@@ -17,4 +17,13 @@
     <integer name="retarded_min_weight">50</integer>
     <integer name="retarded_max_weight">400</integer>
 
+    <!-- Badge Requirements -->
+    <integer name="steps_badge1">1000</integer>
+    <integer name="steps_badge2">2000</integer>
+    <integer name="steps_badge3">3000</integer>
+
+    <integer name="calories_badge1">1000</integer>
+    <integer name="calories_badge2">2000</integer>
+    <integer name="calories_badge3">3000</integer>
+
 </resources>

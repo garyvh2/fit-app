@@ -5,6 +5,14 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.gitgud.fitapp.ui.profile.ProfileFragment"
-        android:label="Profile" />
+        android:name="com.gitgud.fitapp.ui.profile.profile.ProfileFragment"
+        android:label="Profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_editIMCFragment"
+            app:destination="@id/editIMCFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editIMCFragment"
+        android:name="com.gitgud.fitapp.ui.profile.edit_imc.EditIMCFragment"
+        android:label=" " />
 </navigation>

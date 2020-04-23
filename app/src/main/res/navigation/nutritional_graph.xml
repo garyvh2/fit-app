@@ -1,10 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nutritional_graph"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nutritional_graph"
     app:startDestination="@id/nutritionalFragment">
 
     <fragment
         android:id="@+id/nutritionalFragment"
         android:name="com.gitgud.fitapp.ui.nutritional.NutritionalFragment"
-        android:label="Nutrition" />
+        android:label="Nutrition" >
+        <action
+            android:id="@+id/action_nutritionalFragment_to_waterConsumeFragment"
+            app:destination="@id/waterConsumeFragmentNav" />
+        <action
+            android:id="@+id/action_nutritionalFragment_to_nutritionalDashboard"
+            app:destination="@id/nutritionalDashboard" />
+    </fragment>
+    <fragment
+        android:id="@+id/waterConsumeFragmentNav"
+        android:name="com.gitgud.fitapp.ui.modules.water.WaterConsumeFragment"
+        android:label=" " />
+    <fragment
+        android:id="@+id/nutritionalDashboard"
+        android:name="com.gitgud.fitapp.ui.nutritional.dashboard.NutritionalDashboardFragment"
+        android:label="Nutritional Dashboard">
+        <action
+            android:id="@+id/action_nutritionalDashboard_to_nutritionalScanner"
+            app:destination="@id/nutritionalScanner" />
+    </fragment>
+    <fragment
+        android:id="@+id/nutritionalScanner"
+        android:name="com.gitgud.fitapp.ui.nutritional.scanner.NutritionalScannerFragment"
+        android:label="Nutritional Scanner">
+        <action
+            android:id="@+id/nutritionalCreateAction"
+            app:destination="@id/nutritionalCreate" />
+        <action
+            android:id="@+id/action_nutritionalScanner_to_nutritionalDashboard"
+            app:destination="@id/nutritionalDashboard" />
+    </fragment>
+    <fragment
+        android:id="@+id/nutritionalCreate"
+        android:name="com.gitgud.fitapp.ui.nutritional.create.NutritionalCreate"
+        android:label="Nutritional Create">
+        <action
+            android:id="@+id/action_nutritionalCreate_to_nutritionalDashboard"
+            app:destination="@id/nutritionalDashboard" />
+        <argument
+            android:name="sku"
+            app:argType="string" />
+    </fragment>
 </navigation>

@@ -1,0 +1,24 @@
+mutation insertProductUser(
+    $email: String
+    $product: ProductInputType
+    $date: String
+) {
+    addUserProduct(email: $email, product: $product, date: $date) {
+        date
+        product {
+            id
+            name
+            calories
+            portion
+            nutritionalFacts
+            image
+            sku
+            company {
+                id
+                name
+                description
+                logo
+            }
+        }
+    }
+}

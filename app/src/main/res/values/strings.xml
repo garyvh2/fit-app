@@ -6,6 +6,10 @@
     <string name="your_goal">Your Goal:</string>
     <string name="current">Current:</string>
 
+
+    <string name="channel_name">Fit App</string>
+    <string name="channel_description">Fitness Tracking App</string>
+
     <!-- Button Strings -->
     <string name="action">Action</string>
     <string name="cancel">Cancel</string>
@@ -36,6 +40,8 @@
 
     <!-- STEPS -->
     <string name="steps">Steps</string>
+    <!-- CALORIES -->
+    <string name="calories">Calories</string>
 
     <!-- Metric Units -->
     <string name="metric_weight">kg</string>
@@ -62,17 +68,41 @@
     <string name="increase_weight">Gain Weight</string>
     <string name="advice_detail_title">Advice to </string>
 
+    <!-- Badges -->
+    <string name="badge_title_steps">Steps</string>
+    <string name="badge_title_calories">Calories</string>
+    <string name="question_mark">\?</string>
+    <string name="star_mark1">\u2605</string>
+    <string name="star_mark2">\u2605\u2605</string>
+    <string name="star_mark3">\u2605\n\u2605\u2605</string>
+    <string name="star_mark4">\u2605\u2605\n\u2605\u2605</string>
+
     <!-- TEMP -->
     <string name="binding">Binding</string>
     <string name="goals">Loading</string>
+    <string name="goal">Goal</string>
     <string name="my_rewards">My Rewards</string>
     <string name="nutrition">Nutrition</string>
     <string name="exercises">Exercises</string>
+    <string name="exericises_lower">exercises</string>
+
+    <string name="add_water">Add Water</string>
+    <string name="update_goal">Update Goal</string>
+
+    <string name="water_quantity">Water Quantity</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="profile">Profile</string>
     <string name="loremParagraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean rutrum faucibus orci nec pulvinar. Nulla facilisi. Suspendisse sed mattis metus. Nullam sit amet dui varius, ullamcorper nisi eget, aliquet nulla. Curabitur mattis nibh id ex ultricies, a elementum purus feugiat. Duis nec lacus dolor. Quisque euismod felis non arcu efficitur, suscipit tristique tellus rutrum. Curabitur lacinia quis massa non vulputate. Maecenas bibendum, est quis imperdiet rhoncus, urna enim vestibulum purus, non dapibus massa dui vitae nunc. Sed hendrerit quam justo, quis dictum ante euismod quis.</string>
+    <string name="exercise_description">This is a test description</string>
+
+
+    <string name="product_sku">SKU</string>
+    <string name="product_name">Name</string>
+    <string name="product_calories">Calories</string>
+    <string name="product_portion">Portion</string>
+    <string name="product_nutritional_fact">Nutritional Fact</string>
 
 
 </resources>

@@ -5,17 +5,19 @@ import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Button;
 
 import com.gitgud.fitapp.R;
-import com.gitgud.fitapp.StepActivity;
-import com.gitgud.fitapp.WaterActivity;
 import com.gitgud.fitapp.adapters.MenuCardAdapter;
 import com.gitgud.fitapp.components.MenuCardItem;
+import com.gitgud.fitapp.ui.modules.steps.StepsActivity;
+import com.gitgud.fitapp.ui.modules.steps.StepsFragment;
 
 import java.util.ArrayList;
 
@@ -27,7 +29,8 @@ public class ExercisesFragment extends Fragment {
     ArrayList<MenuCardItem> menuItems = new ArrayList<>();
 
     public  ExercisesFragment(){
-        menuItems.add(new MenuCardItem(R.drawable.ic_walk, "Steps Counter", StepActivity.class));
+        menuItems.add(new MenuCardItem(R.layout.menu_card_component ,R.drawable.ic_walk, "Steps Counter", R.id.stepsFragment));
+        menuItems.add(new MenuCardItem(R.layout.menu_card_component ,R.drawable.ic_fitness_center_black_24dp, "Routines", R.id.routinesFragment));
     }
 
     @Override
@@ -40,7 +43,4 @@ public class ExercisesFragment extends Fragment {
         listView.setAdapter(adapter);
         return fragmentView;
     }
-
-
-
 }

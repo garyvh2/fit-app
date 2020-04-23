@@ -5,10 +5,13 @@ import androidx.annotation.Nullable;
 
 import com.apollographql.apollo.ApolloCall;
 import com.apollographql.apollo.rx2.Rx2Apollo;
+import com.gitgud.fitapp.data.model.HistoryStat;
 import com.gitgud.fitapp.entities.user.AddUserMutation;
+import com.gitgud.fitapp.entities.user.AddUserStatMutation;
 import com.gitgud.fitapp.entities.user.GetAllUsersQuery;
 import com.gitgud.fitapp.entities.user.LoginUserQuery;
 import com.gitgud.fitapp.provider.network.graphql.ApolloProvider;
+import com.gitgud.fitapp.type.HistoryStatsInputType;
 import com.gitgud.fitapp.type.UserTypes;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 
@@ -32,6 +35,29 @@ public class UserDataSource {
             }
         }
         return INSTANCE;
+    }
+
+    public Observable<AddUserStatMutation.Data> postStat(@NotNull String id, @NotNull HistoryStat stat) {
+        /**
+         * Query Build
+         */
+        HistoryStatsInputType statHistory = HistoryStatsInputType.builder()
+                .imc(stat.getImc())
+                .height(stat.getHeight())
+                .weight(stat.getWeight())
+                .build();
+
+        ApolloCall<AddUserStatMutation.Data> apolloCall = ApolloProvider.getApolloInstance()
+                .mutate(
+                        AddUserStatMutation.builder().userId(id).userStat(statHistory)
+                                .build()
+                );
+        /**
+         * API Call
+         */
+        return Rx2Apollo.from(apolloCall)
+                .filter(dataResponse -> !dataResponse.hasErrors())
+                .map(dataResponse -> dataResponse.data());
     }
 
     public Observable<GetAllUsersQuery.Data> getUsers (@NonNull String id) {

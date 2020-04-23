@@ -1,8 +1,44 @@
 query loginUser($email: String!, $password: String!) {
   loginUser(email: $email, password: $password) {
-    id
-    name
-    lastName
-    email
+        id
+        name
+        lastName
+        birthDate
+        email
+        historyStats {
+          imc
+          height
+          weight
+        }
+        waterConsume {
+          quantity
+          date
+        }
+        routines {
+          name
+          weekdays
+          playList
+          routine {
+            name
+            exercises {
+              title
+              description
+              type
+              image
+              tutorial
+              caloriesBurned
+              time
+              repetitions
+            }
+          }
+        }
+        goals {
+          _id
+          name
+          objective
+          current
+          type
+          limitDate
+        }
   }
 }

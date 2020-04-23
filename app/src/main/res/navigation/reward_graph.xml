@@ -6,5 +6,15 @@
     <fragment
         android:id="@+id/rewardsFragment"
         android:name="com.gitgud.fitapp.ui.rewards.RewardsFragment"
-        android:label="Rewards" />
+        android:label="Rewards" >
+        <action
+            android:id="@+id/action_rewardsFragment_to_badgesFragment2"
+            app:destination="@id/badgesFragment2"
+            app:enterAnim="@anim/fragment_close_enter"
+            app:exitAnim="@anim/fragment_close_exit" />
+    </fragment>
+    <fragment
+        android:id="@+id/badgesFragment2"
+        android:name="com.gitgud.fitapp.ui.history.BadgesFragment"
+        android:label="Milestones" />
 </navigation>

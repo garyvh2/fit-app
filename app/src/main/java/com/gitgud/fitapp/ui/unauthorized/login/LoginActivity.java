@@ -3,17 +3,27 @@ package com.gitgud.fitapp.ui.unauthorized.login;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.gitgud.fitapp.R;
 import com.gitgud.fitapp.activities.AuthorizedActivity;
 import com.gitgud.fitapp.adapters.TextInputLayoutAdapter;
+import com.gitgud.fitapp.data.model.Exercise;
+import com.gitgud.fitapp.data.model.Goal;
+import com.gitgud.fitapp.data.model.HistoryStat;
+import com.gitgud.fitapp.data.model.Routine;
+import com.gitgud.fitapp.data.model.RoutineAndExercise;
+import com.gitgud.fitapp.data.model.User;
 import com.gitgud.fitapp.data.source.UserDataSource;
 import com.gitgud.fitapp.entities.user.LoginUserQuery;
+import com.gitgud.fitapp.provider.database.AppDatabase;
+import com.gitgud.fitapp.ui.modules.steps.StepsViewModel;
 import com.gitgud.fitapp.ui.unauthorized.registration.RegistrationActivity;
 import com.gitgud.fitapp.utils.UserSharedPreferences;
 import com.google.android.material.textfield.TextInputLayout;
@@ -21,7 +31,9 @@ import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.wajahatkarim3.roomexplorer.RoomExplorer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.annotations.NonNull;
@@ -47,7 +59,7 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        loginViewModel = new LoginViewModel(UserDataSource.getInstance());
+        loginViewModel = new ViewModelProvider(this).get(LoginViewModel.class);
         setContentView(R.layout.activity_login);
         validator = new Validator(this);
         validator.setValidationListener(this);
@@ -105,10 +117,49 @@ public class LoginActivity extends AppCompatActivity implements Validator.Valida
 
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN)){
+            RoomExplorer.show(this, AppDatabase.class, "app_database");
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+
     private void onSuccess(LoginUserQuery.Data user) {
-        UserSharedPreferences.setLoggedUser(this, user.loginUser());
-        Intent intent = new Intent(this, AuthorizedActivity.class);
-        startActivity(intent);
+        try {
+            List<HistoryStat> historyStatList = new ArrayList<>();
+            List<Goal> goalList = new ArrayList<>();
+            List<RoutineAndExercise> routineAndExerciseList =  new ArrayList<>();
+            User newUser =  new User(user.loginUser());
+            for (LoginUserQuery.HistoryStat stat : user.loginUser().historyStats()){
+                historyStatList.add(new HistoryStat(stat));
+            }
+            for (LoginUserQuery.Goal goal : user.loginUser().goals()) {
+                goalList.add(new Goal(goal));
+            }
+            for (LoginUserQuery.Routine routine : user.loginUser().routines()) {
+                RoutineAndExercise routineAndExercise = new RoutineAndExercise();
+                routineAndExercise.routine = new Routine(routine.name(), routine.weekdays().toString().toLowerCase());
+                routineAndExercise.exerciseList =  new ArrayList<>();
+                for (LoginUserQuery.Exercise exercise : routine.routine().exercises()) {
+                    routineAndExercise.exerciseList.add(new Exercise(exercise));
+                }
+                routineAndExerciseList.add(routineAndExercise);
+            }
+            loginViewModel.saveLoggedUser(newUser, historyStatList);
+            loginViewModel.saveGoals(goalList);
+            loginViewModel.createRoutine(routineAndExerciseList);
+            Intent intent = new Intent(this, AuthorizedActivity.class);
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_TASK_ON_HOME);
+            startActivity(intent);
+
+            this.finish();
+        } catch (Exception e) {
+            Toast.makeText(this, "We couldn't login please try again", Toast.LENGTH_SHORT).show();
+            Log.e("login", e.getMessage());
+        }
     }
     private void onFailed(Throwable throwable) {
         Log.e("Login", throwable.toString());

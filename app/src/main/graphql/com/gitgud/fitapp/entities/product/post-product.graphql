@@ -1,0 +1,32 @@
+mutation insertProduct(
+    $name: String
+    $calories: Float
+    $portion: Float
+    $nutritionalFacts: [String]
+    $image: Upload
+    $sku: String
+    $company: CompanyInputType
+) {
+    addProduct(
+        name: $name
+        calories: $calories
+        portion: $portion
+        nutritionalFacts: $nutritionalFacts
+        image: $image
+        sku: $sku
+        company: $company
+    ) {
+        id
+        name
+        calories
+        portion
+        nutritionalFacts
+        image
+        company {
+            id
+            name
+            description
+            logo
+        }
+    }
+}
